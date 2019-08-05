@@ -16,6 +16,7 @@
 		<link href="css/sb-admin.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/printing.css">
 		<link rel="stylesheet" type="text/css" href="css/nota_printing.css" media='print'>
+		<link rel="stylesheet" href="css/estilo_titulares.css">
 
 		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 		<script src="js/jquery-1.10.2.js"></script>
@@ -53,7 +54,7 @@
 						<li><a href="index.php?view=reservations"><i class="fa fa-calendar"></i> Citas</a></li>
 						<li><a href="index.php?view=pacients"><i class="fa fa-male"></i> Pacientes</a></li>
 						<li><a href="index.php?view=medics"><i class="fa fa-support"></i> Medicos</a></li>
-						<li><a href="index.php?view=newtitular"><i class="fa">Titulares</i></a></li>
+						<li><a href="index.php?view=incumbent"><i class="fa fa-male"></i> Titulares</a></li>
 						<!--<li><a href="index.php?view=categories"><i class="fa fa-th-list"></i> Areas Medicas</a></li>-->
 						<?php if($u->is_admin):?>
 							<li><a href="index.php?view=users"><i class="fa fa-users"></i> Usuarios </a></li>
