@@ -1,10 +1,12 @@
 <div class="row">
+
 	<div class="col-md-8">
-	   <h1>Nuevo Titular del Seguro</h1>
-	   <br>
+    <?php
+      $id_titular =  IncumbentData::getId_titular($_GET["Nombre"],$_GET["Apellido"]);
+      ?>
+	  <h1>Nuevo Beneficiario de: <?php echo $_GET["Nombre"]." ".$_GET["Apellido"]?> </h1><br>
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addincumbent" role="form">
-
-
+      
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>
         <div class="col-md-10">
@@ -18,23 +20,14 @@
           <input type="text" name="Apellido" required class="form-control" id="Apellido" placeholder="Apellido">
         </div>
       </div>
-      
-      <div class="form-group">
-        <label for="inputEmail1" class="col-md-2 col-form-label">Departamento</label>
-        <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Nombre de usuario">
-        </div>
-      </div>
 
       <div class="form-group">
-        <label class="col-md-3 col-form-label"> Numero de Beneficiarios</label>
+        <label class="col-md-3 col-form-label">Parentesco</label>
           <div class="col-md-9">
-            <select class="form-control" name="Num_familiares">
-              <option selected>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-control" name="Parentesco">
+              <option selected>Padre</option>
+                <option>Madre</option>
+                <option>Hijo</option>
               </select>
           </div>
       </div>
@@ -54,10 +47,9 @@
 
       <div class="form-group">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Agregar Titular</button>
+          <button type="submit" class="btn btn-primary">Agregar Beneficiario</button>
         </div>
       </div>
-
     </form>
 	</div>
 
@@ -75,6 +67,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <script src="js/Camara/Fotos.js"></script>
