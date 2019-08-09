@@ -6,8 +6,8 @@
 		<h1>Titulares</h1>
 		<br>
 		<?php
-		$users = PacientData::getAll();
-		if(count($users)>0){
+		$Titulares = IncumbentData::getAll();
+		if(count($Titulares)>0){
 			// si hay usuarios
 			?>
 			<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -16,15 +16,14 @@
 					<th></th>
 				</thead>
 				<?php
-					foreach($users as $user){
+					foreach($Titulares as $titular){
 				?>
 				<tr>
-					<td><?php echo $user->name." ".$user->lastname; ?></td>
+					<td><?php echo $titular->Nombre." ".$titular->Apellidos; ?></td>
 					<td style="width:300px;">
-						<a href="index.php?view=newreservation2&id=<?php echo $user->id;?>" class="btn btn-success btn-xs">Nueva Cita</a>
-						<a href="index.php?view=pacienthistory&id=<?php echo $user->id;?>" class="btn btn-info btn-xs">Historial</a>
-						<a href="index.php?view=editpacient&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
-						<a href="index.php?view=delpacient&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
+						<a href="#" class="btn btn-success btn-xs  ">Beneficiarios</a>
+						<a href="#" class="btn btn-warning btn-xs">Editar</a>
+						<a href="#" class="btn btn-danger btn-xs">Eliminar</a>
 					</td>
 				</tr>
 				<?php

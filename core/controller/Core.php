@@ -51,6 +51,17 @@ class Core {
 
 	}
 
+	public static function confirm($msj,$Nombre,$Apellidos){
+		echo "<script>
+				var aux = confirm('".$msj."');
+				if (aux == true) {
+				  window.location='index.php?view=newbeneficiary&Nombre=".$Nombre."&Apellido=".$Apellidos."';
+				} else {
+				  window.location='index.php?view=home';
+				}
+		</script>";
+	}
+
 }
 
 

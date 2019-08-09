@@ -18,9 +18,15 @@ class IncumbentData{
 	}
 
 	public static function getId_titular($Nombre,$Apellidos){
-		$sql = "SELECT id FROM ".self::$tablename." WHERE Nombre = \"".$Nombre."\" && Apellidos = \"".$Apellidos."\"";
+		$sql = "SELECT id_titular FROM ".self::$tablename." WHERE Nombre = \"".$Nombre."\" && Apellidos = \"".$Apellidos."\"";
 		$query = Executor::doit($sql);
 		return  Model::one($query[0],new IncumbentData());
+	}
+
+	public static function getAll(){
+		$sql = "SELECT * FROM ".self::$tablename." ORDER BY id_titular DESC";
+		$query = Executor::doit($sql);
+		return Model::many($query[0],new IncumbentData);
 	}
 }
 ?>

@@ -11,6 +11,6 @@ if(count($_POST)>0){
 	$Apellidos = ucwords($_POST["Apellido"]);
 	$titular->insert();
 	Core::alert("Se Agrego un Nuevo Titular !");
-	print "<script>window.location='index.php?view=newbeneficiary&Nombre=$Nombre&Apellidos=$Apellidos';</script>";
+	print "<script>window.location='index.php?view=newbeneficiary&Nombre=$Nombre&Apellido=$Apellidos';</script>";
 }
 ?>

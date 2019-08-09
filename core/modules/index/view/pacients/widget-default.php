@@ -1,8 +1,5 @@
 <div class="row">
 	<div class="col-md-12">
-		<div class="btn-group pull-right">
-			<a href="index.php?view=newpacient" class="btn btn-default"><i class='fa fa-male'></i> Nuevo Paciente</a>
-		</div>
 		<h1>Pacientes</h1>
 		<br>
 		<?php

@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Departamento</label>
         <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Nombre de usuario">
+          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Departamento">
         </div>
       </div>
 
