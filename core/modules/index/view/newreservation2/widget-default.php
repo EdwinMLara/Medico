@@ -2,9 +2,10 @@
 	$pacients = PacientData::getAll();
 	$medics = MedicData::getAll();
 ?>
+<link rel="stylesheet" href="css/receta.css">
 <div class="row">
 	<div class="col-md-12">
-		<h1>Nueva Cita</h1>
+		<h1>Nueva Consulta</h1>
 		<!--<form class="form-horizontal" role="form" method="post" action="./?action=addreservation">  -->
 		<form class="form-horizontal" role="form" method="post" action="index.php?view=printreservation">  
 			<div class="col-md-7">
@@ -66,9 +67,38 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputEmail1" class="col-lg-2 control-label">Medicamentos</label>
-				<div class="col-md-10">
-					<textarea class="form-control" name="medicaments" placeholder="Medicamentos"></textarea>
+				<label for="inputEmail1" class="col-lg-5 control-label">Cantidad de Medicamentos</label>
+				<div class="col-md-7">
+					<select class="form-control" name="Num_medicamentos" id="medi" onchange="medicamentos(event);" >
+		              <option selected>1</option>
+		                <option>2</option>
+		                <option>3</option>
+		                <option>4</option>
+		                <option>5</option>
+		            </select>
+				</div>
+			</div>
+			<div class="col-md-12 receta" id="Receta">
+				<h4>Receta</h4>
+				<div class="form-group" id="form1">
+					<label for="inputEmail1" class="col-lg-2 control-label">Medicamento</label>
+					<div class="col-md-6">
+						<input type="text" name="" class="form-control" placeholder="Nombre del Medicamento">
+					</div>
+					<label for="inputEmail1" class="col-lg-2 control-label">Cantidad</label>
+					<div class="col-md-2">
+						<select class="form-control" name="Medicamento1">
+			              <option selected>1</option>
+			                <option>2</option>
+			                <option>3</option>
+			                <option>4</option>
+			                <option>5</option>
+			            </select>
+					</div>
+					<label for="inputEmail1" class="col-lg-2 control-label">Prescripción</label>
+					<div class="col-md-10">
+						<textarea class="form-control" name="prescripcion" placeholder="Prescripción"></textarea>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -133,3 +163,6 @@
 		</form>
 	</div>
 </div>
+<script type="text/javascript">
+	
+</script>

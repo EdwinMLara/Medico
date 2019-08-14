@@ -3,6 +3,10 @@
 	height: 300px;
 }
 
+.user_image img{
+	width: 100%;
+}
+
 .user_image video{
 	width: 100%;
 }

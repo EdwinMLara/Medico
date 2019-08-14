@@ -67,7 +67,7 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail1" class="col-lg-2 control-label">Medicamentos</label>
+					<label for="inputEmail1" class="col-lg-2 control-label"> Cantidad de Medicamentos</label>
 					<div class="col-lg-10">
 						<textarea class="form-control" name="medicaments" placeholder="Medicamentos"></textarea>
 					</div>
