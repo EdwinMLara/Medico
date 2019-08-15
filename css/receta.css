@@ -1,5 +1,9 @@
 .receta{
 	border:solid 5px;
-	border-radius:25px
-	background:blue;	
+	border-radius:25px;
+	margin-bottom: 10px;
+}
+
+.marco{
+	margin-bottom: 30px;
 }

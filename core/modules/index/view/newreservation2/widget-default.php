@@ -15,10 +15,10 @@
 				</div>
 				<?php
 					$idexis=$_GET['id'];
-					$pacientsid = PacientData::getById($idexis);
+					$pacientsid = PacientesData::getById($idexis);
 				?>
 				<div class="col-md-6">
-					<input type="text" name="pacient_name" required class="form-control" id="inputEmail1" value="<?php echo $pacientsid->name ." ". $pacientsid->lastname;?>">
+					<input type="text" name="pacient_name" required class="form-control" id="inputEmail1" value="<?php echo $pacientsid->Nombre ." ". $pacientsid->Apellidos;?>">
 					<input type="hidden" name="pacient_id" required class="form-control" id="inputEmail1" value="<?php echo $idexis;?>">
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 			<div class="form-group">
 				<label for="inputEmail1" class="col-lg-5 control-label">Cantidad de Medicamentos</label>
 				<div class="col-md-7">
-					<select class="form-control" name="Num_medicamentos" id="medi" onchange="medicamentos(event);" >
+					<select class="form-control" name="Num_medicamentos" id="medi" onchange="medicamentos(event,'Receta');" >
 		              <option selected>1</option>
 		                <option>2</option>
 		                <option>3</option>
@@ -80,14 +80,14 @@
 			</div>
 			<div class="col-md-12 receta" id="Receta">
 				<h4>Receta</h4>
-				<div class="form-group" id="form1">
+				<div class="form-group marco" id="form1">
 					<label for="inputEmail1" class="col-lg-2 control-label">Medicamento</label>
 					<div class="col-md-6">
-						<input type="text" name="" class="form-control" placeholder="Nombre del Medicamento">
+						<input type="text" name="Medicamento1" class="form-control" placeholder="Nombre del Medicamento">
 					</div>
 					<label for="inputEmail1" class="col-lg-2 control-label">Cantidad</label>
 					<div class="col-md-2">
-						<select class="form-control" name="Medicamento1">
+						<select class="form-control" name="Cantidad">
 			              <option selected>1</option>
 			                <option>2</option>
 			                <option>3</option>
@@ -118,7 +118,7 @@
 						<div class="panel-body">
 							<?php
 								//$pacient = PacientData::getById($idp);
-								$alergias=$pacientsid->alergias;
+								$alergias=$pacientsid->Alergias;
 								if($alergias!=" "){
 									echo '<center><h4 style="color:#EF0B0F">'.$alergias.'</h4></center>';
 								}else{
@@ -163,6 +163,4 @@
 		</form>
 	</div>
 </div>
-<script type="text/javascript">
-	
-</script>
+<script src="js/recetas.js"/>
