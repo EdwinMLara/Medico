@@ -7,7 +7,7 @@
 	<div class="col-md-12">
 		<h1>Nueva Consulta</h1>
 		<!--<form class="form-horizontal" role="form" method="post" action="./?action=addreservation">  -->
-		<form class="form-horizontal" role="form" method="post" action="index.php?view=printreservation">  
+		<form autocomplete="off" class="form-horizontal" role="form" method="post" action="index.php?view=printreservation">  
 			<div class="col-md-7">
 			<div class="form-group">
 				<div class="col-md-3">
@@ -83,7 +83,7 @@
 				<div class="form-group marco" id="form1">
 					<label for="inputEmail1" class="col-lg-2 control-label">Medicamento</label>
 					<div class="col-md-6">
-						<input type="text" name="Medicamento1" class="form-control" placeholder="Nombre del Medicamento">
+						<input id="myInput" type="text" name="Medicamento1" class="form-control" placeholder="Nombre del Medicamento">
 					</div>
 					<label for="inputEmail1" class="col-lg-2 control-label">Cantidad</label>
 					<div class="col-md-2">

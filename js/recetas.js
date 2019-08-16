@@ -1,5 +1,4 @@
 function medicamentos(event,id){
-	alert(event.target.value);
 	crear_caja_receta(id,event.target.value);
 }
 
@@ -10,7 +9,7 @@ function crear_caja_receta(id,num_forms){
 		var div_id1 = crear_div(id,i,"form-group marco");
 		crear_label(div_id1,"col-lg-2 control-label","Medicamento");
 		var div_id2 = crear_div(div_id1,"2".concat(i),"col-md-6");
-		crear_input(div_id2,"form-control","Medicamento".concat(i),"text","Nombre del Medicamento");
+		crear_input(div_id2,i,"form-control","Medicamento".concat(i),"text","Nombre del Medicamento");
 		crear_label(div_id1,"col-lg-2 control-label","Cantidad");
 		var div_id3 = crear_div(div_id1,"3".concat(i),"col-md-2");
 		var num_med = ["1","2","3","4","5"];
@@ -18,6 +17,7 @@ function crear_caja_receta(id,num_forms){
 		crear_label(div_id1,"col-lg-2 control-label","Prescripción");
 		var div_id4 = crear_div(div_id1,"4".concat(i),"col-md-10");
 		crear_textArea(div_id4,"form-control","Prescripcion","Prescripción");
+		autocomplete(document.getElementById("myInput".concat(i)), countries);
 	}	
 }
 
@@ -42,8 +42,9 @@ function crear_label(id_padre,clase,nombre_mostrar){
 	document.getElementById(id_padre).appendChild(label).innerHTML = nombre_mostrar;
 }
 
-function crear_input(id_padre,clase,nombre,tipo,placeholder){
+function crear_input(id_padre,id,clase,nombre,tipo,placeholder){
 	var input = document.createElement("input");
+	input.setAttribute("id","myInput".concat(id));
 	var input_att_type = document.createAttribute("type");
 	input_att_type.value = tipo;
 	input.setAttributeNode(input_att_type);
@@ -99,3 +100,95 @@ function crear_textArea(id_padre,clase,nombre,placeholder){
 	textArea.setAttributeNode(textArea_att_placeholder);
 	document.getElementById(id_padre).appendChild(textArea);
 }
+
+function autocomplete(inp, array){
+	var currentFocus;
+
+	inp.addEventListener("input",function(e){
+		var a,b,i,val = this.value;
+		closeALLList();
+		if(!val){
+			return false;
+		}
+		currentFocus = -1;
+
+		a = document.createElement("div");
+		a.setAttribute("id",this.id + "autocomplete-list");
+		a.setAttribute("class","autocomplete-items");
+
+		this.parentNode.appendChild(a);
+
+		for(i=0;i<array.length;i++){
+			if(array[i].substr(0,val.length).toUpperCase() == val.toUpperCase()){
+				b = document.createElement("div");
+				b.innerHTML = "<strong>" + array[i].substr(0,val.length) + "</strong>";
+				b.innerHTML += array[i].substr(val.length);
+				b.innerHTML += "<input type='hidden' value='" + array[i] +"'>";
+
+				b.addEventListener("click", function(e){
+					inp.value = this.getElementsByTagName("input")[0].value;
+					closeALLList();
+				});
+				a.appendChild(b);
+			}
+		}
+	});
+	
+	inp.addEventListener("keydown",function(e){
+		var x = document.getElementById(this.id + "autocomplete-list");
+		if(x){
+			x = x.getElementsByTagName("div");
+		}
+		if(e.keyCode == 40){
+			//codigo 40 tecla flecha abajo
+			currentFocus++;
+			addActive(x);
+		}else if(e.keyCode == 38){
+			//codigo 38 tecla flecha arriba
+			currentFocus--;
+			addActive(x);
+		}else if(e.keyCode == 13){
+			//codigo 13 tecla enter
+			e.preventDefault();
+			if(currentFocus > -1){
+				if(x) x[currentFocus].click();
+			}
+		}
+	});
+
+	function addActive(x){
+		if(!x) return false;
+		removeActive(x);
+		if(currentFocus >= x.length){
+			currentFocus = 0;
+		}
+		if(currentFocus < 0){
+			currentFocus = (x.length - 1);
+		}
+
+		x[currentFocus].classList.add("autocomplete-active");
+	}
+
+	function removeActive(x){
+		for(var i=0;i<x.length;i++){
+			x[i].classList.remove("autocomplete-active");
+		}
+	}
+
+	function closeALLList(elmnt){
+		var x = document.getElementsByClassName("autocomplete-items");
+		for (var i=0;i<x.length;i++){
+			if(elmnt != x[i] && elmnt != inp){
+				x[i].parentNode.removeChild(x[i]);
+			}
+		}
+	}
+
+	document.addEventListener("click",function(e){
+		closeALLList(e.target);
+	});
+}
+
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+autocomplete(document.getElementById("myInput"), countries);
