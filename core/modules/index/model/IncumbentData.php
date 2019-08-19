@@ -12,7 +12,7 @@ class IncumbentData{
 	}
 
 	public function insert(){
-		$sql = "insert into ".self::$tablename."(Nombre,Apellidos,Departamento,Num_familiares,Ruta_foto,fecha_registro)";
+		$sql = "INSERT INTO ".self::$tablename."(Nombre,Apellidos,Departamento,Num_familiares,Ruta_foto,fecha_registro)";
 		$sql.= "value (\"$this->Nombre\",\"$this->Apellidos\",\"$this->Departamento\",\"$this->Num_familiares\",\"$this->Ruta_foto\",$this->fecha_registro)";
 		Executor::doit($sql);
 	}
