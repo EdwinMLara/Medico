@@ -4,18 +4,17 @@ class medicamentosData{
 
 	public function medicamentosData(){
 		$this->Nombre = "";
-		$this->status_producto = "";
+		$this->Status_producto = "";
 		$this->Fecha = "NOW()";
 		$this->En_inventario = "";
 	}
 
-	public function getAll(){
-		$sql = "SELECT * FROM ".self::$tablename." ORDER BY id_producto DESC";
+	public function get_json(){
+		$sql = "SELECT * FROM ".self::$tablename." ORDER BY id_medicamento DESC";
 		$query = Executor::doit($sql);
 		$aux = Model::many($query[0],new medicamentosData());
-		echo $aux;
+		$json_array = array('Medicamentos' => $aux);
+		echo json_encode($json_array);
 	}
 }
-
-echo "Prueba";
 ?>
