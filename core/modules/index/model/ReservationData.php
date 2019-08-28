@@ -3,20 +3,20 @@ class ReservationData {
 	public static $tablename = "reservation";
 
 	public function ReservationData(){
-		$this->name = "";
-		$this->lastname = "";
-		$this->email = "";
-		$this->password = "";
 		$this->created_at = "NOW()";
+		$this->pacient_id = "";
+		$this->symtoms = "";
+		$this->sick = "";
+		$this->medicaments = "";
 	}
 
 	public function getPacient(){ return PacientData::getById($this->pacient_id); }
 	public function getMedic(){ return MedicData::getById($this->medic_id); }
 
 	public function add(){
-		$sql = "insert into reservation (medic_id,date_at,time_at,pacient_id,user_id,sick,symtoms,medicaments,created_at) ";
-		$sql .= "value (\"$this->medic_id\",\"$this->date_at\",\"$this->time_at\",$this->pacient_id,$this->user_id,\"$this->sick\",\"$this->symtoms\",\"$this->medicaments\",$this->created_at)";
-		return Executor::doit($sql);
+		$sql = "INSERT INTO ".self::$tablename."(created_at,pacient_id,symtoms,sick, Can_Medicamentos)"; 
+		$sql .= "VALUES (\"$this->created_at\",\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",$this->medicaments)";
+		Executor::doit($sql);
 	}
 
 	public static function delById($id){

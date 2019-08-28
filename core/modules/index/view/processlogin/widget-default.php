@@ -15,7 +15,7 @@ $query = $con->query($sql);
 $found = false;
 $userid = null;
 while($r = $query->fetch_array()){
-	$found = true ;
+	$found = true;
 	$userid = $r['id'];
 }
 

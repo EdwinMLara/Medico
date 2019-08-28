@@ -16,7 +16,7 @@ function crear_caja_receta(id,num_forms){
 		crear_select(div_id3,i,"form-control","Cantidad".concat(i),num_med);
 		crear_label(div_id1,"col-lg-2 control-label","Prescripción");
 		var div_id4 = crear_div(div_id1,"4".concat(i),"col-md-10");
-		crear_textArea(div_id4,"form-control","Prescripcion","Prescripción");
+		crear_textArea(div_id4,i,"form-control","Prescripcion","Prescripción");
 		autocomplete(document.getElementById("myInput".concat(i)), countries);
 	}	
 }
@@ -87,13 +87,13 @@ function crear_select(id_padre,id,clase,nombre,array_option){
 	document.getElementById(id_padre).appendChild(select);
 }
 
-function crear_textArea(id_padre,clase,nombre,placeholder){
+function crear_textArea(id_padre,id,clase,nombre,placeholder){
 	var textArea = document.createElement("textarea");
 	var textArea_att_class = document.createAttribute("class");
 	textArea_att_class.value = clase;
 	textArea.setAttributeNode(textArea_att_class);
 	var textArea_att_name = document.createAttribute("name");
-	textArea_att_name.value = nombre;
+	textArea_att_name.value = nombre.concat(id);
 	textArea.setAttributeNode(textArea_att_name);
 	var textArea_att_placeholder = document.createAttribute("placeholder");
 	textArea_att_placeholder.value = placeholder;
@@ -124,11 +124,12 @@ function autocomplete(inp, array){
 				b.innerHTML = "<strong>" + array[i].substr(0,val.length) + "</strong>";
 				b.innerHTML += array[i].substr(val.length);
 				b.innerHTML += "<input type='hidden' value='" + array[i] +"'>";
-
+				b.setAttribute("name",inp.name);
 				b.addEventListener("click", function(e){
 					inp.value = this.getElementsByTagName("input")[0].value;
 					closeALLList();
 				});
+				
 				a.appendChild(b);
 			}
 		}
@@ -153,7 +154,9 @@ function autocomplete(inp, array){
 			if(currentFocus > -1){
 				if(x) x[currentFocus].click();
 			}
+
 		}
+
 	});
 
 	function addActive(x){
@@ -189,8 +192,11 @@ function autocomplete(inp, array){
 	});
 }
 
+
+
 //var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 var countries = [];
+var ids_countries = [];
 autocomplete(document.getElementById("myInput"), countries);
 
 $(document).ready(function(){
@@ -202,6 +208,7 @@ $(document).ready(function(){
 			var x = datos.Medicamentos;
 			for (var i = 0; i < x.length;i++){
 				countries.push(x[i].Nombre);
+				ids_countries.push(x[i].id_medicamento);
 			}
 		}
 	});
