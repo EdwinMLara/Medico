@@ -14,9 +14,24 @@ $con = $base->connect();
 $query = $con->query($sql);
 $found = false;
 $userid = null;
+
 while($r = $query->fetch_array()){
 	$found = true;
 	$userid = $r['id'];
+	$is_inventario = $r['is_inventario'];
+}
+
+if($is_inventario == 1){
+	require_once("farmacia_sistem/config/db.php");
+	require_once("farmacia_sistem/classes/Login.php");
+	
+	$login = new Login('Farmacia1','admin');
+	$aux_login = $login->isUserLoggedIn();
+	echo "<script>alert('$pass');</script>";
+
+	if ( $aux_login== true) {
+   		header("location: facturas.php");
+	}
 }
 
 if($found==true) {
@@ -35,4 +50,5 @@ if($found==true) {
 	print "<script>window.location='index.php?view=home';</script>";
 	
 }
+
 ?>

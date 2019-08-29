@@ -8,12 +8,13 @@ class UserData {
 		$this->username = "";
 		$this->password = "";
 		$this->is_active = "0";
+		$this->is_inventario = "0";
 		$this->created_at = "NOW()";
 	}
 
 	public function add(){
-		$sql = "insert into ".self::$tablename." (name,lastname,username,password,is_active,is_admin,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->password\",$this->is_active,$this->is_admin,$this->created_at)";
+		$sql = "insert into ".self::$tablename." (name,lastname,username,password,is_active,is_admin,is_inventario,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->password\",$this->is_active,$this->is_admin,$this->is_inventario,$this->created_at)";
 		Executor::doit($sql);
 	}
 
