@@ -29,8 +29,9 @@ if($is_inventario == 1){
 	$aux_login = $login->isUserLoggedIn();
 	echo "<script>alert('$pass');</script>";
 
-	if ( $aux_login== true) {
-   		header("location: facturas.php");
+	if ( $aux_login == true) {
+   		header("location: farmacia_sistem/facturas.php");
+   		die();
 	}
 }
 

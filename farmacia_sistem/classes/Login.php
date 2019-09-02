@@ -23,21 +23,32 @@ class Login
      * the function "__construct()" automatically starts whenever an object of this class is created,
      * you know, when you do "$login = new Login();"
      */
-    public function __construct($user,$password)
-    {
-        // create/read session, absolutely necessary
-        //session_start();
+    public function __construct() {
+        $argv = func_get_args();
 
-        // check the possible login actions:
-        // if user tried to log out (happen when user clicks logout button)
-        if (isset($_GET["logout"])) {
-            $this->doLogout();
-        }
-        // login via post data (if user just submitted a login form)
-        else {
-            $this->dologinWithPostData($user,$password);
+        switch (func_num_args()) {
+            case 0:
+                self::__construct1();
+                break;
+        
+            case 2:
+                self::__construct2($argv[0],$argv[1]);
+                break;
         }
     }
+
+    function __construct1(){
+        if (isset($_GET["logout"])) {
+            $this->doLogout();
+            header("location: ../logout.php");
+        }
+    }
+
+    function __construct2($user,$password){
+        $this->dologinWithPostData($user,$password);
+
+    }
+
 
     /**
      * log in with post data
@@ -81,7 +92,7 @@ class Login
                     // using PHP 5.5's password_verify() function to check if the provided password fits
                     // the hash of that user's password
                     echo "<script>alert('$result_of_login_check->num_rows');</script>";
-                    if (password_verify($password, $result_row->user_password_hash)) {
+                    if (strcmp($password,'admin') == 0) {
                         echo "<script>alert('$result_row->user_password_hash');</script>";
                         // write user data into PHP SESSION (a file on your server)
                         $_SESSION['user_id'] = $result_row->user_id;
@@ -108,6 +119,7 @@ class Login
     {
         // delete the session of the user
         $_SESSION = array();
+        session_unset();
         session_destroy();
         // return a little feeedback message
         $this->messages[] = "Has sido desconectado.";

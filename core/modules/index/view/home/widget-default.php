@@ -4,10 +4,10 @@
 		$idpan = $event->pacient_id;
 		$paceitne = PacientData::getById($idpan);
 		$nomcp = $paceitne->name." ".$paceitne->lastname;
-		echo $idpan." ".$nomcp."<br>";
-		$thejson[] = array("title"=>$nomcp,"url"=>"./?view=editreservation&id=".$event->id,"start"=>$event->date_at."T".$event->time_at);
+		//echo $idpan." ".$nomcp."<br>";
+		$thejson[] = array("title"=>$nomcp,"url"=>"./?view=editreservation&id=".$event->id);
 	}
-	echo json_encode($thejson);	
+	json_encode($thejson);	
 ?>
 <script>	
 	$(document).ready(function() {
