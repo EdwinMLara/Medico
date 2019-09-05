@@ -20,6 +20,21 @@
 		}
 	}
 	$receta->insert();
+
+    require_once($_SERVER["DOCUMENT_ROOT"]."/"."Medico/farmacia_sistem/config/db.php");
+    require_once("/farmacia_sistem/config/conexion.php");
+
+    $query_get_medicamento_id =  "SELECT id_medicamento FROM medicamentos2 WHERE Nombre = 'NEOMICINA, CAOLIN Y PECTINA SUSP'";
+    $id_medicamento = "";
+
+    if($result = mysql_query($con,$query_get_medicamento_id)){
+        $row = mysqli_fetch_assoc($result);
+        $id_medicamento = $row["id_medicamento"];
+    }
+
+    $query_insert_detalle_productos = "INSERT INTO detalle_productos (id_detalle_producto, codigo_producto, status,cantidad,detalle_date_added,precio) VALUES ('$id_medicamento','77763',2,'".$_POST["Medicamentos1"]."','NOW()','1500')";
+
+    mysql_query($con,$query_insert_detalle_productos);
 ?>
 <article>
 	<div id="fondo">
