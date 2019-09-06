@@ -136,7 +136,7 @@
 						</div>
 						<div class="panel-body">
 							<?php
-								/*$users = ReservationData::getAllByPacientId3($idexis);
+								$users = ReservationData::getAllByPacientId3($idexis);
 									if(count($users)>0){ ?>
 										<table class="table table-striped table-bordered table-hover">
 											<thead>
@@ -146,14 +146,14 @@
 									<?php
 										foreach($users as $uss){ ?>
 											<tr>
-												<td><?php echo $uss->create_at; ?></td>
+												<td><?php echo $uss->created_at; ?></td>
 												<td><?php echo $uss->sick; ?></td>
 											</tr>
 									<?php	}	?>
 										</table>
 								<?php	}else{
 										echo "No Hay citas anteriores";
-									}*/
+									}
 								?>
 						</div>
 					</div>
