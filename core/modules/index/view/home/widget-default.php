@@ -2,10 +2,16 @@
 	$events = ReservationData::getEvery();
 	foreach($events as $event){
 		$idpan = $event->pacient_id;
-		$paceitne = PacientData::getById($idpan);
-		$nomcp = $paceitne->name." ".$paceitne->lastname;
-		//echo $idpan." ".$nomcp."<br>";
-		$thejson[] = array("title"=>$nomcp,"url"=>"./?view=editreservation&id=".$event->id);
+		try{
+			if($paciente = PacientData::getById($idpan)){
+				$nomcp = $paciente->name." ".$paciente->lastname;
+				$thejson[] = array("title"=>$nomcp,"url"=>"./?view=editreservation&id=".$event->id,"start"=>$event->date_at."T".$event->time_at);
+			}else{
+				throw new Exception('No se datos en el objeto');
+			}
+		}catch(Exception $e){
+			
+		}
 	}
 	json_encode($thejson);	
 ?>
