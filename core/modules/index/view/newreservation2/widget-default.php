@@ -88,7 +88,7 @@
 					</div>
 					<label for="inputEmail1" class="col-lg-2 control-label">Cantidad</label>
 					<div class="col-md-2">
-						<select class="form-control" name="Cantidad">
+						<select class="form-control" name="Cantidad1">
 			              <option selected>1</option>
 			                <option>2</option>
 			                <option>3</option>
@@ -98,7 +98,7 @@
 					</div>
 					<label for="inputEmail1" class="col-lg-2 control-label">Prescripción</label>
 					<div class="col-md-10">
-						<textarea class="form-control" name="Prescripcion" placeholder="Prescripción"></textarea>
+						<textarea class="form-control" name="Prescripcion1" placeholder="Prescripción"></textarea>
 					</div>
 				</div>
 			</div>
