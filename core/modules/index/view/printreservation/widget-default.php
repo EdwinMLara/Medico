@@ -25,6 +25,7 @@
     require_once $_SERVER["DOCUMENT_ROOT"]."/Medico/farmacia_sistem/config/conexion.php";
     //Desdes aqui se hacen las consultas necesarias para hacer la inseción en la base de datos de farmacia
 
+
     $query_get_medicamento_id =  "SELECT id_producto, codigo_producto FROM products WHERE nombre_producto ='".$_POST["Medicamento1"]."'";
 
     $id_medicamento = "";
@@ -34,32 +35,41 @@
         $row = mysqli_fetch_assoc($result);
         $id_medicamento = $row["id_producto"];
         $codigo_producto = $row["codigo_producto"];
+    }else{
+        echo "No se puede encontrar el id del medicamento"."<br>";
     }
 
-    $query_insert_detalle_factura = "SELECT id_factura FROM facturas ORDER BY id_factura DESC LIMIT 1";
+    $query_get_last_id_factura = "SELECT id_factura FROM facturas ORDER BY id_factura DESC LIMIT 1";
     $ultima_factura = "";
 
-    if($result = mysqli_query($con,$query_insert_detalle_factura)){
+    if($result = mysqli_query($con,$query_get_last_id_factura)){
         $ultima_factura = mysqli_fetch_assoc($result);
         $ultima_factura = (int) $ultima_factura["id_factura"] + 1;
-        echo $ultima_factura;
+    }else{
+        echo "No se puede obtener el id de la ultima factura"."<br>";
     }
 
-    $query_insert_factura = "INSERT INTO detalle_factura(numero_factura ,id_producto ,cantidad) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad1"]."')";
+    $query_insert_detalle_factura = "INSERT INTO detalle_factura (numero_factura ,id_producto ,cantidad) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad1"]."')";
 
-    mysqli_query($con,$query_insert_detalle_factura);
+    if(!$result = mysqli_query($con,$query_insert_detalle_factura)){
+        echo "No se pueden insertar los detalles de la factura"."<br>";
+    }
 
     //Empezar insert para detalle de productos
 
     $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad1"]."','NOW()','0')";
 
-    mysqli_query($con,$query_insert_detalle_productos);
+    if(!mysqli_query($con,$query_insert_detalle_productos)){
+        echo "Se pueden insertar los detalles de producto o medicamentos"."<br>";
+    }
 
     //finalmente hay que hacer la insercion en facturas, aqui se necesita obtener el id del paciente en funcion del nombre, pero por ahora voy a probar con el id solo para observar
 
-    $query_insert_factura = "INSERT INTO facturas(numero_factura, fecha_factura, id_cliente, id_vendedor, estado_factura) VALUES ('$ultima_factura','NOW()','".$_POST["pacient_id"]."','".$_POST["medic_id"]."','1')";
+    $query_insert_factura = "INSERT INTO facturas (numero_factura, fecha_factura, id_cliente, id_vendedor, estado_factura) VALUES ('$ultima_factura','NOW()','".$_POST["pacient_id"]."','".$_POST["medic_id"]."','1')";
 
-    mysqli_query($con,$query_insert_detalle_factura);
+    if(!mysqli_query($con,$query_insert_factura)){
+        echo "No se creo la factura"."<br>";
+    }
 
 ?>
 <article>
