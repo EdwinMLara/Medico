@@ -3,7 +3,7 @@
 		<h1>Pacientes</h1>
 		<br>
 		<?php
-		$users = pacientesData::getAll();
+		$users = pacientData::getAll();
 		if(count($users)>0){
 			// si hay usuarios
 			?>
@@ -16,10 +16,10 @@
 					foreach($users as $user){
 				?>
 				<tr>
-					<td><?php echo $user->Nombre." ".$user->Apellidos; ?></td>
+					<td><?php echo $user->name." ".$user->lastname; ?></td>
 					<td style="width:300px;">
-						<a href="index.php?view=newreservation2&id=<?php echo $user->id_paciente;?>" class="btn btn-success btn-xs">Nueva Cita</a>
-						<a href="index.php?view=pacienthistory&id=<?php echo $user->id_paciente;?>" class="btn btn-info btn-xs">Historial</a>
+						<a href="index.php?view=newreservation2&id=<?php echo $user->id;?>" class="btn btn-success btn-xs">Nueva Cita</a>
+						<a href="index.php?view=pacienthistory&id=<?php echo $user->id;?>" class="btn btn-info btn-xs">Historial</a>
 					</td>
 				</tr>
 				<?php
