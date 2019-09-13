@@ -213,3 +213,16 @@ $(document).ready(function(){
 		}
 	});
 });
+
+function actualizar_datos_titular(){
+	var hay_titular = document.getElementById("hay_titular");
+	switch(hay_titular.selectedIndex){
+		case 0:
+			alert("Si");
+
+			break;
+		case 1:
+			alert("No");
+			break;
+	}
+}
