@@ -9,20 +9,25 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">El Paciente no tiene un titular registrado</h4>
       </div>
       <div class="modal-body">
         <form role="form">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Es el Titular del Seguro</label
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Es el Titular o beneficiario del Seguro</label>
             
-					    <select class="form-control" name="Num_medicamentos" id="hay_titular" onchange="actualizar_datos_titular();">
-		              	<option selected value="0">Si</option>
-		                <option value="1">No</option>
+					    <select class="form-control" name="hay_titular" id="hay_titular" onchange="actualizar_datos_titular();">
+		              	<option selected value="inf"></option>
+                    <option value="0">Titular</option>
+		                <option value="1">Beneficiario</option>
 		          </select>
+
+              <label for="usrname" class="hidden"><span class="glyphicon glyphicon-user"></span> Nombre del titular</label>
+
+              <input type="text" name="name_titular" class="form-control hidden">
 				
             </div>
-            <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+            <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Registrar</button>
           </form>
       </div>
       <div class="modal-footer">

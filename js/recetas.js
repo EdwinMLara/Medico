@@ -219,10 +219,11 @@ function actualizar_datos_titular(){
 	switch(hay_titular.selectedIndex){
 		case 0:
 			alert("Si");
-
+			$(".P1").hide();
 			break;
 		case 1:
 			alert("No");
+			$(".P1").hide();
 			break;
 	}
 }
