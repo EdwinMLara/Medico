@@ -17,14 +17,14 @@
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Es el Titular o beneficiario del Seguro</label>
             
 					    <select class="form-control" name="hay_titular" id="hay_titular" onchange="actualizar_datos_titular();">
-		              	<option selected value="inf"></option>
-                    <option value="0">Titular</option>
-		                <option value="1">Beneficiario</option>
+		              	<option selected value="inf">Si</option>
+		                <option value="1">No</option>
 		          </select>
+              <div class="hidden" id="div_titular">
+                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Nombre del titular</label>
 
-              <label for="usrname" class="hidden"><span class="glyphicon glyphicon-user"></span> Nombre del titular</label>
-
-              <input type="text" name="name_titular" class="form-control hidden">
+                <input type="text" id="name_titular" name="name_titular" class="form-control">
+              </div>
 				
             </div>
             <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Registrar</button>
