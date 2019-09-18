@@ -12,7 +12,7 @@
         <h4 class="modal-title">El Paciente no tiene un titular registrado</h4>
       </div>
       <div class="modal-body">
-        <form role="form">
+        <form role="form" id="modal-form" autocomplete="off" method="post" action="index.php?view=newtitular">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Es el Titular o beneficiario del Seguro</label>
             

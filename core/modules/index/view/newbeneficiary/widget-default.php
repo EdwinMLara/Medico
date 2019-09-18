@@ -1,4 +1,4 @@
-<div class="row">
+  <div class="row">
 
 	<div class="col-md-8">
 	  <h1>Nuevo Beneficiario de: <?php echo $_GET["Nombre"]." ".$_GET["Apellido"];?> </h1><br>

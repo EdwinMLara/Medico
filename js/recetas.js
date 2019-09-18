@@ -231,14 +231,17 @@ $(document).ready(function(){
 
 function actualizar_datos_titular(){
 	var hay_titular = document.getElementById("hay_titular");
+	var id_form = document.getElementById("modal-form");
 	switch(hay_titular.selectedIndex){
 		case 0:
 			console.log(0);
 			$("#div_titular").toggleClass("hidden",true);
+			id_form.setAttribute("action","index.php?view=newtitular");
 			break;
 		case 1:
 			console.log(1);
 			$("#div_titular").toggleClass("hidden",false);
+			id_form.setAttribute("action","index.php?view=newbeneficiary");
 			break;
 	}
 }
