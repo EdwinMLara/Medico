@@ -92,12 +92,18 @@ class  PacientData{
 	}
 
 	public function get_json(){
-	$sql = "SELECT * FROM ".self::$tablename." ORDER BY id DESC";
-	$query = Executor::doit($sql);
-	$aux = Model::many($query[0],new PacientData());
-	$json_array = array('Nombres' => $aux);
-	echo json_encode($json_array);
-}
+		$sql = "SELECT * FROM ".self::$tablename." ORDER BY id DESC";
+		$query = Executor::doit($sql);
+		$aux = Model::many($query[0],new PacientData());
+		$json_array = array('Nombres' => $aux);
+		echo json_encode($json_array);
+	}
+
+	public static function getId_paciente($Nombre,$Apellidos){
+		$sql = "SELECT id FROM ".self::$tablename." WHERE name = \"".$Nombre."\" && lastname = \"".$Apellidos."\"";
+		$query = Executor::doit($sql);
+		return  Model::one($query[0],new PacientData());
+	}
 }
 
 ?>

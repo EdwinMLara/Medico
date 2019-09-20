@@ -222,7 +222,7 @@ $(document).ready(function(){
 			var x = datos.Nombres;
 			for (var i = 0; i < x.length;i++){
 				var aux = x[i].name;
-				aux = aux.concat(" ",x[i].lastname);
+				aux = aux.concat(x[i].lastname);
 				nombres.push(aux);
 			}
 		}

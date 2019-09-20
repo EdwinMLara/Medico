@@ -1,16 +1,37 @@
   <div class="row">
 
 	<div class="col-md-8">
-	  <h1>Nuevo Beneficiario de: <?php echo $_GET["Nombre"]." ".$_GET["Apellido"];?> </h1><br>
+	  <h1>Nuevo Beneficiario de: 
+      <?php
+        if(!isset($_POST["name_titular"])){
+          echo $_GET["Nombre"]." ".$_GET["Apellido"];
+        }else{
+          echo $_POST["name_titular"];
+        }
+      ?> 
+    </h1><br>
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addbeneficiary" role="form">
       <input type="hidden" name="id_titular" id="id_titular">
       <input type="hidden" name="Nombre_titular" id="Nombre_titular">
       <input type="hidden" name="Apellido_titular" id="Apellido_titular">
       <?php
-        $Nombre = $_GET["Nombre"];
-        $Apellido = $_GET["Apellido"];
-        $id =  IncumbentData::getId_titular($_GET["Nombre"],$_GET["Apellido"]);
-        $id_num = $id->id_titular;
+        if(!isset($_POST["name_titular"])){
+          $Nombre = $_GET["Nombre"];
+          $Apellido = $_GET["Apellido"];
+          $id =  IncumbentData::getId_titular($_GET["Nombre"],$_GET["Apellido"]);
+          $id_num = $id->id_titular;
+        }else{
+          $array = explode(" ",$_POST["name_titular"]);
+          $Nombre = $array[0];
+          $Apellido = $array[1]." ".$array[2];
+          $id = PacientData::getId_paciente($Nombre,$Apellido);
+          $id_num  = 
+
+          
+
+
+          $id->id;
+        }
 
         echo "<script>
                 document.getElementById('id_titular').value = $id_num;

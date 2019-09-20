@@ -1,5 +1,8 @@
 <div class="row">
 	<div class="col-md-12">
+		<div class="btn-group pull-right">
+			<a href="index.php?view=newbeneficiary&Nombre=<?php echo $_GET["Nombre"];?>&Apellido=<?php echo $_GET["Apellido"];?>" class="btn btn-default"><i class='fa fa-male'></i> Nuevo Beneficiario</a>
+		</div>
 		<h1>Beneficiarios de: <?php $Nombre = $_GET["Nombre"];
 									$Apellidos = $_GET["Apellido"];
 									echo "$Nombre $Apellidos"; ?></h1>
