@@ -2,27 +2,47 @@
 	<div class="col-md-8">
 	   <h1>Nuevo Titular del Seguro</h1>
 	   <br>
+      <?php
+        if(isset($_POST["name_paciente"])){
+          $array = explode(" ",$_POST["name_paciente"]);
+          $Nombre = $array[0];
+          $Apellido = $array[1]." ".$array[2];
+        }
+      ?>
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addincumbent" role="form">
-
 
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>
         <div class="col-md-10">
-          <input type="text" name="Nombre" class="form-control" id="Nombre" placeholder="Nombre">
+          <input type="text" name="Nombre" class="form-control" id="Nombre" value="<?php
+          if(isset($_POST['name_paciente'])){
+            echo $Nombre;
+          }?>" placeholder="Nombre">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Apellido</label>
         <div class="col-md-10">
-          <input type="text" name="Apellido" required class="form-control" id="Apellido" placeholder="Apellido">
+          <input type="text" name="Apellido" required class="form-control" id="Apellido" value="<?php
+          if(isset($_POST['name_paciente'])){
+            echo $Apellido;
+          }?>"
+
+          placeholder="Apellido">
         </div>
       </div>
       
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Departamento</label>
         <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Departamento">
+          <input type="text" name="Departamento" class="form-control" required id="Departamento" value="<?php
+            if(isset($_POST['name_paciente'])){
+               $paciente = PacientData::get_all_by_name($Nombre,$Apellido);
+               echo $paciente->departamento; 
+            }
+          ?>"
+          placeholder="Departamento">
         </div>
       </div>
 

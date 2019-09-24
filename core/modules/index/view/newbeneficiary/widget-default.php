@@ -23,14 +23,24 @@
         }else{
           $array = explode(" ",$_POST["name_titular"]);
           $Nombre = $array[0];
-          $Apellido = $array[1]." ".$array[2];
-          $id = PacientData::getId_paciente($Nombre,$Apellido);
-          $id_num  = 
+          if(count($array) > 2){ 
+            $Apellido = $array[1]." ".$array[2];
+          }else{
+            $Apellido = $array[1];
+          }
+          $Pacient = PacientData::getId_paciente($Nombre,$Apellido);
+          $id_num = $Pacient->id;
+        }
 
-          
+        if(isset($_POST["name_paciente"])){
+          echo $_POST["name_paciente"]."<br>";
+          $array = explode(" ",$_POST["name_paciente"]);
+          $Nombre_beneficiario = $array[0];
+          $Apellido_beneficiario = $array[1]." ".$array[2];
+          for ($i=0;$i<count($array);$i++){ 
 
-
-          $id->id;
+            echo $array[$i] . "<br>";
+          }
         }
 
         echo "<script>
@@ -42,14 +52,22 @@
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>
         <div class="col-md-10">
-          <input type="text" name="Nombre" class="form-control" id="Nombre" placeholder="Nombre">
+          <input type="text" name="Nombre" class="form-control" id="Nombre" placeholder="Nombre" value="<?php
+            if(isset($_POST['name_paciente'])){
+              echo $Nombre_beneficiario;
+            }
+          ?>">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Apellido</label>
         <div class="col-md-10">
-          <input type="text" name="Apellido" required class="form-control" id="Apellido" placeholder="Apellido">
+          <input type="text" name="Apellido" required class="form-control" id="Apellido" placeholder="Apellido" value="<?php
+            if(isset($_POST['name_paciente'])){
+              echo $Apellido_beneficiario;
+            } 
+           ?>">
         </div>
       </div>
 

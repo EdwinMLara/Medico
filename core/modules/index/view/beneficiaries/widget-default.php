@@ -8,7 +8,7 @@
 									echo "$Nombre $Apellidos"; ?></h1>
 		<br>
 		<?php
-		$Beneficiarios = beneficiaryData::getAll();
+		$Beneficiarios = beneficiaryData::getAll_byID($_GET["id_titular"]);
 		if(count($Beneficiarios)>0){
 			// si hay usuarios
 			?>
@@ -23,8 +23,8 @@
 				<tr>
 					<td><?php echo $Beneficiario->Nombre." ".$Beneficiario->Apellidos; ?></td>
 					<td style="width:300px;">
-						<a href="index.php?view=editincumbent&id_titular=<?php echo $titular->id_titular;?>&Nombre=<?php echo $titular->Nombre;?>&Apellido=<?php echo $titular->Apellidos;?>&Departamento=<?php echo $titular->Departamento?>&Ruta_foto=<?php echo $titular->Ruta_foto;?>" href="#" class="btn btn-warning btn-xs">Editar</a>
-						<a href="index.php?view=delincumbent&id=<?php echo $titular->id_titular;?>" class="btn btn-danger btn-xs">Eliminar</a>
+						<a href="index.php?view=editincumbent&id_titular=<?php echo $Beneficiario->id_beneficiario;?>&Nombre=<?php echo $Beneficiario->Nombre;?>&Apellido=<?php echo $Beneficiario->Apellidos;?>&Departamento=<?php echo $Beneficiario->Parentesco?>&Ruta_foto=<?php echo $Beneficiario->Ruta_foto;?>" href="#" class="btn btn-warning btn-xs">Editar</a>
+						<a href="index.php?view=delincumbent&id=<?php echo $Beneficiario->id_titular;?>" class="btn btn-danger btn-xs">Eliminar</a>
 					</td>
 				</tr>
 				<?php

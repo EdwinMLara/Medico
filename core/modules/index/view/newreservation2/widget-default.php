@@ -2,7 +2,21 @@
 	$pacients = PacientData::getAll();
 	$medics = MedicData::getAll();
 
+	$idexis=$_GET['id'];
+	$pacientsid = pacientData::getById($idexis);
+
 	include('modal-titulares.php');
+
+	
+	if(((int)$pacientsid->id_titular) == 0){
+		echo '<script>
+	    		$("#myModal").modal();
+			</script>';
+	}else{
+		echo "<script>
+				alert('no es cero');
+			</script>";
+	}
 ?>
 <div class="row">
 	<div class="col-md-12">
@@ -14,19 +28,6 @@
 				<div class="col-md-3">
 					<label for="inputEmail1" class="col-lg-2 control-label">Paciente</label>
 				</div>
-				<?php
-					$idexis=$_GET['id'];
-					$pacientsid = pacientData::getById($idexis);
-					if(((int)$pacientsid->id_titular)== 0){
-						echo '<script>
-					    		$("#myModal").modal();
-							</script>';
-					}else{
-						echo "<script>
-								alert('no es cero');
-							</script>";
-					}
-				?>
 				<div class="col-md-6">
 					<input type="text" name="pacient_name" required class="form-control" id="inputEmail1" value="<?php echo $pacientsid->name ." ". $pacientsid->lastname;?>">
 					<input type="hidden" name="pacient_id" required class="form-control" id="inputEmail1" value="<?php echo $idexis;?>">

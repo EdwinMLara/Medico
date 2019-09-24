@@ -222,7 +222,9 @@ $(document).ready(function(){
 			var x = datos.Nombres;
 			for (var i = 0; i < x.length;i++){
 				var aux = x[i].name;
-				aux = aux.concat(x[i].lastname);
+				aux = aux.trim();
+				var aux_lastname = x[i].lastname;  
+				aux = aux.concat(" ",aux_lastname);
 				nombres.push(aux);
 			}
 		}
@@ -236,12 +238,15 @@ function actualizar_datos_titular(){
 		case 0:
 			console.log(0);
 			$("#div_titular").toggleClass("hidden",true);
+			$("#div_paciente").toggleClass("hidden",false);
 			id_form.setAttribute("action","index.php?view=newtitular");
 			break;
 		case 1:
 			console.log(1);
 			$("#div_titular").toggleClass("hidden",false);
+			$("#div_paciente").toggleClass("hidden",true);
 			id_form.setAttribute("action","index.php?view=newbeneficiary");
 			break;
 	}
 }
+

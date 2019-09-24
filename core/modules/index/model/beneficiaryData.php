@@ -23,8 +23,8 @@ class beneficiaryData{
 		Executor::doit($sql);
 	}
 
-	public static function getAll(){
-		$sql = "SELECT * FROM ".self::$tablename." ORDER BY id_beneficiario DESC";
+	public static function getAll_byID($id){
+		$sql = "SELECT * FROM ".self::$tablename." WHERE id_titular = $id ORDER BY id_beneficiario DESC";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new IncumbentData);
 	}

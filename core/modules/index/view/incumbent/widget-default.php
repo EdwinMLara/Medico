@@ -21,7 +21,7 @@
 				<tr>
 					<td><?php echo $titular->Nombre." ".$titular->Apellidos; ?></td>
 					<td style="width:300px;">	
-						<a href="index.php?view=beneficiaries&Nombre=<?php echo $titular->Nombre;?>&Apellido=<?php echo $titular->Apellidos;?>" class="btn btn-success btn-xs">Beneficiarios</a>
+						<a href="index.php?view=beneficiaries&Nombre=<?php echo $titular->Nombre;?>&Apellido=<?php echo $titular->Apellidos;?>&id_titular=<?php echo $titular->id_titular;?>" class="btn btn-success btn-xs">Beneficiarios</a>
 						<a href="index.php?view=editincumbent&id_titular=<?php echo $titular->id_titular;?>&Nombre=<?php echo $titular->Nombre;?>&Apellido=<?php echo $titular->Apellidos;?>&Departamento=<?php echo $titular->Departamento?>&Ruta_foto=<?php echo $titular->Ruta_foto;?>" href="#" class="btn btn-warning btn-xs">Editar</a>
 						<a href="index.php?view=delincumbent&id=<?php echo $titular->id_titular;?>" class="btn btn-danger btn-xs">Eliminar</a>
 					</td>

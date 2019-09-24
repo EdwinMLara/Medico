@@ -104,6 +104,12 @@ class  PacientData{
 		$query = Executor::doit($sql);
 		return  Model::one($query[0],new PacientData());
 	}
+
+	public static function get_all_by_name($Nombre,$Apellidos){
+		$sql = "SELECT * FROM ".self::$tablename." WHERE name = \"".$Nombre."\" && lastname = \"".$Apellidos."\"";
+		$query = Executor::doit($sql);
+		return  Model::one($query[0],new PacientData());
+	}
 }
 
 ?>

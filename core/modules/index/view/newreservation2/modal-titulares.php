@@ -13,13 +13,21 @@
       </div>
       <div class="modal-body">
         <form role="form" id="modal-form" autocomplete="off" method="post" action="index.php?view=newtitular">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Es el Titular o beneficiario del Seguro</label>
             
+
+              <div class="form-group" id="div_paciente">
+                <input type="text" id="name_paciente" name="name_paciente" class="form-control" value="<?php echo $pacientsid->name . $pacientsid->lastname;?>">
+              </div>
+
+              <div class="form-group">
+
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Es el Titular del Seguro?</label>
+
 					    <select class="form-control" name="hay_titular" id="hay_titular" onchange="actualizar_datos_titular();">
 		              	<option selected value="inf">Si</option>
 		                <option value="1">No</option>
 		          </select>
+
               <div class="hidden" id="div_titular">
                 <label for="usrname"><span class="glyphicon glyphicon-user"></span> Nombre del titular</label>
 
