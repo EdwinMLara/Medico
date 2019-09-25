@@ -4,7 +4,7 @@ class beneficiaryData{
 	public static $tablename = "beneficiarios";
 
 	public function beneficiaryData(){
-		$this->id_titular = 0;
+		$this->id_titular = "";
 		$this->Nombre = "";
 		$this->Apellidos = "";
 		$this->Parentesco = "";

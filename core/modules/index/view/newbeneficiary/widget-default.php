@@ -15,6 +15,7 @@
       <input type="hidden" name="Nombre_titular" id="Nombre_titular">
       <input type="hidden" name="Apellido_titular" id="Apellido_titular">
       <?php
+
         if(!isset($_POST["name_titular"])){
           $Nombre = $_GET["Nombre"];
           $Apellido = $_GET["Apellido"];
@@ -28,19 +29,23 @@
           }else{
             $Apellido = $array[1];
           }
-          $Pacient = PacientData::getId_paciente($Nombre,$Apellido);
-          $id_num = $Pacient->id;
+          if($id = IncumbentData::getId_titular($Nombre,$Apellido)){
+            $id_num = $id->id_titular;
+          }else{
+            echo "<script>
+              alert('Necesitas registrar el titular del Seguro');
+              window.location='index.php?view=newtitular&Nombre=".$Nombre."&Apellido=".$Apellido."';
+            </script>";
+            $Nombre = "";
+            $Apellido = "";
+            $id_num = "";
+          }
         }
 
         if(isset($_POST["name_paciente"])){
-          echo $_POST["name_paciente"]."<br>";
           $array = explode(" ",$_POST["name_paciente"]);
           $Nombre_beneficiario = $array[0];
           $Apellido_beneficiario = $array[1]." ".$array[2];
-          for ($i=0;$i<count($array);$i++){ 
-
-            echo $array[$i] . "<br>";
-          }
         }
 
         echo "<script>

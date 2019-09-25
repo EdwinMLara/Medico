@@ -16,7 +16,10 @@
             
 
               <div class="form-group" id="div_paciente">
-                <input type="text" id="name_paciente" name="name_paciente" class="form-control" value="<?php echo $pacientsid->name . $pacientsid->lastname;?>">
+                <input type="text" id="name_paciente" name="name_paciente" class="form-control" value="<?php
+                  $aux = str_replace(' ', '', $pacientsid->name);  
+                  echo $aux." ".$pacientsid->lastname;
+                ?>">
               </div>
 
               <div class="form-group">
