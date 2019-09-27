@@ -16,9 +16,29 @@
             
 
               <div class="form-group" id="div_paciente">
-                <input type="text" id="name_paciente" name="name_paciente" class="form-control" value="<?php
-                  $aux = str_replace(' ', '', $pacientsid->name);  
-                  echo $aux." ".$pacientsid->lastname;
+                <input type="text" id="name_paciente" class="form-control" value="<?php
+                  $array = explode(' ',$pacientsid->name);
+                  $array2 = explode(' ',$pacientsid->lastname); 
+                  $Nombre_completo = '';
+                  for($i=0;$i<count($array);$i++){
+                    $array[$i] = str_replace(' ', '', $array[$i]);
+                    if($i < count($array) - 1){
+                      $Nombre_completo = $Nombre_completo.$array[$i].' ';
+                    }else{
+                      $Nombre_completo = $Nombre_completo.$array[$i];
+                    }  
+                  }
+
+                  for($i=0;$i<count($array2);$i++){
+                    $array2[$i] = str_replace(' ', '', $array2[$i]);
+                    $Nombre_completo = $Nombre_completo.' '.$array2[$i];
+                  }
+                  
+                  echo $Nombre_completo;
+                ?>">
+
+                <input type="hidden" name="id" value="<?php
+                  echo $idexis;
                 ?>">
               </div>
 

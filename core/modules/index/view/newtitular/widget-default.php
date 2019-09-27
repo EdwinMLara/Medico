@@ -5,6 +5,7 @@
       <?php
         if(isset($_POST["name_paciente"])){
           $array = explode(" ",$_POST["name_paciente"]);
+          echo count($array);
           $Nombre = $array[0];
           $Apellido = $array[1]." ".$array[2];
         }else if(isset($_GET["Nombre"])){
