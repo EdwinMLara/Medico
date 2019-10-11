@@ -37,7 +37,7 @@
                   echo $Nombre_completo;
                 ?>">
 
-                <input type="hidden" name="id" value="<?php
+                <input type="hidden" name="id_paciente" value="<?php
                   echo $idexis;
                 ?>">
               </div>
@@ -52,9 +52,10 @@
 		          </select>
 
               <div class="hidden" id="div_titular">
-                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Nombre del titular</label>
+                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Quien es el titular?</label>
 
                 <input type="text" id="name_titular" name="name_titular" class="form-control">
+                
               </div>
 				
             </div>

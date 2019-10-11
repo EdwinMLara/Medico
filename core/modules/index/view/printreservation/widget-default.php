@@ -4,21 +4,27 @@
 	$reservacion->pacient_id = $_POST["pacient_id"];
 	$reservacion->sick = $_POST["sick"];
 	$reservacion->symtoms = $_POST["symtoms"];
-	$reservacion->medicaments = $_POST["Num_medicamentos"];
-	$reservacion->add();
+    $reservacion->medic_id = $_POST["medic_id"];
 
 	$cant = (is_numeric($_POST['Num_medicamentos']) ? (int)$_POST['Num_medicamentos'] : 0);
 	$receta = new recetaData();
 	$receta->id_medico = $_POST["medic_id"];
 	$receta->id_paciente = $_POST["pacient_id"];
+
 	for($i=1; $i<= $cant ; $i++){
-		if(isset($_POST["Medicamento$i"])){		
+		if(isset($_POST["Medicamento$i"])){
+            $reservacion->medicaments = $reservacion->medicaments.$_POST["Medicamento$i"]." ";		
 			$receta->Medicamentos[$i-1] = $_POST["Medicamento$i"];
 			$receta->Cantidades[$i-1] = $_POST["Cantidad$i"];
 		}else{
 			break;
 		}
 	}
+    echo $reservacion->medicaments;
+    $last_reservation = ReservationData::get_last_id();
+    $last_id_reservation = (int)$last_reservation->id + 1;
+    echo $last_id_reservation;
+    $reservacion->add($last_id_reservation);
 	$receta->insert();
 
     require_once $_SERVER["DOCUMENT_ROOT"]."/Medico/farmacia_sistem/config/db.php";

@@ -22,19 +22,32 @@
           $id =  IncumbentData::getId_titular($_GET["Nombre"],$_GET["Apellido"]);
           $id_num = $id->id_titular;
         }else{
+          $aux_name_titular = trim($_POST["name_titular"]);
           $array = explode(" ",$_POST["name_titular"]);
-          $Nombre = $array[0];
-          if(count($array) > 2){ 
-            $Apellido = $array[1]." ".$array[2];
-          }else{
-            $Apellido = $array[1];
+          $num_name = count($array);
+          if($num_name > 3){
+            $num_name = count($array) - 3;
           }
+          else{
+            $num_name = count($array) - 2;
+          }
+          $Nombre = "";
+          $Apellido = "";
+          for($i=0;$i<$num_name;$i++){
+            $Nombre = $Nombre.$array[$i]." ";
+          } 
+          $Nombre = trim($Nombre);
+          $Apellido = $array[$num_name]." ".$array[$num_name+1];
+          $Apellido = trim($Apellido);
           if($id = IncumbentData::getId_titular($Nombre,$Apellido)){
-            $id_num = $id->id_titular;
+            $id_titular = $id->id_titular;
+            $paciente = PacientData::getById($_POST['id_paciente']);
+            $Nombre_beneficiario = $paciente->name;
+            $Apellido_beneficiario = $paciente->lastname;
           }else{
             echo "<script>
               alert('Necesitas registrar el titular del Seguro');
-              window.location='index.php?view=newtitular&Nombre=".$Nombre."&Apellido=".$Apellido."';
+              window.location='index.php?view=newbeneficiary-titular&Nombre=".$Nombre."&Apellido=".$Apellido."&id_paciente=".$_POST['id_paciente']."';
             </script>";
             $Nombre = "";
             $Apellido = "";
@@ -42,14 +55,8 @@
           }
         }
 
-        if(isset($_POST["name_paciente"])){
-          $array = explode(" ",$_POST["name_paciente"]);
-          $Nombre_beneficiario = $array[0];
-          $Apellido_beneficiario = $array[1]." ".$array[2];
-        }
-
         echo "<script>
-                document.getElementById('id_titular').value = $id_num;
+                document.getElementById('id_titular').value = $id_titular;
                 document.getElementById('Nombre_titular').value = '$Nombre';
                 document.getElementById('Apellido_titular').value = '$Apellido';
              </script>";
@@ -58,7 +65,7 @@
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>
         <div class="col-md-10">
           <input type="text" name="Nombre" class="form-control" id="Nombre" placeholder="Nombre" value="<?php
-            if(isset($_POST['name_paciente'])){
+            if(isset($_POST['id_paciente'])){
               echo $Nombre_beneficiario;
             }
           ?>">
@@ -69,7 +76,7 @@
         <label for="inputEmail1" class="col-md-2 col-form-label">Apellido</label>
         <div class="col-md-10">
           <input type="text" name="Apellido" required class="form-control" id="Apellido" placeholder="Apellido" value="<?php
-            if(isset($_POST['name_paciente'])){
+            if(isset($_POST['id_paciente'])){
               echo $Apellido_beneficiario;
             } 
            ?>">

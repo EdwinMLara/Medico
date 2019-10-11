@@ -13,9 +13,15 @@ class ReservationData {
 	public function getPacient(){ return PacientData::getById($this->pacient_id); }
 	public function getMedic(){ return MedicData::getById($this->medic_id); }
 
-	public function add(){
-		$sql = "INSERT INTO ".self::$tablename."(created_at,pacient_id,symtoms,sick, Can_Medicamentos)"; 
-		$sql .= "VALUES (\"$this->created_at\",\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",$this->medicaments)";
+	public static function get_last_id(){
+		$sql = "SELECT id FROM ".self::$tablename." ORDER BY id DESC LIMIT 0,1";
+		$query = Executor::doit($sql);
+		return Model::one($query[0],new ReservationData());
+	}
+
+	public function add($id){
+		$sql = "INSERT INTO ".self::$tablename."(id,created_at, pacient_id,symtoms,sick,medicaments,user_id,medic_id)";
+		$sql .= "VALUES (\"$id\",\"$this->created_at\",\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",\"$this->medicaments\",\"1\",\"$this->medic_id\")";
 		Executor::doit($sql);
 	}
 
@@ -107,7 +113,6 @@ class ReservationData {
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new ReservationData());
 	}
-
 
 }
 

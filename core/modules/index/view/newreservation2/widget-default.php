@@ -12,10 +12,6 @@
 		echo '<script>
 	    		$("#myModal").modal();
 			</script>';
-	}else{
-		echo "<script>
-				alert('no es cero');
-			</script>";
 	}
 ?>
 <div class="row">
@@ -120,6 +116,33 @@
 			</div>
 			</div>
 			<div class="col-md-5">
+				<div class="row">
+					<div class="user_foto">
+						<img src="
+							<?php
+								$path = 'uploads/images/';
+								$user_image_general = $path.'user-foto.jpg';
+								$id_beneficiario = $pacientsid->id_beneficiario;
+								$id_titular = $pacientsid->id_titular;
+								if($id_beneficiario != '0'){
+									if($pacient_inner = PacientData::get_ruta_foto($id_beneficiario)){
+										$user_image_general = $path.$pacient_inner->Ruta_foto;
+										echo $user_image_general;
+									}else{
+										echo $user_image_general;
+									}
+								}else{
+									if(($pacient_inner = PacientData::get_ruta_foto_titular($id_titular)) && ($id_titular != '0')){
+										$user_image_general = $path.$pacient_inner->Ruta_foto;
+										echo $user_image_general;
+									}else{
+										echo $user_image_general;
+									}
+								}
+							?>
+						">						
+					</div>
+				</div>
 				<div class="row">
 					<div class="panel panel-warning">
 						<div class="panel-heading">

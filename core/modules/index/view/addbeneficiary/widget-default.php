@@ -2,18 +2,24 @@
 	if(count($_POST)>0){
 		$beneficiary = new beneficiaryData();
 		$beneficiary->id_titular = $_POST["id_titular"];
+		$id_titular = $_POST["id_titular"];
 		$beneficiary->Nombre = ucwords($_POST["Nombre"]);
 		$beneficiary->Apellidos = ucwords($_POST["Apellido"]);
 		$beneficiary->Parentesco = ucwords($_POST["Parentesco"]);
 		$beneficiary->Ruta_foto = $beneficiary->Nombre."-".$beneficiary->Apellidos."-".$beneficiary->Parentesco.".png";
-		$beneficiary->insert();
 
-		$paciente = new pacientesData();
-		$paciente->id_medico = 1;
-		$paciente->Nombre = $beneficiary->Nombre;
-		$paciente->Apellidos = $beneficiary->Apellidos;
-		$paciente->insert();
+		$Nombre_beneficiario = ucwords($_POST["Nombre"]);
+		$Apellidos_beneficiario = ucwords($_POST["Apellido"]);
+		$beneficiary->insert(1);
 
-		Core::confirm("Desea agregar otro beneficiario",$_POST["Nombre_titular"],$_POST["Apellido_titular"]);
+		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
+
+		if($paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario)){
+			PacientData::update_id_titular($id_titular,$paciente->id);
+			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id);
+		} 
+
+		Core::alert("Se Agrego un Nuevo Benefiario !");
+		print "<script>window.location='index.php?view=home';</script>";
 	}
 ?>

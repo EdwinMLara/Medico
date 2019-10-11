@@ -46,7 +46,12 @@ const crear_imagen = (src,alt) =>{
 tomarFoto.addEventListener("click", event => {
 	var Nombre = document.getElementById("Nombre").value;
 	var Apellido = document.getElementById("Apellido").value;
-	var Departamento = document.getElementById("Departamento").value;
+  var Departamento;
+  if(document.getElementById("Parentesco")){
+    Departamento = document.getElementById("Parentesco").value;
+  }else{
+    Departamento = document.getElementById("Departamento").value;
+  }
 
 	if(Nombre.trim().length == 0 || Apellido.trim().length == 0 || Departamento.trim().length == 0){
 		alert("Por favor llena todos los campos primero");

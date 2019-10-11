@@ -3,11 +3,12 @@
 	   <h1>Nuevo Titular del Seguro</h1>
 	   <br>
       <?php
-        if(isset($_POST["name_paciente"])){
-          $array = explode(" ",$_POST["name_paciente"]);
-          echo count($array);
-          $Nombre = $array[0];
-          $Apellido = $array[1]." ".$array[2];
+        if(isset($_POST["id_paciente"])){
+          $paciente_titular = PacientData::getById($_POST["id_paciente"]);
+          $Nombre = $paciente_titular->name;
+          $Apellido = $paciente_titular->lastname;
+          $departamento = $paciente_titular->departamento;
+          echo "<input type='hidden' name='id_paciente' value='".$_POST['id_paciente']."'>";
         }else if(isset($_GET["Nombre"])){
           $Nombre = $_GET["Nombre"];
           $Apellido = $_GET["Apellido"];
@@ -19,7 +20,7 @@
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>
         <div class="col-md-10">
           <input type="text" name="Nombre" class="form-control" id="Nombre" value="<?php
-          if(isset($_POST['name_paciente']) || isset($_GET['Nombre'])){
+          if(isset($_POST['id_paciente']) || isset($_GET['Nombre'])){
             echo $Nombre;
           }?>" placeholder="Nombre">
         </div>
@@ -29,7 +30,7 @@
         <label for="inputEmail1" class="col-md-2 col-form-label">Apellido</label>
         <div class="col-md-10">
           <input type="text" name="Apellido" required class="form-control" id="Apellido" value="<?php
-          if(isset($_POST['name_paciente']) || isset($_GET['Nombre'])){
+          if(isset($_POST['id_paciente']) || isset($_GET['Nombre'])){
             echo $Apellido;
           }?>"
 
@@ -41,9 +42,8 @@
         <label for="inputEmail1" class="col-md-2 col-form-label">Departamento</label>
         <div class="col-md-10">
           <input type="text" name="Departamento" class="form-control" required id="Departamento" value="<?php
-            if(isset($_POST['name_paciente']) || isset($_GET['Nombre'])){
-               $paciente = PacientData::get_all_by_name($Nombre,$Apellido);
-               echo $paciente->departamento; 
+            if(isset($_POST['id_paciente'])){
+               echo $departamento; 
             }
           ?>"
           placeholder="Departamento">

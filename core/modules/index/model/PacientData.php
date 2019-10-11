@@ -10,6 +10,12 @@ class  PacientData{
 		$sql.= "value (\"$this->name\",\"$this->lastname\",\"$this->departamento\",\"$this->alergias\",$this->created_at)";
 		Executor::doit($sql);
 	}
+
+	public function insert(){
+		$sql = "INSERT INTO ".self::$tablename."(name,lastname,is_favorite,is_active,created_at,Num_citas id_beneficiario,id_titular)";
+		$sql .= "VALUES (\"$this->name\",\"$this->lastname\",\"1\",\"1\",\"$this->created_at\",\"0\",\"$this->id_beneficiario\",\"$this->id_titular\")";
+	}
+
 	public static function delById($id){
 		$sql = "delete from ".self::$tablename." where id=$id";
 		Executor::doit($sql);
@@ -109,6 +115,32 @@ class  PacientData{
 		$sql = "SELECT * FROM ".self::$tablename." WHERE name = \"".$Nombre."\" && lastname = \"".$Apellidos."\"";
 		$query = Executor::doit($sql);
 		return  Model::one($query[0],new PacientData());
+	}
+
+	public static function update_id_titular($id_titular,$id){
+		$sql = "UPDATE ".self::$tablename." SET id_titular = '".$id_titular."' WHERE id = '".$id."'";	
+		$query = Executor::doit($sql);
+	}
+
+	public static function update_id_beneficiario($id_beneficiario,$id){
+		$sql =  "UPDATE ".self::$tablename." SET id_beneficiario = '".$id_beneficiario."' WHERE id = '".$id."'";
+		$query = Executor::doit($sql);	
+	}
+
+	public static function get_ruta_foto($id){
+		$sql = "SELECT beneficiarios.Ruta_foto FROM (";
+		$sql .= self::$tablename. " INNER JOIN beneficiarios ON pacient.id_beneficiario = beneficiarios.id_beneficiario)"; 
+		$sql .= "WHERE pacient.id_beneficiario = '".$id."'";
+		$query = Executor::doit($sql);
+		return Model::one($query[0],new PacientData());
+	}
+
+	public static function get_ruta_foto_titular($id){
+		$sql = "SELECT titulares.Ruta_foto FROM (";
+		$sql .= self::$tablename. " INNER JOIN titulares ON titulares.id_titular = titulares.id_titular)"; 
+		$sql .= "WHERE pacient.id_titular = '".$id."'";
+		$query = Executor::doit($sql);
+		return Model::one($query[0],new PacientData());
 	}
 }
 
