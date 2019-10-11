@@ -3,7 +3,6 @@ class ReservationData {
 	public static $tablename = "reservation";
 
 	public function ReservationData(){
-		$this->created_at = "NOW()";
 		$this->pacient_id = "";
 		$this->symtoms = "";
 		$this->sick = "";
@@ -20,8 +19,8 @@ class ReservationData {
 	}
 
 	public function add($id){
-		$sql = "INSERT INTO ".self::$tablename."(id,created_at, pacient_id,symtoms,sick,medicaments,user_id,medic_id)";
-		$sql .= "VALUES (\"$id\",\"$this->created_at\",\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",\"$this->medicaments\",\"1\",\"$this->medic_id\")";
+		$sql = "INSERT INTO ".self::$tablename."(id,date_at,time_at,created_at, pacient_id,symtoms,sick,medicaments,user_id,medic_id)";
+		$sql .= "VALUES (\"$id\",\"$this->date_at\",\"$this->time_at\",now(),\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",\"$this->medicaments\",\"1\",\"$this->medic_id\")";
 		Executor::doit($sql);
 	}
 

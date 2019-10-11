@@ -5,6 +5,8 @@
 	$reservacion->sick = $_POST["sick"];
 	$reservacion->symtoms = $_POST["symtoms"];
     $reservacion->medic_id = $_POST["medic_id"];
+    $reservacion->date_at = $_POST["date_at"];
+    $reservacion->time_at = $_POST["time_at"];
 
 	$cant = (is_numeric($_POST['Num_medicamentos']) ? (int)$_POST['Num_medicamentos'] : 0);
 	$receta = new recetaData();
