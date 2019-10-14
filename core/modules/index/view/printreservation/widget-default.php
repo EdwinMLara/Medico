@@ -65,7 +65,7 @@
 
     //Empezar insert para detalle de productos
 
-    $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad1"]."','NOW()','0')";
+    $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad1"]."',now(),'0')";
 
     if(!mysqli_query($con,$query_insert_detalle_productos)){
         echo "Se pueden insertar los detalles de producto o medicamentos"."<br>";
@@ -73,7 +73,7 @@
 
     //finalmente hay que hacer la insercion en facturas, aqui se necesita obtener el id del paciente en funcion del nombre, pero por ahora voy a probar con el id solo para observar
 
-    $query_insert_factura = "INSERT INTO facturas (numero_factura, fecha_factura, id_cliente, id_vendedor, estado_factura) VALUES ('$ultima_factura','NOW()','".$_POST["pacient_id"]."','".$_POST["medic_id"]."','1')";
+    $query_insert_factura = "INSERT INTO facturas (numero_factura, fecha_factura, id_cliente, id_vendedor, estado_factura) VALUES ('$ultima_factura',now(),'".$_POST["pacient_id"]."','".$_POST["medic_id"]."','1')";
 
     if(!mysqli_query($con,$query_insert_factura)){
         echo "No se creo la factura"."<br>";

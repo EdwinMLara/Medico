@@ -137,7 +137,7 @@ class  PacientData{
 
 	public static function get_ruta_foto_titular($id){
 		$sql = "SELECT titulares.Ruta_foto FROM (";
-		$sql .= self::$tablename. " INNER JOIN titulares ON titulares.id_titular = titulares.id_titular)"; 
+		$sql .= self::$tablename. " INNER JOIN titulares ON pacient.id_titular = titulares.id_titular)"; 
 		$sql .= "WHERE pacient.id_titular = '".$id."'";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new PacientData());
