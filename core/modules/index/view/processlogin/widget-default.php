@@ -9,7 +9,7 @@ $pass = sha1(md5($_POST['password']));
 
 $base = new Database();
 $con = $base->connect();
- $sql = "select * from user where (email= \"".$user."\" or username= \"".$user."\") and password= \"".$pass."\" and is_active=1";
+ $sql = "select * from usuarios where (email= \"".$user."\" or username= \"".$user."\") and password= \"".$pass."\" and is_active=1";
 //print $sql;
 $query = $con->query($sql);
 $found = false;
@@ -20,6 +20,7 @@ while($r = $query->fetch_array()){
 	$userid = $r['id'];
 	$is_inventario = $r['is_inventario'];
 }
+echo $found;
 
 if($is_inventario == 1){
 	require_once("farmacia_sistem/config/db.php");

@@ -51,7 +51,7 @@
 				?>
 					<ul class="nav navbar-nav side-nav">
 						<li><a href="index.php?view=home"><i class="fa fa-home"></i> Inicio</a></li>
-						<li><a href="index.php?view=reservations"><i class="fa fa-calendar"></i> Citas</a></li>
+						<li><a href="index.php?view=reservations"><i class="fa fa-calendar"></i> Consultas</a></li>
 						<li><a href="index.php?view=pacients"><i class="fa fa-male"></i> Pacientes</a></li>
 						<li><a href="index.php?view=medics"><i class="fa fa-support"></i> Medicos</a></li>
 						<li><a href="index.php?view=incumbent"><i class="fa fa-male"></i> Titulares</a></li>

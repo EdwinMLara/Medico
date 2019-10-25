@@ -1,19 +1,24 @@
 <?php
 	$events = ReservationData::getEvery();
-	foreach($events as $event){
-		$idpan = $event->pacient_id;
-		try{
-			if($paciente = PacientData::getById($idpan)){
-				$nomcp = $paciente->name." ".$paciente->lastname;
-				$thejson[] = array("title"=>$nomcp,"url"=>"./?view=editreservation&id=".$event->id,"start"=>$event->date_at."T".$event->time_at);
-			}else{
-				throw new Exception('No se datos en el objeto');
+	if(count($events)){
+		foreach($events as $event){
+			$idpan = $event->pacient_id;
+			try{
+				if($paciente = PacientData::getById($idpan)){
+					$nomcp = $paciente->name." ".$paciente->lastname;
+					$thejson[] = array("title"=>$nomcp,"url"=>"./?view=editreservation&id=".$event->id,"start"=>$event->date_at."T".$event->time_at);
+				}else{
+					throw new Exception('No hay datos en el objeto');
+				}
+			}catch(Exception $e){
+				
 			}
-		}catch(Exception $e){
-			
 		}
-	}
-	json_encode($thejson);	
+		json_encode($thejson);
+	}else{
+		$thejson = (object)[];
+		json_encode($thejson);
+	}	
 ?>
 <script>	
 	$(document).ready(function() {

@@ -7,7 +7,7 @@
           $paciente_titular = PacientData::getById($_POST["id_paciente"]);
           $Nombre = $paciente_titular->name;
           $Apellido = $paciente_titular->lastname;
-          $departamento = $paciente_titular->departamento;
+          $departamento = $paciente_titular->departament;
           echo "<input type='hidden' name='id_paciente' value='".$_POST['id_paciente']."'>";
         }else if(isset($_GET["Nombre"])){
           $Nombre = $_GET["Nombre"];

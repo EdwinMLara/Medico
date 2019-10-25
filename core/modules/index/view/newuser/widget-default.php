@@ -39,16 +39,27 @@
 
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Es administrador</label>
-    <div class="col-md-6">
-<div class="checkbox">
-    <label>
-      <input type="checkbox" name="is_admin"> 
-    </label>
-  </div>
+      <div class="col-md-6">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="is_admin"> 
+          </label>
+        </div>
     </div>
   </div>
 
-  <p class="alert alert-info">* Campos obligatorios</p>
+  <div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Es usuario de farmacia*</label>
+      <div class="col-md-6">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="is_farmacia"> 
+          </label>
+        </div>
+    </div>
+  </div>
+
+  <p class="alert alert-info">* Campos obligatorios, solo puede ser usuario de administrador o de farmacia</p>
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">

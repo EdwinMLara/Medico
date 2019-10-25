@@ -11,8 +11,8 @@
 </div>
 -->
 </div>
-<a href="./index.php?view=oldreservations" class="btn btn-default pull-right">Citas Anteriores</a>
-		<h1>Citas</h1>
+<a href="./index.php?view=oldreservations" class="btn btn-default pull-right">Consultas Anteriores</a>
+		<h1>Consultas</h1>
 <br>
 <form class="form-horizontal" role="form">
 <input type="hidden" name="view" value="reservations">

@@ -1,6 +1,6 @@
 <?php
 class UserData {
-	public static $tablename = "user";
+	public static $tablename = "usuarios";
 
 	public function UserData(){
 		$this->name = "";
@@ -42,7 +42,7 @@ class UserData {
 
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename." order by created_at desc";
+		$sql = "select * from ".self::$tablename." order by created_date desc";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new UserData());
 	}

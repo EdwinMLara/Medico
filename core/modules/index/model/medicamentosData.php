@@ -1,11 +1,13 @@
 <?php
 class medicamentosData{
-	public static $tablename = "medicamentos2";
+	public static $tablename = "medicamentos";
 
 	public function medicamentosData(){
-		$this->Nombre = "";
-		$this->Status_producto = "";
-		$this->Fecha = "NOW()";
+		$this->id_medicamento = "";
+		$this->codigo_medicamento = "";
+		$this->nombre_producto = "";
+		$this->status_producto = "";
+		$this->created_at = "";
 		$this->En_inventario = "";
 	}
 
