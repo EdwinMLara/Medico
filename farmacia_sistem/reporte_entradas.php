@@ -52,10 +52,10 @@
 													<select name="codigo_producto" id="codigo_producto" style="width:300px;" required>
 														<option></option>
 														<?php
-															$sqlp=mysqli_query($con,"SELECT * FROM products");
+															$sqlp=mysqli_query($con,"SELECT * FROM medicamentos");
 															while($rowp=mysqli_fetch_array($sqlp)){
 														?>
-														<option value="<?php echo $rowp['codigo_producto']; ?>"><?php echo $rowp['nombre_producto']; ?></option>
+														<option value="<?php echo $rowp['codigo_medicamento']; ?>"><?php echo $rowp['nombre_producto']; ?></option>
 														<?php }	?>
 													</select>
 												</div>

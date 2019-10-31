@@ -41,11 +41,11 @@
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		$sTable = "products, detalle_productos";
+		$sTable = "medicamentos, detalle_productos";
 		//$sWhere = "";
-		$sWhere = "WHERE products.codigo_producto=detalle_productos.codigo_producto AND detalle_productos.status='1'";
+		$sWhere = "WHERE medicamentos.codigo_medicamento=detalle_productos.codigo_producto AND detalle_productos.status='1'";
 		if ($_GET['q'] != "" ){
-			$sWhere.= "AND (products.nombre_producto LIKE '%$q%')";
+			$sWhere.= "AND (medicamentos.nombre_producto LIKE '%$q%')";
 		}
 		
 		//$sWhere= "ORDER BY detalle_productos.detalle_date_added ASC";
@@ -57,8 +57,12 @@
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
 		$count_query = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable $sWhere");
-		$row= mysqli_fetch_array($count_query);
-		$numrows = $row['numrows'];
+		if($count_query){
+			$row= mysqli_fetch_array($count_query);
+			$numrows = $row['numrows'];
+		}else{
+			$numrows = 1;
+		}
 		$total_pages = ceil($numrows/$per_page);
 		$reload = './buscar_reporte_entradas.php';
 		//main query to fetch the data
@@ -78,24 +82,26 @@
 						<th>Precio Entrada</th>
 					</tr>
 					<?php
-					while ($row=mysqli_fetch_array($query)){
-						$codigo_producto=$row['codigo_producto'];
-						$nombre_producto=$row['nombre_producto'];
-						$status_producto=$row['status'];
-						if ($status_producto==1){$estado="Entrada";}
-						else {$estado="Salida";}
-						$cantidad=$row['cantidad'];
-						$detalle_date_added= date('d/m/Y', strtotime($row['detalle_date_added']));
-						$precio=$row['precio'];
-					?>
-					<tr>
-						<td><?php echo $codigo_producto; ?></td>
-						<td><?php echo $nombre_producto; ?></td>
-						<td><?php echo $estado;?></td>
-						<td><?php echo $cantidad;?></td>
-						<td><?php echo $detalle_date_added;?></td>
-						<td><?php echo $precio ;?></td>
-					</tr>
+					if($query){
+						while ($row=mysqli_fetch_array($query)){
+							$codigo_producto=$row['codigo_medicamento'];
+							$nombre_producto=$row['nombre_producto'];
+							$status_producto=$row['status'];
+							if ($status_producto==1){$estado="Entrada";}
+							else {$estado="Salida";}
+							$cantidad=$row['cantidad'];
+							$detalle_date_added= date('d/m/Y', strtotime($row['detalle_date_added']));
+							$precio=$row['precio'];
+						}
+						?>
+						<tr>
+							<td><?php echo $codigo_producto; ?></td>
+							<td><?php echo $nombre_producto; ?></td>
+							<td><?php echo $estado;?></td>
+							<td><?php echo $cantidad;?></td>
+							<td><?php echo $detalle_date_added;?></td>
+							<td><?php echo $precio ;?></td>
+						</tr>
 					<?php
 					}
 					?>

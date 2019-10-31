@@ -11,8 +11,6 @@
 	include("../../funciones.php");
 	//Variables por GET
 	
-	
-	
 	require_once(dirname(__FILE__).'/../html2pdf.class.php');
 	ob_start();
 	include(dirname('__FILE__').'/res/reporte_salidas.php');

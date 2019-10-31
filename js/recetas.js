@@ -209,7 +209,7 @@ $(document).ready(function(){
 		success: function(datos){
 			var x = datos.Medicamentos;
 			for (var i = 0; i < x.length;i++){
-				countries.push(x[i].Nombre);
+				countries.push(x[i].nombre_producto);
 				ids_countries.push(x[i].id_medicamento);
 			}
 		}

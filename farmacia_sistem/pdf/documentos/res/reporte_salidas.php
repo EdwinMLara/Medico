@@ -73,17 +73,15 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			//$query=mysqli_query($con, "SELECT facturas.id_factura, facturas.numero_factura, facturas.fecha_factura, facturas.id_cliente, clientes.id_cliente, clientes.nombre_cliente, clientes.depto_id, departamentos.depto_id, departamentos.nombre, detalle_factura.numero_factura, detalle_factura.id_producto, detalle_factura.cantidad, products.id_producto, products.nombre_producto FROM facturas, clientes, departamentos, detalle_factura, products WHERE (facturas.id_cliente=clientes.id_cliente) AND (clientes.depto_id=departamentos.depto_id) AND (facturas.numero_factura=detalle_factura.numero_factura) AND (detalle_factura.id_producto=products.id_producto) AND facturas.fecha_factura BETWEEN '$date1' AND '$date2' ORDER BY facturas.fecha_factura DESC");
 			$query=mysqli_query($con, "SELECT 
 										facturas.id_factura, facturas.numero_factura, facturas.fecha_factura, facturas.id_cliente,
-										clientes.id_cliente, clientes.nombre_cliente, clientes.depto_id,
-										departamentos.depto_id, departamentos.nombre,
+										pacientes.id_paciente, pacientes.name, pacientes.lastname , pacientes.departament,
 										detalle_factura.numero_factura, detalle_factura.id_producto, detalle_factura.cantidad,
-										products.id_producto, products.nombre_producto
+										medicamentos.id_medicamento, medicamentos.nombre_producto
 									   FROM
-										facturas, clientes, departamentos, detalle_factura, products
+										facturas, pacientes, detalle_factura, medicamentos
 									   WHERE
-										(facturas.id_cliente=clientes.id_cliente) AND 
-										(clientes.depto_id=departamentos.depto_id) AND
+										(facturas.id_cliente=pacientes.id_paciente) AND 
 										(facturas.numero_factura=detalle_factura.numero_factura) AND
-										(detalle_factura.id_producto=products.id_producto) AND 
+										(detalle_factura.id_producto=medicamentos.id_medicamento) AND 
 										 (facturas.fecha_factura BETWEEN '$date1' AND '$date2')
 										ORDER BY facturas.fecha_factura DESC");
 			while($row=mysqli_fetch_array($query)){
@@ -95,8 +93,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 				$cantidad=$row['cantidad'];
 				$fecha_factura= date('d-m-Y', strtotime($row['fecha_factura']));
 				$numero_factura=$row['numero_factura'];
-				$nombre_cliente=$row['nombre_cliente'];
-				$nombre_depto=$row['nombre'];
+				$nombre_cliente=$row['name']." ".$row["lastname"];
+				$nombre_depto=$row['departament'];
 				if ($nums%2==0){
 					$clase="clouds";
 				} else {

@@ -6,7 +6,7 @@
 		$titular->Nombre = ucwords($_POST["Nombre_titular"]);
 		$titular->Apellidos = ucwords($_POST["Apellido_titular"]);
 		$titular->Departamento = ucwords($_POST["Departamento"]);
-		$titular->Ruta_foto =  $titular->Nombre."-".$titular->Apellidos."-".$titular->Departamento.".png";
+		$titular->Ruta_foto =  "";
 		$Nombre = ucwords($_POST["Nombre_titular"]);
 		$Apellidos = ucwords($_POST["Apellido_titular"]);
 		$titular->insert(0);
@@ -28,8 +28,8 @@
 		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
 		
 		if($paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario)){
-			PacientData::update_id_titular($id_titular,$paciente->id);
-			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id);
+			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
+			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
 		} 
 
 		Core::alert("Se Agrego un Nuevo Titular !");

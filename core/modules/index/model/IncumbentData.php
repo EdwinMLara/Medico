@@ -46,5 +46,9 @@ class IncumbentData{
 		return Model::one($query[0],new IncumbentData());
 	}
 	
+	public static function update_ruta_foto($ruta,$id){
+		$sql = "UPDATE ".self::$tablename." SET Ruta_foto = '".$ruta."', is_foto = '1' WHERE id_titular = '".$id."'";	
+		$query = Executor::doit($sql);
+	}
 }
 ?>

@@ -29,11 +29,12 @@
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		$sTable = "facturas, clientes, users";
+		$sTable = "facturas, pacientes, usuarios";
+		$colums = "id_factura, numero_factura, fecha_factura, Concat(pacientes.name,' ',pacientes.lastname) as 'paciente', Concat(usuarios.name, ' ', usuarios.lastname) as 'medico', estado_factura";
 		$sWhere = "";
-		$sWhere.=" WHERE facturas.id_cliente=clientes.id_cliente and facturas.id_vendedor=users.user_id";
+		$sWhere.=" WHERE facturas.id_cliente=pacientes.id_paciente and facturas.id_vendedor=usuarios.id";
 		if ( $_GET['q'] != "" ){
-			$sWhere.= " and  (clientes.nombre_cliente like '%$q%' or facturas.numero_factura like '%$q%')";
+			$sWhere.= " and  (pacinetes.name like '%$q%' or facturas.numero_factura like '%$q%')";
 		}
 		
 		$sWhere.=" order by facturas.id_factura desc";
@@ -45,13 +46,17 @@
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
 		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
-		$row= mysqli_fetch_array($count_query);
-		$numrows = $row['numrows'];
-		$total_pages = ceil($numrows/$per_page);
-		$reload = './facturas.php';
-		//main query to fetch the data
-		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
-		$query = mysqli_query($con, $sql);
+		if($count_query){
+			$row= mysqli_fetch_array($count_query);
+			$numrows = $row['numrows'];
+			$total_pages = ceil($numrows/$per_page);
+			$reload = './facturas.php';
+			//main query to fetch the data
+			$sql="SELECT $colums FROM  $sTable $sWhere LIMIT $offset,$per_page";
+			$query = mysqli_query($con, $sql);
+		}else{
+			$numrows = 0;
+		}
 		//loop through fetched data
 		if ($numrows>0){
 			echo mysqli_error($con);
@@ -61,8 +66,8 @@
 				<tr  class="info">
 					<th>#</th>
 					<th>Fecha</th>
-					<th>Cliente</th>
-					<th>Vendedor</th>
+					<th>Paciente</th>
+					<th>Medico</th>
 					<th>Estado</th>
 					<th class='text-right'>Acciones</th>
 					
@@ -72,10 +77,10 @@
 						$id_factura=$row['id_factura'];
 						$numero_factura=$row['numero_factura'];
 						$fecha=date("d/m/Y", strtotime($row['fecha_factura']));
-						$nombre_cliente=$row['nombre_cliente'];
-						$telefono_cliente=$row['telefono_cliente'];
-						$email_cliente=$row['email_cliente'];
-						$nombre_vendedor=$row['firstname']." ".$row['lastname'];
+						$nombre_cliente=$row['paciente'];
+						//$telefono_cliente=$row['telefono_cliente'];
+						//$email_cliente=$row['email_cliente'];
+						$nombre_vendedor=$row['medico'];
 						$estado_factura=$row['estado_factura'];
 						if ($estado_factura==1){$text_estado="Entregada";$label_class='label-success';}
 						else{$text_estado="Pendiente";$label_class='label-warning';}

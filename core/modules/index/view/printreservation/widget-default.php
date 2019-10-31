@@ -22,10 +22,12 @@
 			break;
 		}
 	}
-    echo $reservacion->medicaments;
     $last_reservation = ReservationData::get_last_id();
-    $last_id_reservation = (int)$last_reservation->id + 1;
-    echo $last_id_reservation;
+    if($last_reservation){
+        $last_id_reservation = (int)$last_reservation->id + 1;
+    }else{
+        $last_id_reservation = 1;
+    }
     $reservacion->add($last_id_reservation);
 	$receta->insert();
 
@@ -34,15 +36,15 @@
     //Desdes aqui se hacen las consultas necesarias para hacer la inseción en la base de datos de farmacia
 
 
-    $query_get_medicamento_id =  "SELECT id_producto, codigo_producto FROM products WHERE nombre_producto ='".$_POST["Medicamento1"]."'";
+    $query_get_medicamento_id =  "SELECT id_medicamento, codigo_medicamento FROM medicamentos WHERE nombre_producto ='".$_POST["Medicamento1"]."'";
 
     $id_medicamento = "";
     $codigo_producto = "";
 
     if($result = mysqli_query($con,$query_get_medicamento_id)){
         $row = mysqli_fetch_assoc($result);
-        $id_medicamento = $row["id_producto"];
-        $codigo_producto = $row["codigo_producto"];
+        $id_medicamento = $row["id_medicamento"];
+        $codigo_producto = $row["codigo_medicamento"];
     }else{
         echo "No se puede encontrar el id del medicamento"."<br>";
     }
@@ -54,7 +56,7 @@
         $ultima_factura = mysqli_fetch_assoc($result);
         $ultima_factura = (int) $ultima_factura["id_factura"] + 1;
     }else{
-        echo "No se puede obtener el id de la ultima factura"."<br>";
+        $ultima_factura = 1;
     }
 
     $query_insert_detalle_factura = "INSERT INTO detalle_factura (numero_factura ,id_producto ,cantidad) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad1"]."')";
@@ -68,7 +70,7 @@
     $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad1"]."',now(),'0')";
 
     if(!mysqli_query($con,$query_insert_detalle_productos)){
-        echo "Se pueden insertar los detalles de producto o medicamentos"."<br>";
+        echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
     }
 
     //finalmente hay que hacer la insercion en facturas, aqui se necesita obtener el id del paciente en funcion del nombre, pero por ahora voy a probar con el id solo para observar
@@ -104,7 +106,7 @@
         	<h4><strong><?php echo $pacientsid->name ." ". $pacientsid->lastname; ?></strong></h4>
         </div>
         <div id="depart"> 
-        	<h4><strong><?php echo $pacientsid->departamento; ?>  </strong> </h4> 
+        	<h4><strong><?php echo $pacientsid->departament; ?>  </strong> </h4> 
         </div>
         <div id="medicament"> 
         	<!--<strong><?php echo nl2br(htmlentities($_POST["Num_medicamentos"])); ?></strong>-->

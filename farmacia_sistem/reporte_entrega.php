@@ -99,7 +99,7 @@
 						while($rowf=mysqli_fetch_array($sql)){
 							$id_cliente=$rowf['id_cliente'];
 							$numero_factura=$rowf['numero_factura'];
-							$sqlc=mysqli_query($con,"SELECT * FROM clientes WHERE id_cliente=$id_cliente");
+							$sqlc=mysqli_query($con,"SELECT * FROM pacientes WHERE id_paciente=$id_cliente");
 							while($rowc=mysqli_fetch_array($sqlc)){
 								$depto_id=$rowc['depto_id'];
 								$sqld=mysqli_query($con,"SELECT depto_id, nombre FROM departamentos WHERE depto_id=$depto_id");

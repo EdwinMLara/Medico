@@ -69,9 +69,9 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			$suma=0;
 			$cantotal=0;
 			$nums=1;
-			$query=mysqli_query($con,"SELECT * FROM detalle_productos, products WHERE detalle_productos.codigo_producto = products.codigo_producto AND detalle_productos.detalle_date_added BETWEEN '$date1' AND '$date2' AND detalle_productos.status='1' ORDER BY detalle_productos.id_detalle_producto ASC");
+			$query=mysqli_query($con,"SELECT * FROM detalle_productos, medicamentos WHERE detalle_productos.codigo_producto = medicamentos.codigo_medicamento AND detalle_productos.detalle_date_added BETWEEN '$date1' AND '$date2' AND detalle_productos.status='1' ORDER BY detalle_productos.id_detalle_producto ASC");
 			while($row=mysqli_fetch_array($query)){
-				$codigo=$row['codigo_producto'];
+				$codigo=$row['codigo_medicamento'];
 				$nombre=$row['nombre_producto'];
 				$cantidad=$row['cantidad'];
 				$precio=$row['precio'];

@@ -15,8 +15,8 @@
 		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
 
 		if($paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario)){
-			PacientData::update_id_titular($id_titular,$paciente->id);
-			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id);
+			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
+			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
 		} 
 
 		Core::alert("Se Agrego un Nuevo Benefiario !");

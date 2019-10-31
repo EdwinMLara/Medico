@@ -42,8 +42,8 @@
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		 $aColumns = array('firstname', 'lastname');//Columnas de busqueda
-		 $sTable = "users";
+		 $aColumns = array('name', 'lastname');//Columnas de busqueda
+		 $sTable = "usuarios";
 		 $sWhere = "";
 		if ( $_GET['q'] != "" )
 		{
@@ -55,7 +55,7 @@
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
 		}
-		$sWhere.=" order by user_id desc";
+		$sWhere.=" order by id desc";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -88,11 +88,11 @@
 				</tr>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
-						$user_id=$row['user_id'];
-						$fullname=$row['firstname']." ".$row["lastname"];
-						$user_name=$row['user_name'];
-						$user_email=$row['user_email'];
-						$date_added= date('d/m/Y', strtotime($row['date_added']));
+						$user_id=$row['id'];
+						$fullname=$row['name']." ".$row["lastname"];
+						$user_name=$row['username'];
+						$user_email=$row['email'];
+						$date_added= date('d/m/Y', strtotime($row['created_date']));
 						
 					?>
 					

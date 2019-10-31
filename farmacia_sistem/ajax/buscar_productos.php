@@ -43,8 +43,8 @@
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
-		 $aColumns = array('codigo_producto', 'nombre_producto');//Columnas de busqueda
-		 $sTable = "products";
+		 $aColumns = array('codigo_medicamento', 'nombre_producto');//Columnas de busqueda
+		 $sTable = "medicamentos";
 		 $sWhere = "";
 		if ( $_GET['q'] != "" )
 		{
@@ -56,7 +56,7 @@
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
 		}
-		$sWhere.=" order by id_producto ASC";
+		$sWhere.=" order by id_medicamento ASC";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -87,14 +87,14 @@
 				</tr>
 				<?php
 				while ($row=mysqli_fetch_array($query)){
-					$id_producto=$row['id_producto'];
-					$codigo_producto=$row['codigo_producto'];
+					$id_producto=$row['id_medicamento'];
+					$codigo_producto=$row['codigo_medicamento'];
 					$nombre_producto=$row['nombre_producto'];
 					$status_producto=$row['status_producto'];
 					if ($status_producto==1){$estado="Activo";}
 					else {$estado="Inactivo";}
-					$inventary_min=$row['inventary_min'];
-					$date_added= date('d/m/Y', strtotime($row['date_added']));
+					$inventary_min=$row['En_inventario'];
+					$date_added= date('d/m/Y', strtotime($row['created_at']));
 				?>
 				<input type="hidden" value="<?php echo $codigo_producto;?>" id="codigo_producto<?php echo $id_producto;?>">
 				<input type="hidden" value="<?php echo $nombre_producto;?>" id="nombre_producto<?php echo $id_producto;?>">

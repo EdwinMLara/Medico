@@ -17,9 +17,9 @@
 	$date1=$_GET['date1'];
 	$date2=$_GET['date2'];
 	if ($id_producto==0) {
-		$sqlproducto="SELECT * FROM products WHERE date_added BETWEEN '$date1' AND '$date2'";
+		$sqlproducto="SELECT * FROM medicamentos WHERE created_at BETWEEN '$date1' AND '$date2'";
 	}else{
-		$sqlproducto="SELECT * FROM products WHERE id_producto=$id_producto AND date_added BETWEEN '$date1' AND '$date2'";
+		$sqlproducto="SELECT * FROM medicamentos WHERE id_medicamento = $id_producto AND created_at BETWEEN '$date1' AND '$date2'";
 	}
 	
 	ob_start();

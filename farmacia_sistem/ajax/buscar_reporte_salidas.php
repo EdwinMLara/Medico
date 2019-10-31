@@ -12,11 +12,10 @@
         $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 		$aColumns = array(
 			'facturas.id_factura', 'facturas.numero_factura', 'facturas.fecha_factura', 'facturas.id_cliente',
-			'clientes.id_cliente', 'clientes.nombre_cliente', 'clientes.depto_id',
-			'departamentos.depto_id', 'departamentos.nombre',
+			'pacientes.id_paciente', 'pacientes.name', 'pacientes.lastname',
 			'detalle_factura.numero_factura', 'detalle_factura.id_producto', 'detalle_factura.cantidad',
-			'products.id_producto', 'products.nombre_producto');
-		$sTable = "facturas, clientes, departamentos, detalle_factura, products";
+			'medicamentos.id_medicamento', 'medicamentos.nombre_producto');
+		$sTable = "facturas, pacientes,detalle_factura, medicamentos";
 		$sWhere = "";
 		/*$sWhere = "WHERE
 			(facturas.id_cliente=clientes.id_cliente) AND 
@@ -35,16 +34,14 @@
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ') AND';
 			$sWhere .= "
-				(facturas.id_cliente=clientes.id_cliente) AND 
-				(clientes.depto_id=departamentos.depto_id) AND
+				(facturas.id_cliente=pacientes.id_paciente) AND
 				(facturas.numero_factura=detalle_factura.numero_factura) AND
-				(detalle_factura.id_producto=products.id_producto)";
+				(detalle_factura.id_producto=medicamentos.id_medicamento)";
 		}else{
 			$sWhere = " WHERE
-				(facturas.id_cliente=clientes.id_cliente) AND 
-				(clientes.depto_id=departamentos.depto_id) AND
+				(facturas.id_cliente=pacientes.id_paciente) AND
 				(facturas.numero_factura=detalle_factura.numero_factura) AND
-				(detalle_factura.id_producto=products.id_producto)";
+				(detalle_factura.id_producto=medicamentos.id_medicamento)";
 		}
 		$sWhere.=" ORDER BY facturas.fecha_factura DESC";
 		include 'pagination.php'; //include pagination file
@@ -79,7 +76,7 @@
 					</tr>
 					<?php
 					while ($row=mysqli_fetch_array($query)){
-						$codigo_producto=$row['codigo_producto'];
+						$codigo_producto=$row['codigo_medicamento'];
 						$nombre_producto=$row['nombre_producto'];
 						$status_producto=2;
 						if ($status_producto==1){$estado="Entrada";}
@@ -87,19 +84,19 @@
 						$cantidad=$row['cantidad'];
 						$fecha_factura= date('d/m/Y', strtotime($row['fecha_factura']));
 						$numero_factura=$row['numero_factura'];
-						$nombre_cliente=$row['nombre_cliente'];
-						$nombre_depto=$row['nombre'];
+						$nombre_cliente=$row['name']." ".$row["lastname"];
+						$nombre_depto=$row['departament'];
 					?>
-					<tr>
-						<td><?php echo $codigo_producto; ?></td>
-						<td><?php echo $nombre_producto; ?></td>
-						<td><?php echo $estado;?></td>
-						<td><?php echo $cantidad;?></td>
-						<td><?php echo $fecha_factura;?></td>
-						<td><?php echo $numero_factura ;?></td>
-						<td><?php echo $nombre_cliente ;?></td>
-						<td><?php echo $nombre_depto ;?></td>
-					</tr>
+						<tr>
+							<td><?php echo $codigo_producto; ?></td>
+							<td><?php echo $nombre_producto; ?></td>
+							<td><?php echo $estado;?></td>
+							<td><?php echo $cantidad;?></td>
+							<td><?php echo $fecha_factura;?></td>
+							<td><?php echo $numero_factura ;?></td>
+							<td><?php echo $nombre_cliente ;?></td>
+							<td><?php echo $nombre_depto ;?></td>
+						</tr>
 					<?php
 					}
 					?>
