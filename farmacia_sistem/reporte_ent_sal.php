@@ -42,7 +42,7 @@
 								<?php
 									$sqlp=mysqli_query($con,"SELECT * FROM medicamentos");
 									while($row=mysqli_fetch_array($sqlp)){
-										echo '<option value='.$row['id_medicamento'].'>'.$row['nombre_producto'].'</option>';
+										echo '<option value='.$row['codigo_medicamento'].'>'.$row['nombre_producto'].'</option>';
 									}
 								?>
 							</select>
@@ -61,9 +61,9 @@
 							$date1=$_POST['date1'];
 							$date2=$_POST['date2'];
 							if ($id_producto==0) {
-								$sqlproducto="SELECT * FROM medicamentos WHERE created_at BETWEEN '$date1' AND '$date2'";
+								$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '$date1' AND '$date2') AND detalle_productos.codigo_producto = medicamentos.codigo_medicamento";
 							}else{
-								$sqlproducto="SELECT * FROM medicamentos WHERE id_medicamento=$id_producto AND created_at BETWEEN '$date1' AND '$date2'";
+								$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '2019-10-01' AND '2019-11-30') AND (detalle_productos.codigo_producto = medicamentos.codigo_medicamento) AND detalle_productos.codigo_producto = $id_producto";
 							}
 					?>
 						<form class="form-horizontal" role="form" action="reporte_ent_sal.php" method="POST">
@@ -119,14 +119,19 @@
 									$sumatoria_salida=0;
 									$queryp=mysqli_query($con, $sqlproducto);
 									while($row=mysqli_fetch_array($queryp)){
-										$nombre_producto=$row['nombre_producto'];
-										$codigo_producto=$row['codigo_medicamento'];
-										$queryen=mysqli_query($con, "SELECT m.id_medicamento, m.codigo_medicamento, dp.codigo_producto, dp.status, sum(dp.cantidad) AS total_entrada FROM detalle_productos dp, medicamentos m WHERE dp.codigo_producto=m.codigo_medicamento AND m.codigo_medicamento=$codigo_producto AND dp.status='1'");
+										$codigo_producto=$row['codigo_producto'];
+										$nombre_producto = $row["nombre_producto"];
+										$queryen=mysqli_query($con, "SELECT m.nombre_producto, sum(dp.cantidad) AS total_entrada FROM detalle_productos dp, medicamentos m WHERE dp.codigo_producto=m.codigo_medicamento AND dp.codigo_producto=$codigo_producto AND dp.status='1'");
+									
 										while($rowen=mysqli_fetch_array($queryen)){
 											$total_entrada=$rowen['total_entrada'];
-											$querysal=mysqli_query($con, "SELECT m.id_medicamento, m.codigo_medicamento, dp.codigo_producto, dp.status, sum(dp.cantidad) AS total_salida FROM detalle_productos dp, medicamentos m WHERE dp.codigo_producto=m.codigo_medicamento AND m.codigo_medicamento=$codigo_producto AND dp.status='2'");
-											while($rowsal=mysqli_fetch_array($querysal)){
-												$total_salida=$rowsal['total_salida'];
+											
+										}
+
+										$querysal=mysqli_query($con, "SELECT sum(cantidad) AS total_salida FROM detalle_productos WHERE codigo_producto = $codigo_producto AND status='2'");
+										while($rowsal=mysqli_fetch_array($querysal)){
+											$total_salida=$rowsal['total_salida'];
+										}
 								?>
 								<tr>
 									<td><?php echo $nombre_producto; ?></td>
@@ -137,8 +142,6 @@
 								<?php
 											$sumatoria_entrada+=$total_entrada;
 											$sumatoria_salida+=$total_salida;
-											}
-										}
 									}
 									$total_entrada=$sumatoria_entrada;
 									$total_salida=$sumatoria_salida;

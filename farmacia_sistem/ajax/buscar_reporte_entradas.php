@@ -92,7 +92,6 @@
 							$cantidad=$row['cantidad'];
 							$detalle_date_added= date('d/m/Y', strtotime($row['detalle_date_added']));
 							$precio=$row['precio'];
-						}
 						?>
 						<tr>
 							<td><?php echo $codigo_producto; ?></td>
@@ -103,6 +102,7 @@
 							<td><?php echo $precio ;?></td>
 						</tr>
 					<?php
+						}
 					}
 					?>
 					<tr>
