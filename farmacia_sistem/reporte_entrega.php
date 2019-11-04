@@ -101,18 +101,15 @@
 							$numero_factura=$rowf['numero_factura'];
 							$sqlc=mysqli_query($con,"SELECT * FROM pacientes WHERE id_paciente=$id_cliente");
 							while($rowc=mysqli_fetch_array($sqlc)){
-								$depto_id=$rowc['depto_id'];
-								$sqld=mysqli_query($con,"SELECT depto_id, nombre FROM departamentos WHERE depto_id=$depto_id");
-								while($rowd=mysqli_fetch_array($sqld)){
 					?>
 							<table style="width: 100%;" border="2px">
 								<tr>
 									<td style="width: 5%; text-align: center"><strong>Entrega:</strong></td>
 									<td style="width: 5%; text-align: center"><?php echo $rowf['numero_factura']; ?></td>
 									<td style="width: 15%; text-align: center"><strong>Nombre Cliente:</strong></td>
-									<td style="width: 20%; text-align: center"><?php echo $rowc['nombre_cliente']; ?></td>
+									<td style="width: 20%; text-align: center"><?php echo $rowc['name']." ".$rowc["lastname"]; ?></td>
 									<td style="width: 10%; text-align: center"><strong>Departamento:</strong></td>
-									<td style="width: 20%; text-align: center"><?php echo $rowd['nombre']; ?></td>
+									<td style="width: 20%; text-align: center"><?php echo $rowc['departament']; ?></td>
 									<td style="width: 10%; text-align: center"><strong>Fecha Entrega:</strong></td>
 									<td style="width: 10%; text-align: center"><?php echo  $rowf['fecha_factura']; ?></td>
 								</tr>
@@ -128,22 +125,23 @@
 									$sqldp=mysqli_query($con,"SELECT * FROM detalle_factura WHERE numero_factura='$numero_factura'");
 									while($rowdp=mysqli_fetch_array($sqldp)){
 										$id_producto=$rowdp['id_producto'];
-										$sqlp=mysqli_query($con,"SELECT * FROM products WHERE id_producto=$id_producto");
+										$sqlp=mysqli_query($con,"SELECT * FROM medicamentos WHERE id_medicamento=$id_producto");
 										while($rowp=mysqli_fetch_array($sqlp)){
 								?>
 								<tr>
-									<td style="text-align: center"><?php echo $rowp['codigo_producto']; ?></td>
+									<td style="text-align: center"><?php echo $rowp['codigo_medicamento']; ?></td>
 									<td style="text-align: center"><?php echo $rowp['nombre_producto']; ?></td>
 									<td style="text-align: center"><?php echo $rowdp['cantidad']; ?></td>
 								</tr>
 								<?php
-										}
+
 									}
+								}
 								?>
 							</table>
 					<?php
 							
-								}
+								
 							}
 						}
 					} //FIN ELSE
