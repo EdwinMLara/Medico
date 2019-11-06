@@ -58,15 +58,15 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		<tr>
            <td style="width:50%;" >
 			<?php 
-				$sql_cliente=mysqli_query($con,"select * from clientes where id_cliente='$id_cliente'");
+				$sql_cliente=mysqli_query($con,"select * from pacientes where id_paciente='$id_cliente'");
 				$rw_cliente=mysqli_fetch_array($sql_cliente);
-				echo $rw_cliente['nombre_cliente'];
+				echo $rw_cliente['name']." ".$rw_cliente["lastname"];
 				echo "<br>";
-				echo $rw_cliente['direccion_cliente'];
+				echo $rw_cliente['departament'];
 				echo "<br> Teléfono: ";
-				echo $rw_cliente['telefono_cliente'];
+				echo $rw_cliente['alergias'];
 				echo "<br> Email: ";
-				echo $rw_cliente['email_cliente'];
+				echo $rw_cliente['created_date'];
 			?>
 			
 		   </td>
@@ -84,9 +84,9 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		<tr>
            <td style="width:35%;">
 			<?php 
-				$sql_user=mysqli_query($con,"select * from users where user_id='$id_vendedor'");
+				$sql_user=mysqli_query($con,"select * from usuarios where id='$id_vendedor'");
 				$rw_user=mysqli_fetch_array($sql_user);
-				echo $rw_user['firstname']." ".$rw_user['lastname'];
+				echo $rw_user['name']." ".$rw_user['lastname'];
 			?>
 		   </td>
 		  <td style="width:25%;"><?php echo date("d/m/Y", strtotime($fecha_factura));?></td>
@@ -107,12 +107,12 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 <?php
 $nums=1;
 $sumador_total=0;
-$sql=mysqli_query($con, "select * from products, detalle_factura, facturas where products.id_producto=detalle_factura.id_producto and detalle_factura.numero_factura=facturas.numero_factura and facturas.id_factura='".$id_factura."'");
+$sql=mysqli_query($con, "select * from medicamentos, detalle_factura, facturas where medicamentos.id_medicamento=detalle_factura.id_producto and detalle_factura.numero_factura=facturas.numero_factura and facturas.id_factura='".$id_factura."'");
 
 while ($row=mysqli_fetch_array($sql))
 	{
-	$id_producto=$row["id_producto"];
-	$codigo_producto=$row['codigo_producto'];
+	$id_producto=$row["id_medicamento"];
+	$codigo_producto=$row['codigo_medicamento'];
 	$cantidad=$row['cantidad'];
 	$nombre_producto=$row['nombre_producto'];
 	if ($nums%2==0){
