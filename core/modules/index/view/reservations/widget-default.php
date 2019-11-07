@@ -34,7 +34,7 @@ $medics = MedicData::getAll();
 <select name="pacient_id" class="form-control">
 <option value="">PACIENTE</option>
   <?php foreach($pacients as $p):?>
-    <option value="<?php echo $p->id; ?>" <?php if(isset($_GET["pacient_id"]) && $_GET["pacient_id"]==$p->id){ echo "selected"; } ?>><?php echo $p->name." ".$p->lastname; ?></option>
+    <option value="<?php echo $p->id_paciente; ?>" <?php if(isset($_GET["pacient_id"]) && $_GET["pacient_id"]==$p->id_paciente){ echo "selected"; } ?>><?php echo $p->name." ".$p->lastname; ?></option>
   <?php endforeach; ?>
 </select>
 		</div>
@@ -69,7 +69,7 @@ $users= array();
 if((isset($_GET["q"]) && isset($_GET["pacient_id"]) && isset($_GET["medic_id"]) && isset($_GET["date_at"])) && ($_GET["q"]!="" || $_GET["pacient_id"]!="" || $_GET["medic_id"]!="" || $_GET["date_at"]!="") ) {
 $sql = "select * from reservation where ";
 if($_GET["q"]!=""){
-	$sql .= " title like '%$_GET[q]%' and note like '%$_GET[q] %' ";
+	$sql .= " medicaments like '%$_GET[q]%' and sick like '%$_GET[q] %' ";
 }
 
 if($_GET["pacient_id"]!=""){
@@ -94,7 +94,7 @@ if($_GET["q"]!=""||$_GET["pacient_id"]!="" ||$_GET["medic_id"]!="" ){
 	$sql .= " and ";
 }
 
-	$sql .= " date_at = \"".$_GET["date_at"]."\"";
+	$sql .= " created_at = \"".$_GET["date_at"]."\"";
 }
 
 		$users = ReservationData::getBySQL($sql);

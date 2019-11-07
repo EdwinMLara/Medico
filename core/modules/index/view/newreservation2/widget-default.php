@@ -180,7 +180,7 @@
 									<?php
 										foreach($users as $uss){ ?>
 											<tr>
-												<td><?php echo $uss->created_date; ?></td>
+												<td><?php echo $uss->created_at; ?></td>
 												<td><?php echo $uss->sick; ?></td>
 											</tr>
 									<?php	}	?>

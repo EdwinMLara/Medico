@@ -7,19 +7,23 @@
 
 if(count($_POST)>0){
 	$is_admin=0;
-	if(isset($_POST["is_admin"])){$is_admin=1;}
+	if(isset($_POST["is_admin"])){
+		$is_admin=1;
+	}
 	$user = new UserData();
 	$user->name = $_POST["name"];
 	$user->lastname = $_POST["lastname"];
 	$user->username = $_POST["username"];
 	$user->email = $_POST["email"];
 	$user->is_admin=$is_admin;
-	if(isset($_POST["is_farmacia"])){$is_farmacia=1;}
-	$user->is_inventario = $is_farmacia;
+	if(isset($_POST["is_farmacia"])){
+		$is_farmacia=1;
+		$user->is_inventario = $is_farmacia;
+	}
 	$user->password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 	$user->add();
 
-print "<script>window.location='index.php?view=users';</script>";
+	print "<script>window.location='index.php?view=users';</script>";
 
 
 }

@@ -78,9 +78,7 @@ class Login
 
                 // database query, getting all the info of the selected user (allows login via email address in the
                 // username field)
-                $sql = "SELECT id, username, email,password
-                        FROM usuarios
-                        WHERE username = '" . $user_name . "' OR email = '" . $user_name . "';";
+                $sql = "SELECT * FROM usuarios WHERE (username = '".$user."' or email = '".$user."') and is_active = 1";
                 $result_of_login_check = $this->db_connection->query($sql);
 
                 // if this user exists
@@ -92,12 +90,12 @@ class Login
                     // using PHP 5.5's password_verify() function to check if the provided password fits
                     // the hash of that user's password
                     echo "<script>alert('$result_of_login_check->num_rows');</script>";
-                    if (strcmp($password,'admin') == 0) {
+                    if (password_verify($password,$result_row->password)){
                         echo "<script>alert('$result_row->user_password_hash');</script>";
                         // write user data into PHP SESSION (a file on your server)
-                        $_SESSION['user_id'] = $result_row->user_id;
-						$_SESSION['user_name'] = $result_row->user_name;
-                        $_SESSION['user_email'] = $result_row->user_email;
+                        $_SESSION['user_id'] = $result_row->id;
+						$_SESSION['user_name'] = $result_row->username;
+                        $_SESSION['user_email'] = $result_row->email;
                         $_SESSION['user_login_status'] = 1;
 
                     } else {

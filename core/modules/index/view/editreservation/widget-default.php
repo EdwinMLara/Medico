@@ -14,7 +14,7 @@
 					<select name="pacient_id" class="form-control" required>
 						<option value="">-- SELECCIONE --</option>
 						<?php foreach($pacients as $p):?>
-						<option value="<?php echo $p->id; ?>" <?php if($p->id==$reservation->pacient_id){ echo "selected"; }?>><?php echo $p->name." ".$p->lastname; ?></option>
+						<option value="<?php echo $p->id_paciente; ?>" <?php if($p->id_paciente==$reservation->pacient_id){ echo "selected"; }?>><?php echo $p->name." ".$p->lastname; ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
