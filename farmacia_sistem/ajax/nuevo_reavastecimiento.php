@@ -26,6 +26,13 @@ include('is_logged.php');//Archivo verifica que el usario que intenta acceder a 
 		$query_new_insert_d = mysqli_query($con,$sqld);
 			if ($query_new_insert_d){
 				$messages[] = "El producto ha sido reavastecido satisfactoriamente.";
+				$sqli = "SELECT En_inventario FROM medicamentos WHERE codigo_medicamento = $codigo";
+				$sql_query = mysqli_query($con,$sqli);
+				$cantidad_actual = mysqli_fetch_array($sql_query);
+				$cantidad_nueva = intval($cantidad_actual['En_inventario']) + $cantidad;	
+				$sqlui = "UPDATE medicamentos SET En_inventario = $cantidad_nueva WHERE codigo_medicamento = $codigo";
+				mysqli_query($con,$sqlui);
+
 			} else{
 				$errors []= "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
 			}
