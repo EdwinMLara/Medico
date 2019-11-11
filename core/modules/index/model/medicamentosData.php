@@ -18,5 +18,11 @@ class medicamentosData{
 		$json_array = array('Medicamentos' => $aux);
 		echo json_encode($json_array);
 	}
+
+	public static function get_id_medicamento($Nombre){
+		$sql = "SELECT id_medicamento, En_inventario FROM medicamentos WHERE nombre_producto = '$Nombre'";
+		$query = Executor::doit($sql);
+		return Model::one($query[0],new medicamentosData());
+	}
 }
 ?>

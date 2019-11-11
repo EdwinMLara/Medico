@@ -13,11 +13,17 @@
 	$receta->id_medico = $_POST["medic_id"];
 	$receta->id_paciente = $_POST["pacient_id"];
 
+    $status_factura = 1;
 	for($i=1; $i<= $cant ; $i++){
 		if(isset($_POST["Medicamento$i"])){
             $reservacion->medicaments = $reservacion->medicaments.$_POST["Medicamento$i"]." ";		
 			$receta->Medicamentos[$i-1] = $_POST["Medicamento$i"];
 			$receta->Cantidades[$i-1] = $_POST["Cantidad$i"];
+            if($medicamento = medicamentosData::get_id_medicamento($_POST["Medicamento$i"])){
+                if(((int)$medicamento->En_inventario)<=0){
+                    $status_factura = 2;
+                }
+            }
 		}else{
 			break;
 		}
@@ -75,7 +81,7 @@
 
     //finalmente hay que hacer la insercion en facturas, aqui se necesita obtener el id del paciente en funcion del nombre, pero por ahora voy a probar con el id solo para observar
 
-    $query_insert_factura = "INSERT INTO facturas (numero_factura, fecha_factura, id_cliente, id_vendedor, estado_factura) VALUES ('$ultima_factura',now(),'".$_POST["pacient_id"]."','".$_POST["medic_id"]."','1')";
+    $query_insert_factura = "INSERT INTO facturas (numero_factura, fecha_factura, id_cliente, id_vendedor, estado_factura) VALUES ('$ultima_factura',now(),'".$_POST["pacient_id"]."','".$_POST["medic_id"]."','$status_factura')";
 
     if(!mysqli_query($con,$query_insert_factura)){
         echo "No se creo la factura"."<br>";
