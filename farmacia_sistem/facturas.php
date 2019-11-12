@@ -22,10 +22,10 @@
 		<div class="container">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<div class="btn-group pull-right">
+					<!--<div class="btn-group pull-right">
 						<a href="nueva_factura.php" class="btn btn-info">
 							<span class="glyphicon glyphicon-plus" ></span> Nueva Receta</a>
-					</div>
+					</div>-->
 					<h4><i class='glyphicon glyphicon-search'></i> Buscar Recetas</h4>
 				</div>
 				<div class="panel-body">
