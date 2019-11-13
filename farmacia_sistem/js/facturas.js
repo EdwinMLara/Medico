@@ -41,3 +41,20 @@
 		function imprimir_factura(id_factura){
 			VentanaCentrada('./pdf/documentos/ver_factura.php?id_factura='+id_factura,'Factura','','1024','768','true');
 		}
+
+
+		function update_factura(id_factura){
+			$.ajax({
+				type: "GET",
+				url:"./actualizar_factura.php",
+				datos: "id="+id_factura,
+				success:function(datos){
+					/*if(datos == "Correcto"){
+						alert("Se actualizo la factura");
+						location.reload(true);
+					}*/
+					var res = datos;
+					alert(res);
+				}
+			});
+		}
