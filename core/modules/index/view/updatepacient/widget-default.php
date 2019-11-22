@@ -1,6 +1,7 @@
 <?php
 
 if(count($_POST)>0){
+	echo $_POST["user_id"];
 	$user = PacientData::getById($_POST["user_id"]);
 	$user->name = $_POST["name"];
 	$user->lastname = $_POST["lastname"];

@@ -53,7 +53,7 @@ class  PacientData{
 
 
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",alergias=\"$this->alergias\" where id_paciente=$this->id_paciente";
+		$sql = "UPDATE ".self::$tablename." SET name=\"$this->name\",lastname=\"$this->lastname\",alergias=\"$this->alergias\" WHERE id_paciente=\"$this->id_paciente\"";
 		Executor::doit($sql);
 	}
 

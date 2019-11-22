@@ -147,7 +147,7 @@
 					<div class="panel panel-warning">
 						<div class="panel-heading">
 							<center>
-								<strong><h4>Alergias <a href="index.php?view=editpacient&id=<?php echo $pacientsid->id;?>" class="btn btn-default btn-xs"> Editar  <i class="glyphicon glyphicon-edit"></i></a></h4></strong>
+								<strong><h4>Alergias <a href="index.php?view=editpacient&id=<?php echo $pacientsid->id_paciente;?>" class="btn btn-default btn-xs"> Editar  <i class="glyphicon glyphicon-edit"></i></a></h4></strong>
 							</center>
 						</div>
 						<div class="panel-body">

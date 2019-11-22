@@ -40,21 +40,7 @@
     require_once $_SERVER["DOCUMENT_ROOT"]."/Medico/farmacia_sistem/config/db.php";
     require_once $_SERVER["DOCUMENT_ROOT"]."/Medico/farmacia_sistem/config/conexion.php";
     //Desdes aqui se hacen las consultas necesarias para hacer la inseción en la base de datos de farmacia
-
-
-    $query_get_medicamento_id =  "SELECT id_medicamento, codigo_medicamento FROM medicamentos WHERE nombre_producto ='".$_POST["Medicamento1"]."'";
-
-    $id_medicamento = "";
-    $codigo_producto = "";
-
-    if($result = mysqli_query($con,$query_get_medicamento_id)){
-        $row = mysqli_fetch_assoc($result);
-        $id_medicamento = $row["id_medicamento"];
-        $codigo_producto = $row["codigo_medicamento"];
-    }else{
-        echo "No se puede encontrar el id del medicamento"."<br>";
-    }
-
+    
     $query_get_last_id_factura = "SELECT id_factura FROM facturas ORDER BY id_factura DESC LIMIT 1";
     $ultima_factura = "";
 
@@ -65,18 +51,34 @@
         $ultima_factura = 1;
     }
 
-    $query_insert_detalle_factura = "INSERT INTO detalle_factura (numero_factura ,id_producto ,cantidad) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad1"]."')";
 
-    if(!$result = mysqli_query($con,$query_insert_detalle_factura)){
-        echo "No se pueden insertar los detalles de la factura"."<br>";
-    }
+    for($i=1; $i<= $cant ; $i++){
+        $query_get_medicamento_id =  "SELECT id_medicamento, codigo_medicamento FROM medicamentos WHERE nombre_producto ='".$_POST["Medicamento$i"]."'";
 
-    //Empezar insert para detalle de productos
+        $id_medicamento = "";
+        $codigo_producto = "";
 
-    $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad1"]."',now(),'0')";
+        if($result = mysqli_query($con,$query_get_medicamento_id)){
+            $row = mysqli_fetch_assoc($result);
+            $id_medicamento = $row["id_medicamento"];
+            $codigo_producto = $row["codigo_medicamento"];
+        }else{
+            echo "No se puede encontrar el id del medicamento"."<br>";
+        }
 
-    if(!mysqli_query($con,$query_insert_detalle_productos)){
-        echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
+        $query_insert_detalle_factura = "INSERT INTO detalle_factura (numero_factura ,id_producto ,cantidad) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad$i"]."')";
+
+        if(!$result = mysqli_query($con,$query_insert_detalle_factura)){
+            echo "No se pueden insertar los detalles de la factura"."<br>";
+        }
+
+        //Empezar insert para detalle de productos
+
+        $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0')";
+
+        if(!mysqli_query($con,$query_insert_detalle_productos)){
+            echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
+        }
     }
 
     //finalmente hay que hacer la insercion en facturas, aqui se necesita obtener el id del paciente en funcion del nombre, pero por ahora voy a probar con el id solo para observar
@@ -91,7 +93,15 @@
 <article>
 	<div id="fondo">
     	<div id="fecha">
-        	<h4><strong><?php echo $_POST["date_at"]; ?></strong></h4>
+        	<h4><strong><?php $date = explode("-", $_POST["date_at"]); 
+                            $an = $date[0];
+                            $mes = $date[1];
+                            $dia = $date [2];
+                            echo $an;
+                            echo '<span>'.$mes.'</span>';
+                            echo '<span>'.$dia.'</span>';
+                            //echo $an."  ".$mes.'  '.$dia;
+            ?></strong></h4>
         </div>
         <div id="cedula">
         	<h4><strong>1309806</strong></h4>
@@ -118,21 +128,12 @@
         	<!--<strong><?php echo nl2br(htmlentities($_POST["Num_medicamentos"])); ?></strong>-->
         	<?php
         		if(isset($_POST["Medicamento1"])){
-        			echo '<table class="table table-bordered">
-    						<thead>
-      							<tr>
-        							<th>Medicamento</th>
-        							<th>Cantidad</th>
-        							<th>Prescripción</th>
-      							</tr>
-    						</thead>
-    					<tbody>';
 
         			for($i=1; $i<=$cant;$i++){
-        				echo "<tr><td>".$_POST["Medicamento$i"]."</td><td>".$_POST["Cantidad$i"]."</td><td>".$_POST["Prescripcion$i"]."</td></tr>"; 
+        				echo "<p>".$_POST["Cantidad$i"]." - 
+                        ".$_POST["Medicamento$i"]." , 
+                        ".$_POST["Prescripcion$i"]."</p>"; 
         			}
-
-        			echo "</tbody></table>";
         		}
         	?>
         </div>

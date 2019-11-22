@@ -46,15 +46,15 @@
 		function update_factura(id_factura){
 			$.ajax({
 				type: "GET",
-				url:"./actualizar_factura.php",
-				datos: "id="+id_factura,
-				success:function(datos){
-					/*if(datos == "Correcto"){
-						alert("Se actualizo la factura");
-						location.reload(true);
-					}*/
-					var res = datos;
-					alert(res);
+				url:"actualizar_factura.php?id="+id_factura,
+				success:function(data){
+					data = JSON.parse(data);
+					var aux = data.response; 
+					if(aux.localeCompare("correcto") == 0){
+						alert("Se actualizado la factura");
+					}else{
+						alert("La factura esta actualizada");
+					}
 				}
 			});
 		}

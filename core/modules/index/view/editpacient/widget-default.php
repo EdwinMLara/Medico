@@ -24,7 +24,7 @@
 			</div>			
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<input type="hidden" name="user_id" value="<?php echo $user->id;?>">
+					<input type="hidden" name="user_id" value="<?php echo $user->id_paciente;?>">
 					<button type="submit" class="btn btn-primary">Actualizar Paciente</button>
 				</div>
 			</div>

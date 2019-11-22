@@ -4,31 +4,36 @@
 	height:528px;
 	background:url(imge/fondo.png);*/
 }
-/*Estilo para la impresion de nota*/
+
 #fecha{
-	padding-top:130px;
-	padding-left: 400px;
+	position: relative;
+	padding-top:30px;
+	padding-left: 500px;
+}
+#fecha span{
+	margin-left:12px;
 }
 #nomedico{
-	padding-left: 120px;
-	padding-top:5px;
+	position: absolute;
+	padding-left: 100px;
+	padding-top:23px;
 }
 #cedula{
-	float:right;
-	padding-right:100px;
-	/*padding-top:10px;*/
+	position: absolute;
+	padding-left:600px;
+	padding-top:23px;
 }
 #paciente{
-	padding-left: 135px;
-	/*padding-top:5px;*/
+	padding-left: 100px;
+	padding-top: 45px;
 }
 #depart{
-	padding-left: 190px;
-	/*padding-top:5px;	*/
+	padding-left: 100px;
+	/*padding-top: 5px*/
 }
 #medicament{
-	padding-left: 120px;
-	padding-top:40px;
-	width:700px;	
-	word-wrap: break-word;
+	padding-left: 50px;
+	padding-top: 40px;
+	width: 700px;
+	font-size: 12px;	
 }
