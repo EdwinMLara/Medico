@@ -68,8 +68,8 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 			$queryp=mysqli_query($con, $sqlproducto);
 			while($row=mysqli_fetch_array($queryp)){
 				$nombre_producto=$row['nombre_producto'];
-				$codigo_producto=$row['codigo_medicamento'];
-				$queryen=mysqli_query($con, "SELECT m.id_medicamento, m.codigo_medicamento, dp.codigo_producto, dp.status, sum(dp.cantidad) AS total_entrada FROM detalle_productos dp, medicamentos m WHERE dp.codigo_producto=m.codigo_medicamento AND m.codigo_medicamento=$codigo_producto AND dp.status='1'");
+				$codigo_producto=$row['codigo_producto'];
+				$queryen=mysqli_query($con, "SELECT m.nombre_producto, sum(dp.cantidad) AS total_entrada FROM detalle_productos dp, medicamentos m WHERE dp.codigo_producto=m.codigo_medicamento AND dp.codigo_producto=$codigo_producto AND dp.status='1'");
 				if ($nums%2==0){
 					$clase="clouds";
 				} else {
@@ -77,7 +77,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 				}
 				while($rowen=mysqli_fetch_array($queryen)){
 					$total_entrada=$rowen['total_entrada'];
-					$querysal=mysqli_query($con, "SELECT m.id_medicamento, m.codigo_medicamento, dp.codigo_producto, dp.status, sum(dp.cantidad) AS total_salida FROM detalle_productos dp, medicamentos m WHERE dp.codigo_producto=m.codigo_medicamento AND m.codigo_medicamento=$codigo_producto AND dp.status='2'");
+					$querysal=mysqli_query($con, "SELECT sum(cantidad) AS total_salida FROM detalle_productos WHERE codigo_producto = $codigo_producto AND status='2'");
 					while($rowsal=mysqli_fetch_array($querysal)){
 						$total_salida=$rowsal['total_salida'];
 						

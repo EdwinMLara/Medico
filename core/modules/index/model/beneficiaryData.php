@@ -19,8 +19,8 @@ class beneficiaryData{
 		return  Model::one($query[0],new IncumbentData());
 	}
 
-	public function update($id,$id_titular,$Nombre,$Apellidos,$Parentesco,$is_foto){
-		$sql = "UPDATE ".self::$tablename."SET id_titular='$id_titular', Nombre='$Nombre', Apellidos='Apellidos', Parentesco='$Parentesco', is_foto='$is_foto' WHERE id_beneficiario = $id";
+	public function update($id,$Nombre,$Apellidos,$Parentesco){
+		$sql = "UPDATE beneficiarios SET Nombre= '$Nombre',Apellidos = '$Apellidos',Parentesco= '$Parentesco' WHERE id_beneficiario = $id;";
 		Executor::doit($sql);		
 	}
 

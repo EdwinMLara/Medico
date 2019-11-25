@@ -36,9 +36,9 @@ $pacient = MedicData::getById($_GET["id"]);
 				$medic = $user->getMedic();
 				?>
 				<tr>
-				<td><?php echo $user->title; ?></td>
+				<td><?php echo $user->sick; ?></td>
 				<td><?php echo $pacient->name." ".$pacient->lastname; ?></td>
-				<td><?php echo $medic->name." ".$pacient->lastname; ?></td>
+				<td><?php echo $medic->name." ".$medic->lastname; ?></td>
 				<td><?php echo $user->date_at." ".$user->time_at; ?></td>
 				</tr>
 				<?php

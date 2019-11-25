@@ -20,7 +20,7 @@
           $Nombre = $_GET["Nombre"];
           $Apellido = $_GET["Apellido"];
           $id =  IncumbentData::getId_titular($_GET["Nombre"],$_GET["Apellido"]);
-          $id_num = $id->id_titular;
+          $id_titular = $id->id_titular;
         }else{
           $aux_name_titular = trim($_POST["name_titular"]);
           $array = explode(" ",$_POST["name_titular"]);
@@ -51,12 +51,12 @@
             </script>";
             $Nombre = "";
             $Apellido = "";
-            $id_num = "";
+            $id_titular = "";
           }
         }
 
         echo "<script>
-                document.getElementById('id_titular').value = $id_titular;
+                document.getElementById('id_titular').value = '$id_titular';
                 document.getElementById('Nombre_titular').value = '$Nombre';
                 document.getElementById('Apellido_titular').value = '$Apellido';
              </script>";
