@@ -34,7 +34,7 @@
 		$sWhere = "";
 		$sWhere.=" WHERE facturas.id_cliente=pacientes.id_paciente and facturas.id_vendedor=usuarios.id";
 		if ( $_GET['q'] != "" ){
-			$sWhere.= " and  (pacinetes.name like '%$q%' or facturas.numero_factura like '%$q%')";
+			$sWhere.= " and  (pacientes.name like '%$q%' or facturas.numero_factura like '%$q%')";
 		}
 		
 		$sWhere.=" order by facturas.id_factura desc";
