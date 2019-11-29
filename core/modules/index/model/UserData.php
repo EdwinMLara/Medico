@@ -31,7 +31,7 @@ class UserData {
 
 // partiendo de que ya tenemos creado un objecto UserData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",password=\"$this->password\",is_active=$this->is_active,is_admin=$this->is_admin where id=$this->id";
+		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",email=\"$this->email\",password=\"$this->password\",is_active=$this->is_active,is_admin=$this->is_admin where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -54,6 +54,11 @@ class UserData {
 		$sql = "select * from ".self::$tablename." where title like '%$q%' or content like '%$q%'";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new UserData());
+	}
+
+	public static function update_password($user_id,$password){
+		$sql = "UPDATE ".self::$tablename." SET password ='$password' WHERE id = $user_id";
+		Executor::doit($sql);
 	}
 
 

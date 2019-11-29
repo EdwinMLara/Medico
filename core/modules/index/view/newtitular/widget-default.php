@@ -101,4 +101,11 @@
   </div>
 </div>
 
-<script src="js/Camara/Fotos.js"></script>
+<script src="js/Camara/Fotos.js">
+  /*if (window.isSecureContext) {
+      navigator.serviceWorker.register('js/Camara/Fotos.js');
+      console.log("hecho");
+  }else{
+      document.getElementById("camerajs").setAttribute("src",'js/Camara/Fotos.js');
+  }*/
+</script>

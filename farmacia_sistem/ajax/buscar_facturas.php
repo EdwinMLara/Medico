@@ -45,7 +45,7 @@
 		$adjacents  = 4; //gap between pages after number of adjacents
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
-		$count_query   = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
+		$count_query = mysqli_query($con, "SELECT count(*) AS numrows FROM $sTable  $sWhere");
 		if($count_query){
 			$row= mysqli_fetch_array($count_query);
 			$numrows = $row['numrows'];

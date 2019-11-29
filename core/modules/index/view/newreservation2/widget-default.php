@@ -1,9 +1,14 @@
 <?php
 	$pacients = PacientData::getAll();
-	$medics = MedicData::getAll();
 
 	$idexis=$_GET['id'];
 	$pacientsid = pacientData::getById($idexis);
+	$medic_id;
+	if(isset($_SESSION["medic_id"])){
+		$medic_id = $_SESSION["medic_id"];
+	}
+
+	$medics = MedicData::getById($medic_id);
 
 	include('modal-titulares.php');
 
@@ -34,11 +39,13 @@
 					<label for="inputEmail1" class="col-lg-2 control-label">Medico</label>
 				</div>
 				<div class="col-md-6">
-					<select name="medic_id" class="form-control" required>
+					<!--<select name="medic_id" class="form-control" required>
 						<?php foreach($medics as $p):?>
 						<option value="<?php echo $p->id; ?>"><?php echo $p->name." ".$p->lastname; ?></option>
 						<?php endforeach; ?>
-					</select>
+					</select>-->
+					<input type="hidden" name="medic_id" required  id="inputEmail1" value="<?php echo $medics->id; ?>">
+					<input type="text" required class="form-control" id="inputEmail1" placeholder="Medico" value="<?php echo $medics->name.' '.$medics->lastname; ?>">
 				</div>
 			</div>
 			<div class="form-group">

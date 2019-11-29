@@ -9,8 +9,9 @@ const startMedia = () => {
 
   if (!("getUserMedia" in navigator.mediaDevices)) {
     navigator.mediaDevices.getUserMedia = constraints => {
-      const getUserMedia =
-        navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+      vendorURL = window.URL || window.webkitURL;
+      const getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia 
+       || navigator.getUserMedia || navigator.mozGetUserMedia;
 
       if (!getUserMedia) {
         return Promise.reject(new Error("getUserMedia is not supported"));
@@ -25,11 +26,14 @@ const startMedia = () => {
   navigator.mediaDevices
     .getUserMedia({ video: true })
     .then(stream => {
+      console.log("se inicia la reproduccion");
       videoPlayer.srcObject = stream;
       videoPlayer.style.display = "block";
-    })
+      videoPlayer.play();
+      })
     .catch(err => {
-      imagePickerArea.style.display = "block";
+      console.log("Error");
+      videoPlayer.style.display = "block";
     });
 };
 

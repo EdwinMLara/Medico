@@ -10,16 +10,17 @@ if(count($_POST)>0){
 	$user->lastname = $_POST["lastname"];
 	$user->username = $_POST["username"];
 	$user->email = $_POST["email"];
+	$user->password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 	$user->is_admin=$is_admin;
 	$user->is_active=$is_active;
 	$user->update();
 
-	if($_POST["password"]!=""){
-		$user->password = sha1(md5($_POST["password"]));
+	/*if($_POST["password"]!=""){
+		$user->password = password_hash($_POST["password"],PASSWORD_DEFAULT);
 		$user->update_passwd();
-print "<script>alert('Se ha actualizado el password');</script>";
+		print "<script>alert('Se ha actualizado el password');</script>";
 
-	}
+	}*/
 
 print "<script>window.location='index.php?view=users';</script>";
 

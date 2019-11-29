@@ -28,10 +28,11 @@
 			<table class="table table-bordered table-hover">
 			<thead>
 			<th>Nombre completo</th>
-			<th>Nick</th>
 			<th>Email</th>
+			<th>Nombre de usuario</th>
 			<th>Activo</th>
 			<th>Admin</th>
+			<th>Farmacia</th>
 			<th></th>
 			</thead>
 			<?php
@@ -48,6 +49,11 @@
 				</td>
 				<td>
 					<?php if($user->is_admin):?>
+						<i class="glyphicon glyphicon-ok"></i>
+					<?php endif; ?>
+				</td>
+				<td>
+					<?php if($user->is_inventario):?>
 						<i class="glyphicon glyphicon-ok"></i>
 					<?php endif; ?>
 				</td>

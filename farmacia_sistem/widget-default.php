@@ -29,8 +29,7 @@
 			$aux_login = $login->isUserLoggedIn();
 
 			if ( $aux_login == true) {
-				print "<script>window.location='farmacia_sistem/facturas.php';</script>";
-		   		//header("location: farmacia_sistem/facturas.php");
+				print "<script>window.location='/farmacia_sistem/facturas.php';</script>";
 			}
 		}
 

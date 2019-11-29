@@ -4,10 +4,14 @@
 	</div>
 	<div class="col-md-6">
 	<h2>Cambiar Contraseña</h2>
-<br>	<form class="form-horizontal" id="changepasswd" method="post" action="index.php?view=changepasswd" role="form">
+<br>	<form class="form-horizontal" id="changepasswd" method="post" action="index.php?view=changepasswd" autocomplete="off">
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-4 control-label">Contraseña Actual</label>
     <div class="col-lg-8">
+      <?php
+        $user_id = $_SESSION["user_id"];
+      ?>
+      <input type="hidden" class="form-control"  name="user_id" value="<?php echo $user_id; ?>">
       <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña Actual">
     </div>
   </div>
