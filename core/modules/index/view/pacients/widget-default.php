@@ -3,7 +3,7 @@
 		<h1>Pacientes</h1>
 		<br>
 		<?php
-		$users = pacientData::getAll();
+		$users = PacientData::getAll();
 		if(count($users)>0){
 			// si hay usuarios
 			?>
