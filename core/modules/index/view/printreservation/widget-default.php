@@ -12,30 +12,7 @@
 	$receta = new recetaData();
 	$receta->id_medico = $_POST["medic_id"];
 	$receta->id_paciente = $_POST["pacient_id"];
-
-    $status_factura = 1;
-	for($i=1; $i<= $cant ; $i++){
-		if(isset($_POST["Medicamento$i"])){
-            $reservacion->medicaments = $reservacion->medicaments.$_POST["Medicamento$i"]." ";		
-			$receta->Medicamentos[$i-1] = $_POST["Medicamento$i"];
-			$receta->Cantidades[$i-1] = $_POST["Cantidad$i"];
-            if($medicamento = medicamentosData::get_id_medicamento($_POST["Medicamento$i"])){
-                if(((int)$medicamento->En_inventario)<=0){
-                    $status_factura = 2;
-                }
-            }
-		}else{
-			break;
-		}
-	}
-    $last_reservation = ReservationData::get_last_id();
-    if($last_reservation){
-        $last_id_reservation = (int)$last_reservation->id + 1;
-    }else{
-        $last_id_reservation = 1;
-    }
-    $reservacion->add($last_id_reservation);
-	$receta->insert();
+    $receta->insert();
 
     require_once $_SERVER["DOCUMENT_ROOT"]."/Medico/farmacia_sistem/config/db.php";
     require_once $_SERVER["DOCUMENT_ROOT"]."/Medico/farmacia_sistem/config/conexion.php";
@@ -51,33 +28,57 @@
         $ultima_factura = 1;
     }
 
-
+    $status_factura = 1;
     for($i=1; $i<= $cant ; $i++){
-        $query_get_medicamento_id =  "SELECT id_medicamento, codigo_medicamento FROM medicamentos WHERE nombre_producto ='".$_POST["Medicamento$i"]."'";
 
-        $id_medicamento = "";
-        $codigo_producto = "";
+        if(isset($_POST["Medicamento$i"])){
 
-        if($result = mysqli_query($con,$query_get_medicamento_id)){
-            $row = mysqli_fetch_assoc($result);
-            $id_medicamento = $row["id_medicamento"];
-            $codigo_producto = $row["codigo_medicamento"];
+            $id_medicamento = "";
+            $codigo_producto = "";
+
+            $reservacion->medicaments = $reservacion->medicaments.$_POST["Medicamento$i"]." ";      
+            $receta->Medicamentos[$i-1] = $_POST["Medicamento$i"];
+            $receta->Cantidades[$i-1] = $_POST["Cantidad$i"];
+
+            $En_inventario = 0;
+            $cantidad = (int) $_POST["Cantidad$i"];
+            $entregados = 0;
+            if($medicamento = medicamentosData::get_id_medicamento($_POST["Medicamento$i"])){
+                $En_inventario = (int)$medicamento->En_inventario;
+                $id_medicamento = $medicamento->id_medicamento;
+                $codigo_producto = $medicamento->codigo_medicamento;
+
+                if($En_inventario<$cantidad){
+                    $status_factura = 2;
+                    $entregados = $En_inventario;
+                    $sql_update_inventario = "UPDATE medicamentos SET En_inventario = '0' WHERE id_medicamento = $id_medicamento";
+                }else{
+                    $En_inventario = $En_inventario - $cantidad;
+                    $entregados = $cantidad;
+                    $sql_update_inventario = "UPDATE medicamentos SET En_inventario = '$En_inventario' WHERE id_medicamento = $id_medicamento";
+                }
+
+                if(!mysqli_query($con,$sql_update_inventario)){
+                    echo "No hay actualizacion de inventario";
+                }
+            }
+
+
+            $query_insert_detalle_factura = "INSERT INTO detalle_factura (numero_factura ,id_producto ,cantidad, entregados) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad$i"]."','$entregados')";
+
+            if(!$result = mysqli_query($con,$query_insert_detalle_factura)){
+                echo "No se pueden insertar los detalles de la factura"."<br>";
+            }
+
+            //Empezar insert para detalle de productos
+
+            $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0')";
+
+            if(!mysqli_query($con,$query_insert_detalle_productos)){
+                echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
+            }
         }else{
-            echo "No se puede encontrar el id del medicamento"."<br>";
-        }
-
-        $query_insert_detalle_factura = "INSERT INTO detalle_factura (numero_factura ,id_producto ,cantidad) VALUES ('$ultima_factura','$id_medicamento','".$_POST["Cantidad$i"]."')";
-
-        if(!$result = mysqli_query($con,$query_insert_detalle_factura)){
-            echo "No se pueden insertar los detalles de la factura"."<br>";
-        }
-
-        //Empezar insert para detalle de productos
-
-        $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0')";
-
-        if(!mysqli_query($con,$query_insert_detalle_productos)){
-            echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
+            break;
         }
     }
 
@@ -88,6 +89,14 @@
     if(!mysqli_query($con,$query_insert_factura)){
         echo "No se creo la factura"."<br>";
     }
+
+    $last_reservation = ReservationData::get_last_id();
+    if($last_reservation){
+        $last_id_reservation = (int)$last_reservation->id + 1;
+    }else{
+        $last_id_reservation = 1;
+    }
+    $reservacion->add($last_id_reservation);
 
 ?>
 <article>

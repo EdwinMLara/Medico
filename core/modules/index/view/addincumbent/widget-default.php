@@ -6,20 +6,22 @@ if(count($_POST)>0){
 	$titular->Apellidos = ucwords($_POST["Apellido"]);
 	$titular->Departamento = ucwords($_POST["Departamento"]);
 	$titular->Ruta_foto =  $titular->Nombre."-".$titular->Apellidos."-".$titular->Departamento.".png";
-	$titular->Num_familiares=ucwords($_POST["Num_familiares"]);
 	$Nombre = ucwords($_POST["Nombre"]);
 	$Apellidos = ucwords($_POST["Apellido"]);
 
-	if($paciente =  IncumbentData::getId_titular($Nombre,$Apellidos)){
+	if($titular_aux =  IncumbentData::getId_titular($Nombre,$Apellidos)){
 
-		IncumbentData::update_ruta_foto($titular->Ruta_foto,$paciente->id_titular);
-
-		Core::alert("Se actualizo la fotografia del titular!");
-		print "<script>window.location='index.php?index.php?view=home';</script>";
+		IncumbentData::update_ruta_foto($titular->Ruta_foto,$titular_aux->id_titular);
+		$mensaje = "Se ha actualizado la foto";
 	}else{
 		$titular->insert(1);
-		Core::alert("Se Agrego un Nuevo Titular !");
-		print "<script>window.location='index.php?index.php?view=home';</script>";
+		$paciente = new PacientData();
+		$paciente->name = $titular->Nombre;
+		$paciente->lastname = $titular->Apellidos;
+		$paciente->departament = $titular->Departamento;
+		$paciente->alergias = $_POST["alergias"];
+		$paciente->insert();
+		$mensaje = "Se Agrego un Nuevo Titular !";
 	}
 	
 	$titular = IncumbentData::getId_titular($Nombre,$Apellidos);
@@ -27,5 +29,7 @@ if(count($_POST)>0){
 		PacientData::update_id_titular($titular->id_titular,$paciente->id_paciente);
 	}
 	
+	Core::alert($mensaje);
+		print "<script>window.location='index.php?view=incumbent';</script>";
 }
 ?>

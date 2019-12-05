@@ -18,7 +18,8 @@
 		<?php include("head.php");?>
 	</head>
 	<body>
-		<?php	include("navbar.php");	?>  
+		<?php	include("navbar.php");	
+				include("modal/receta_modal.php"); ?>  
 		<div class="container">
 			<div class="panel panel-info">
 				<div class="panel-heading">

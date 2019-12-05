@@ -13,11 +13,18 @@
 		$beneficiary->insert(1);
 
 		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
-
-		if($paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario)){
-			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
-			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
+		$paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario)
+		if(!$paciente){
+			$paciente = new PacientData();
+			$paciente->name = $beneficiary->Nombre;
+			$paciente->lastname = $beneficiary->Apellidos;
+			$paciente->departament = $beneficiary->Departamento;
+			$paciente->alergias = $_POST["alergias"];
+			$paciente->insert();
 		} 
+
+		PacientData::update_id_titular($id_titular,$paciente->id_paciente);
+		PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
 
 		Core::alert("Se Agrego un Nuevo Benefiario !");
 		print "<script>window.location='index.php?view=home';</script>";

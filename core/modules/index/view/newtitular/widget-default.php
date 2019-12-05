@@ -41,25 +41,36 @@
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Departamento</label>
         <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" value="<?php
+          <?php
             if(isset($_POST['id_paciente'])){
-               echo $departamento; 
+               ?><input type="text" name="Departamento" class="form-control" required id="Departamento" value="<?php
+                    if(isset($_POST['id_paciente'])){
+                        echo $departamento; 
+                      }
+                  ?>"
+                 placeholder="Departamento"><?php
+            }else{
+              $departamentos = new DepartamentosData(); 
+              $departamentos_array = $departamentos->get_dptos();
+              ?>
+              <select class="form-control" id="Departamento" name="Departamento">
+              <option selected>Seleciona deparatamentos</option>
+              <?php
+              foreach ($departamentos_array as $departamento) {
+                $nombre = $departamento->nombre;
+                echo "<option value='$nombre'>$nombre</option>";
+              }
+              echo "</select>";
             }
-          ?>"
-          placeholder="Departamento">
+          ?>
+          
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-3 col-form-label"> Numero de Beneficiarios</label>
-          <div class="col-md-9">
-            <select class="form-control" name="Num_familiares">
-              <option selected>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
+        <label class="col-md-2 col-form-label"> Alergias</label>
+          <div class="col-md-10">
+            <input type="text" name="alergias" required class="form-control" id="alergias"placeholder="Alergias">
           </div>
       </div>
 
@@ -88,7 +99,6 @@
   <div class="col-md-4">
     <div class="row">
       <div class="user_image">
-        <!--<img src="core/modules/index/view/img/Koala.jpg" alt="">-->
         <video id="player" autoplay></video>
       </div>
       
@@ -101,11 +111,4 @@
   </div>
 </div>
 
-<script src="js/Camara/Fotos.js">
-  /*if (window.isSecureContext) {
-      navigator.serviceWorker.register('js/Camara/Fotos.js');
-      console.log("hecho");
-  }else{
-      document.getElementById("camerajs").setAttribute("src",'js/Camara/Fotos.js');
-  }*/
-</script>
+<script src="js/Camara/Fotos.js"></script>

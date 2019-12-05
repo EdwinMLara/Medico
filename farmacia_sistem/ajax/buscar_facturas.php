@@ -92,7 +92,7 @@
 						<td><?php echo $nombre_vendedor; ?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $text_estado; ?></span></td>				
 						<td class="text-right">
-							<a href="#" class='btn btn-default' title='Editar factura' onclick="update_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-edit"></i></a> 
+							<a href="#" class='btn btn-default' title='Editar factura' data-toggle="modal" data-target="#recetaModal" onclick="obtener_receta('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-edit"></i></a> 
 							<a href="#" class='btn btn-default' title='Descargar factura' onclick="imprimir_factura('<?php echo $id_factura;?>');"><i class="glyphicon glyphicon-download"></i></a> 
 							<a href="#" class='btn btn-default' title='Borrar factura' onclick="eliminar('<?php echo $numero_factura; ?>')"><i class="glyphicon glyphicon-trash"></i> </a>
 						</td>

@@ -5,14 +5,14 @@ class  PacientData{
 
 	public function PacientData(){
 		$this->id_paciente = "";
-		$this->id_titular = "";
-		$this->id_beneficiario = "";
+		$this->id_titular = "0";
+		$this->id_beneficiario = "0";
 		$this->name = "";
 		$this->lastname = "";
 		$this->departament = "";
 		$this->alergias = "";
-		$this->is_favorite = "";
-		$this->is_active = "";
+		$this->is_favorite = "1";
+		$this->is_active = "1";
 		$this->created_date = "now()";
 	}
 
@@ -32,14 +32,16 @@ class  PacientData{
 	}
 
 	public function insert(){
-		$sql = "INSERT INTO ".self::$tablename."(name,lastname,is_favorite,is_active,created_date,Num_citas id_beneficiario,id_titular)";
-		$sql .= "VALUES (\"$this->name\",\"$this->lastname\",\"1\",\"1\",\"$this->created_date\",\"0\",\"$this->id_beneficiario\",\"$this->id_titular\")";
+		$sql = "INSERT INTO ".self::$tablename." (id_titular, id_beneficiario, name, lastname, departament, alergias, is_favorite, is_active, created_date)";
+		$sql .= " VALUES (\"$this->id_titular\", \"$this->id_beneficiario\", \"$this->name\",\"$this->lastname\",\"$this->departament\",\"$this->alergias\",\"$this->is_favorite\",\"$this->is_active\",$this->created_date)";
+		Executor::doit($sql);
 	}
 
 	public static function delById($id){
 		$sql = "delete from ".self::$tablename." where id_paciente=$id";
 		Executor::doit($sql);
 	}
+
 	public function del(){
 		$sql = "delete from ".self::$tablename." where id_paciente=$this->id_paciente";
 		Executor::doit($sql);

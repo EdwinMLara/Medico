@@ -43,18 +43,34 @@
 		}
 
 
-		function update_factura(id_factura){
+		function obtener_receta(id_factura){
 			$.ajax({
 				type: "GET",
-				url:"actualizar_factura.php?id="+id_factura,
+				url:"obtener_receta.php?id="+id_factura,
 				success:function(data){
-					data = JSON.parse(data);
-					var aux = data.response; 
-					if(aux.localeCompare("correcto") == 0){
-						alert("Se actualizado la factura");
-					}else{
-						alert("La factura esta actualizada");
+					$(".fetched-data").html(data).fadeIn('slow');
+					$('[data-toggle="tooltip"]').tooltip({html:true}); 
+				}
+			});
+		}
+
+		function update_factura(id){
+			$.ajax({
+				type: "GET",
+				dataType:"json",
+				url:"actualizar_factura.php?id="+id,
+				success:function(mensaje){
+					var response = mensaje.response;
+					console.log(response);
+					switch(response){
+						case "Error":
+							alert("Aun falta medicamento por entregar");
+						break;
+						case "actualizado":
+							alert("Todo se ha entregado");
+						break;
 					}
+					location.reload();
 				}
 			});
 		}

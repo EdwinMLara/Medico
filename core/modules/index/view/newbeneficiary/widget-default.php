@@ -84,6 +84,13 @@
       </div>
 
       <div class="form-group">
+        <label class="col-md-2 col-form-label"> Alergias</label>
+          <div class="col-md-10">
+            <input type="text" name="alergias" required class="form-control" id="alergias"placeholder="Alergias">
+          </div>
+      </div>
+
+      <div class="form-group">
         <label class="col-md-3 col-form-label">Parentesco</label>
           <div class="col-md-9">
             <select class="form-control" id="Departamento" name="Parentesco">
@@ -119,7 +126,6 @@
   <div class="col-md-4">
     <div class="row">
       <div class="user_image">
-        <!--<img src="core/modules/index/view/img/Koala.jpg" alt="">-->
         <video id="player" autoplay></video>
       </div>
       
