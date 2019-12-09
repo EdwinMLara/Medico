@@ -83,7 +83,7 @@
 					<th>Usuario</th>
 					<th>Email</th>
 					<th>Agregado</th>
-					<th><span class="pull-right">Acciones</span></th>
+					<!--<th><span class="pull-right">Acciones</span></th>-->
 					
 				</tr>
 				<?php
@@ -109,10 +109,10 @@
 						<td ><?php echo $user_email; ?></td>
 						<td><?php echo $date_added;?></td>
 						
-					<td ><span class="pull-right">
+					<!--<td ><span class="pull-right">
 					<a href="#" class='btn btn-default' title='Editar usuario' onclick="obtener_datos('<?php echo $user_id;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
 					<a href="#" class='btn btn-default' title='Cambiar contraseña' onclick="get_user_id('<?php echo $user_id;?>');" data-toggle="modal" data-target="#myModal3"><i class="glyphicon glyphicon-cog"></i></a>
-					<a href="#" class='btn btn-default' title='Borrar usuario' onclick="eliminar('<? echo $user_id; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
+					<a href="#" class='btn btn-default' title='Borrar usuario' onclick="eliminar('<? echo $user_id; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>-->
 						
 					</tr>
 					<?php

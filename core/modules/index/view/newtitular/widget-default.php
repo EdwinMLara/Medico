@@ -8,6 +8,7 @@
           $Nombre = $paciente_titular->name;
           $Apellido = $paciente_titular->lastname;
           $departamento = $paciente_titular->departament;
+          $alergias = $paciente_titular->alergias;
           echo "<input type='hidden' name='id_paciente' value='".$_POST['id_paciente']."'>";
         }else if(isset($_GET["Nombre"])){
           $Nombre = $_GET["Nombre"];
@@ -70,7 +71,13 @@
       <div class="form-group">
         <label class="col-md-2 col-form-label"> Alergias</label>
           <div class="col-md-10">
-            <input type="text" name="alergias" required class="form-control" id="alergias"placeholder="Alergias">
+            <input type="text" name="alergias" required class="form-control" id="alergias" placeholder="Alergias" value="<?php
+            if(isset($alergias)){
+              echo $alergias;
+            }else{
+              echo 'sin alergias';
+            }
+            ?>">
           </div>
       </div>
 

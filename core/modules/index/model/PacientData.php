@@ -67,7 +67,7 @@ class  PacientData{
 
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename." order by id_paciente desc";
+		$sql = "SELECT * FROM pacientes WHERE is_active = '1' ORDER BY id_paciente";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new PacientData());
 	}
@@ -150,6 +150,11 @@ class  PacientData{
 		$sql .= "WHERE ".self::$tablename.".id_titular = '".$id."'";
 		$query = Executor::doit($sql);
 		return Model::one($query[0],new PacientData());
+	}
+
+	public static function desactivate($id){
+		$sql = "UPDATE pacientes SET is_active = 0 WHERE id_paciente = $id";
+		$query = Executor::doit($sql);
 	}
 }
 

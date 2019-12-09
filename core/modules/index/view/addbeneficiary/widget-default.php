@@ -6,7 +6,7 @@
 		$beneficiary->Nombre = ucwords($_POST["Nombre"]);
 		$beneficiary->Apellidos = ucwords($_POST["Apellido"]);
 		$beneficiary->Parentesco = ucwords($_POST["Parentesco"]);
-		$beneficiary->Ruta_foto = $beneficiary->Nombre."-".$beneficiary->Apellidos."-".$beneficiary->Parentesco."$id_titular".".png";
+		$beneficiary->Ruta_foto = $beneficiary->Nombre."-".$beneficiary->Apellidos."-".$beneficiary->Parentesco.".png";
 
 		$Nombre_beneficiario = ucwords($_POST["Nombre"]);
 		$Apellidos_beneficiario = ucwords($_POST["Apellido"]);

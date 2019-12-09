@@ -33,6 +33,6 @@
 		} 
 
 		Core::alert("Se Agrego un Nuevo Titular !");
-		print "<script>window.location='index.php?view=home';</script>";
+		print "<script>window.location='index.php?view=pacients';</script>";
 	}
 ?>

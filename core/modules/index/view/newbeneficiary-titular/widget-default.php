@@ -42,12 +42,29 @@
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Departamento</label>
         <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" value="<?php
-              /*if(isset($_GET['id_paciente'])){
-               echo $departamento; 
-            }*/
-          ?>"
-          placeholder="Departamento">
+          <?php
+            if(isset($_POST['id_paciente'])){
+               ?><input type="text" name="Departamento" class="form-control" required id="Departamento" value="<?php
+                    if(isset($_POST['id_paciente'])){
+                        echo $departamento; 
+                      }
+                  ?>"
+                 placeholder="Departamento"><?php
+            }else{
+              $departamentos = new DepartamentosData(); 
+              $departamentos_array = $departamentos->get_dptos();
+              ?>
+              <select class="form-control" id="Departamento" name="Departamento">
+              <option selected>Seleciona deparatamentos</option>
+              <?php
+              foreach ($departamentos_array as $departamento) {
+                $nombre = $departamento->nombre;
+                echo "<option value='$nombre'>$nombre</option>";
+              }
+              echo "</select>";
+            }
+          ?>
+          
         </div>
       </div>
 
