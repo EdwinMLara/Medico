@@ -30,8 +30,8 @@
 					<label for="inputEmail1" class="col-lg-2 control-label">Paciente</label>
 				</div>
 				<div class="col-md-6">
-					<input type="text" name="pacient_name" required class="form-control" id="inputEmail1" value="<?php echo $pacientsid->name ." ". $pacientsid->lastname;?>">
-					<input type="hidden" name="pacient_id" required class="form-control" id="inputEmail1" value="<?php echo $idexis;?>">
+					<input type="text" name="pacient_name" required class="form-control" value="<?php echo $pacientsid->name ." ". $pacientsid->lastname;?>">
+					<input type="hidden" name="pacient_id" required class="form-control" value="<?php echo $idexis;?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -39,8 +39,8 @@
 					<label for="inputEmail1" class="col-lg-2 control-label">Medico</label>
 				</div>
 				<div class="col-md-6">
-					<input type="hidden" name="medic_id" required  id="inputEmail1" value="<?php echo $medics->id; ?>">
-					<input type="text" required class="form-control" id="inputEmail1" placeholder="Medico" value="<?php echo $medics->name.' '.$medics->lastname; ?>">
+					<input type="hidden" name="medic_id" required value="<?php echo $medics->id; ?>">
+					<input type="text" required class="form-control" placeholder="Medico" value="<?php echo $medics->name.' '.$medics->lastname; ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -48,7 +48,7 @@
 					<label for="inputEmail1" class="col-lg-2 control-label">Fecha:</label>
 				</div>
 				<div class="col-md-6">
-					<input type="date" name="date_at" required class="form-control" id="inputEmail1" placeholder="Fecha">
+					<input type="date" name="date_at" required class="form-control" placeholder="Fecha">
 				</div>			
 			</div>
 			<div class="form-group">
@@ -60,7 +60,7 @@
 					$hoy = date("H:i");
 				?>
 				<div class="col-md-3">
-					<input type="text" name="time_at" required class="form-control" id="inputEmail1" value="<?php echo $hoy; ?>" readonly>
+					<input type="text" name="time_at" required class="form-control" value="<?php echo $hoy; ?>" readonly>
 				</div>
 			</div>
 			<div class="form-group">
@@ -98,7 +98,7 @@
 
 					<label for="inputEmail1" class="col-md-1 control-label">Cant</label>
 					<div class="col-md-2">
-						<select class="form-control" name="Cantidad1">
+						<select id="select_Cantidad1" class="form-control" name="Cantidad1" onclick="validar_cant('select_Cantidad1','inventario1');">
 			              <option selected>0</option>
 			                <option>1</option>
 			                <option>2</option>

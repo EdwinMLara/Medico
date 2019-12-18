@@ -129,19 +129,21 @@ function autocomplete(inp, array,inventario,tag_inventario){
 				b.innerHTML += array[i].substr(val.length);
 				b.innerHTML += "<input type='hidden' value='" + array[i] +"'>";
 				b.setAttribute("name",inp.name);
+				b.setAttribute("id",i);
 				b.addEventListener("click", function(e){
 					inp.value = this.getElementsByTagName("input")[0].value;
+					console.log(this.id);
+					aux_inventario.value = inventario[parseInt(this.id)];
 					closeALLList();
-				});
-				
+				});	
 				a.appendChild(b);
-				aux_inventario.value = inventario[i];
 			}
 		}
 	});
 	
 	inp.addEventListener("keydown",function(e){
 		var x = document.getElementById(this.id + "autocomplete-list");
+		console.log(currentFocus);
 		if(x){
 			x = x.getElementsByTagName("div");
 		}
@@ -157,7 +159,9 @@ function autocomplete(inp, array,inventario,tag_inventario){
 			//codigo 13 tecla enter
 			e.preventDefault();
 			if(currentFocus > -1){
-				if(x) x[currentFocus].click();
+				if(x){
+					x[currentFocus].click();
+				} 
 			}
 
 		}
@@ -175,6 +179,7 @@ function autocomplete(inp, array,inventario,tag_inventario){
 		}
 
 		x[currentFocus].classList.add("autocomplete-active");
+		//aux_inventario.value = inventario[parseInt(x[currentFocus].id)];
 	}
 
 	function removeActive(x){
@@ -205,17 +210,20 @@ var ids_countries = [];
 var inventario = [];
 var nombres = [];
 
-autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1");
-autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1");
-
 $(document).ready(function(){
-	$.ajax({
+	setInterval(llenar_vectores(), 5000);
+	autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1");
+	autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1");
+});
+
+function llenar_vectores(){
+$.ajax({
 		url:"api/json-medicamentos-api.php",
 		dataType:"json",
 		type:"get",
 		success: function(datos){
 			var x = datos.Medicamentos;
-			for (var i = 0; i < x.length;i++){
+			for (var i = 0; i < x.length; i++){
 				countries.push(x[i].nombre_producto);
 				ids_countries.push(x[i].id_medicamento);
 				inventario.push(x[i].En_inventario);
@@ -235,9 +243,10 @@ $(document).ready(function(){
 				aux = aux.concat(" ",aux_lastname);
 				nombres.push(aux);
 			}
-		}
+		 }
 	});
-});
+
+}
 
 function actualizar_datos_titular(){
 	var hay_titular = document.getElementById("hay_titular");
@@ -256,5 +265,15 @@ function actualizar_datos_titular(){
 			id_form.setAttribute("action","index.php?view=newbeneficiary");
 			break;
 	}
+}
+
+function validar_cant(id,id_invetario){
+	var select = document.getElementById(id);
+	var cant = parseInt(select.selectedIndex);
+	var cant_inventario = document.getElementById(id_invetario);
+	var inven = parseInt(cant_inventario.value);
+	if(cant > inven){
+		select.value = inven; 
+	} 
 }
 
