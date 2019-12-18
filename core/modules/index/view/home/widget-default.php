@@ -26,7 +26,7 @@
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek'
+				right: 'month'
 			},
 			Date:"Y-m",
 			editable: false,

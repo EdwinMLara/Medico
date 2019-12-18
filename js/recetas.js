@@ -8,16 +8,18 @@ function crear_caja_receta(id,num_forms){
 	for(var i=1;i<=parseInt(num_forms);i++){
 		var div_id1 = crear_div(id,i,"form-group marco");
 		crear_label(div_id1,"col-lg-2 control-label","Medicamento");
-		var div_id2 = crear_div(div_id1,"2".concat(i),"col-md-6");
-		crear_input(div_id2,i,"form-control","Medicamento".concat(i),"text","Nombre del Medicamento");
-		crear_label(div_id1,"col-lg-2 control-label","Cantidad");
+		var div_id2 = crear_div(div_id1,"2".concat(i),"col-md-5");
+		crear_input(div_id2,"myInput".concat(i),"form-control","Medicamento".concat(i),"text","Nombre del Medicamento");
+		crear_label(div_id1,"col-lg-1 control-label","Cant");
 		var div_id3 = crear_div(div_id1,"3".concat(i),"col-md-2");
-		var num_med = ["1","2","3","4","5"];
+		var num_med = ["0","1","2","3","4","5"];
 		crear_select(div_id3,i,"form-control","Cantidad".concat(i),num_med);
+		var div_id4 = crear_div(div_id1,"4".concat(i),"col-md-2");
+		crear_input(div_id4,"inventario".concat(i),"form-control","inventario".concat(i),"text","0");
 		crear_label(div_id1,"col-lg-2 control-label","Prescripción");
-		var div_id4 = crear_div(div_id1,"4".concat(i),"col-md-10");
+		var div_id4 = crear_div(div_id1,"5".concat(i),"col-md-10");
 		crear_textArea(div_id4,i,"form-control","Prescripcion","Prescripción");
-		autocomplete(document.getElementById("myInput".concat(i)), countries);
+		autocomplete(document.getElementById("myInput".concat(i)), countries,inventario,"inventario".concat(i));
 	}	
 }
 
@@ -44,7 +46,7 @@ function crear_label(id_padre,clase,nombre_mostrar){
 
 function crear_input(id_padre,id,clase,nombre,tipo,placeholder){
 	var input = document.createElement("input");
-	input.setAttribute("id","myInput".concat(id));
+	input.setAttribute("id",id);
 	var input_att_type = document.createAttribute("type");
 	input_att_type.value = tipo;
 	input.setAttributeNode(input_att_type);
@@ -101,7 +103,7 @@ function crear_textArea(id_padre,id,clase,nombre,placeholder){
 	document.getElementById(id_padre).appendChild(textArea);
 }
 
-function autocomplete(inp, array){
+function autocomplete(inp, array,inventario,tag_inventario){
 	var currentFocus;
 
 	inp.addEventListener("input",function(e){
@@ -115,6 +117,8 @@ function autocomplete(inp, array){
 		a = document.createElement("div");
 		a.setAttribute("id",this.id + "autocomplete-list");
 		a.setAttribute("class","autocomplete-items");
+
+		var aux_inventario = document.getElementById(tag_inventario);
 
 		this.parentNode.appendChild(a);
 
@@ -131,6 +135,7 @@ function autocomplete(inp, array){
 				});
 				
 				a.appendChild(b);
+				aux_inventario.value = inventario[i];
 			}
 		}
 	});
@@ -197,9 +202,11 @@ function autocomplete(inp, array){
 //var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 var countries = [];
 var ids_countries = [];
+var inventario = [];
 var nombres = [];
-autocomplete(document.getElementById("myInput"), countries);
-autocomplete(document.getElementById("name_titular"),nombres);
+
+autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1");
+autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1");
 
 $(document).ready(function(){
 	$.ajax({
@@ -211,6 +218,7 @@ $(document).ready(function(){
 			for (var i = 0; i < x.length;i++){
 				countries.push(x[i].nombre_producto);
 				ids_countries.push(x[i].id_medicamento);
+				inventario.push(x[i].En_inventario);
 			}
 		}
 	});

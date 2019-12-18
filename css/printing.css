@@ -24,16 +24,17 @@
 	padding-top:23px;
 }
 #paciente{
-	padding-left: 100px;
+	padding-left: 105px;
 	padding-top: 45px;
 }
 #depart{
-	padding-left: 100px;
+	padding-left: 110px;
 	/*padding-top: 5px*/
 }
 #medicament{
 	padding-left: 50px;
 	padding-top: 40px;
 	width: 700px;
-	font-size: 12px;	
+	font-size: 14px;
+	font-weight: bold;	
 }

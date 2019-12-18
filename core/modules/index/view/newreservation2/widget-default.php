@@ -39,11 +39,6 @@
 					<label for="inputEmail1" class="col-lg-2 control-label">Medico</label>
 				</div>
 				<div class="col-md-6">
-					<!--<select name="medic_id" class="form-control" required>
-						<?php foreach($medics as $p):?>
-						<option value="<?php echo $p->id; ?>"><?php echo $p->name." ".$p->lastname; ?></option>
-						<?php endforeach; ?>
-					</select>-->
 					<input type="hidden" name="medic_id" required  id="inputEmail1" value="<?php echo $medics->id; ?>">
 					<input type="text" required class="form-control" id="inputEmail1" placeholder="Medico" value="<?php echo $medics->name.' '.$medics->lastname; ?>">
 				</div>
@@ -95,21 +90,27 @@
 			<div class="col-md-12 receta" id="Receta">
 				<h4>Receta</h4>
 				<div class="form-group marco" id="form1">
-					<label for="inputEmail1" class="col-lg-2 control-label">Medicamento</label>
-					<div class="col-md-6">
+					<label for="inputEmail1" class="col-md-2 control-label">Medicamento</label>
+					<div class="col-md-5">
 						<input id="myInput" type="text" name="Medicamento1" class="form-control" placeholder="Nombre del Medicamento">
 						<input type="hidden" id="inputH1" name="id_medicamento1" class="" placeholder="">
 					</div>
-					<label for="inputEmail1" class="col-lg-2 control-label">Cantidad</label>
+
+					<label for="inputEmail1" class="col-md-1 control-label">Cant</label>
 					<div class="col-md-2">
 						<select class="form-control" name="Cantidad1">
-			              <option selected>1</option>
+			              <option selected>0</option>
+			                <option>1</option>
 			                <option>2</option>
 			                <option>3</option>
 			                <option>4</option>
 			                <option>5</option>
 			            </select>
 					</div>
+					<div class="col-md-2">
+						<input id="inventario1" type="text" name="inventario" class="form-control" placeholder="0">
+					</div>
+
 					<label for="inputEmail1" class="col-lg-2 control-label">Prescripción</label>
 					<div class="col-md-10">
 						<textarea class="form-control" name="Prescripcion1" placeholder="Prescripción"></textarea>
@@ -118,7 +119,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<button type="submit" class="btn btn-default">Agregar Cita</button>
+					<button type="submit" class="btn btn-default">Guardar Consulta</button>
 				</div>
 			</div>
 			</div>

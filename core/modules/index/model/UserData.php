@@ -7,16 +7,17 @@ class UserData {
 		$this->name = "";
 		$this->lastname = "";
 		$this->email = "";
-		$this->password = "";
+		//$this->password = "";
 		$this->is_active = "1";
 		$this->is_admin = "";
 		$this->is_inventario = "0";
 		$this->created_at = "now()";
+		$this->medic_id = "";
 	}
 
 	public function add(){
-		$sql = "INSERT INTO ".self::$tablename." ( username, name, lastname, email, password, is_active, is_admin, is_inventario, created_date)";
-		$sql .= "value (\"$this->username\",\"$this->name\",\"$this->lastname\",\"$this->email\",\"$this->password\",\"$this->is_active\",\"$this->is_admin\",\"$this->is_inventario\",$this->created_at)";
+		$sql = "INSERT INTO ".self::$tablename." ( username, name, lastname, email, password, is_active, is_admin, is_inventario, created_date, medic_id)";
+		$sql .= "value (\"$this->username\",\"$this->name\",\"$this->lastname\",\"$this->email\",\"$this->password\",\"$this->is_active\",\"$this->is_admin\",\"$this->is_inventario\",$this->created_at,\"$this->medic_id\")";
 		Executor::doit($sql);
 	}
 
@@ -31,7 +32,7 @@ class UserData {
 
 // partiendo de que ya tenemos creado un objecto UserData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",email=\"$this->email\",password=\"$this->password\",is_active=$this->is_active,is_admin=$this->is_admin where id=$this->id";
+		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",email=\"$this->email\",password=\"$this->password\",is_active=$this->is_active,is_admin=$this->is_admin,medic_id=$this->medic_id where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -56,8 +57,8 @@ class UserData {
 		return Model::many($query[0],new UserData());
 	}
 
-	public static function update_password($user_id,$password){
-		$sql = "UPDATE ".self::$tablename." SET password ='$password' WHERE id = $user_id";
+	public static function update_password($user_id){
+		$sql = "UPDATE ".self::$tablename." SET password ='$this->password' WHERE id = $user_id";
 		Executor::doit($sql);
 	}
 

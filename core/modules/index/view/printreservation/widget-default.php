@@ -27,7 +27,7 @@
     }else{
         $ultima_factura = 1;
     }
-
+    $reservacion->numero_factura = $ultima_factura;
     $status_factura = 1;
     for($i=1; $i<= $cant ; $i++){
 

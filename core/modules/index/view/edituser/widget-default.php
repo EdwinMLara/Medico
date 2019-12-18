@@ -39,6 +39,25 @@
     </div>
   </div>
 
+  <?php
+    $medicos = MedicData::getAll();
+  ?>
+
+<div class="form-group">
+      <label for="inputEmail1" class="col-lg-2 control-label">Asignar Medico</label>
+      <div class="col-md-6">
+        <select class="form-control" name="medic_id" id="medi">
+          <?php
+      foreach($medicos as $m){
+        $medic_name = $m->name." ".$m->lastname;
+        $medic_id = $m->id;
+          echo "<option value='$medic_id'>$medic_name</option>";
+      }?>
+          
+        </select>
+      </div>
+    </div>
+
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label" >Esta activo</label>
     <div class="col-md-6">

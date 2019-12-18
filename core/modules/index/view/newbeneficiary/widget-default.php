@@ -86,7 +86,7 @@
       <div class="form-group">
         <label class="col-md-2 col-form-label"> Alergias</label>
           <div class="col-md-10">
-            <input type="text" name="alergias" required class="form-control" id="alergias" placeholder="Alergias" value="ninguna">
+            <input type="text" name="alergias" required class="form-control" id="alergias" placeholder="Alergias" value="Ninguna">
           </div>
       </div>
 

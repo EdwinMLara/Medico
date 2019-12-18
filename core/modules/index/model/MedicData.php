@@ -47,7 +47,7 @@ class MedicData {
 
 
 	public static function getAll(){
-		$sql = "select * from ".self::$tablename." order by created_at asc";
+		$sql = "select * from ".self::$tablename." order by id";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new MedicData());
 	}

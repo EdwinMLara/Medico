@@ -98,6 +98,7 @@ if((isset($_GET["q"]) && isset($_GET["pacient_id"]) && isset($_GET["medic_id"]) 
 		?>
 		<table class="table table-bordered table-hover">
 		<thead>
+		<th>Factura</th>
 		<th>Paciente</th>
 		<th>Medico</th>
 		<th>Enfermedad</th>
@@ -111,6 +112,7 @@ if((isset($_GET["q"]) && isset($_GET["pacient_id"]) && isset($_GET["medic_id"]) 
 			$medic = $user->getMedic();
 			?>
 			<tr>
+			<td><?php echo $user->numero_factura; ?></td>
 			<td><?php echo $pacient->name." ".$pacient->lastname; ?></td>
 			<td><?php echo $medic->name." ".$medic->lastname; ?></td>
 			<td><?php echo $user->sick?></td>

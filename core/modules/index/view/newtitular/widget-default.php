@@ -75,7 +75,7 @@
             if(isset($alergias)){
               echo $alergias;
             }else{
-              echo 'sin alergias';
+              echo 'Ninguna';
             }
             ?>">
           </div>

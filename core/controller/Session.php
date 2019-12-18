@@ -25,7 +25,9 @@ class Session{
 	public static function getUID(){
 		if(isset($_SESSION['user_id']))
 			return $_SESSION['user_id'];
-		else return false;
+		else{
+			return false;
+		}
 	}
 
 }

@@ -32,7 +32,7 @@
 		$sTable = "facturas, pacientes, usuarios";
 		$colums = "id_factura, numero_factura, fecha_factura, Concat(pacientes.name,' ',pacientes.lastname) as 'paciente', Concat(usuarios.name, ' ', usuarios.lastname) as 'medico', estado_factura";
 		$sWhere = "";
-		$sWhere.=" WHERE facturas.id_cliente=pacientes.id_paciente and facturas.id_vendedor=usuarios.id";
+		$sWhere.=" WHERE facturas.id_cliente=pacientes.id_paciente and facturas.id_vendedor=usuarios.medic_id";
 		if ( $_GET['q'] != "" ){
 			$sWhere.= " and  (pacientes.name like '%$q%' or facturas.numero_factura like '%$q%')";
 		}

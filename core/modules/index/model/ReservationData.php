@@ -7,6 +7,7 @@ class ReservationData {
 		$this->symtoms = "";
 		$this->sick = "";
 		$this->medicaments = "";
+		$this->numero_factura = "0";
 	}
 
 	public function getPacient(){ return PacientData::getById($this->pacient_id); }
@@ -19,8 +20,8 @@ class ReservationData {
 	}
 
 	public function add($id){
-		$sql = "INSERT INTO ".self::$tablename."(id,date_at,time_at,created_at, pacient_id,symtoms,sick,medicaments,user_id,medic_id)";
-		$sql .= "VALUES (\"$id\",\"$this->date_at\",\"$this->time_at\",now(),\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",\"$this->medicaments\",\"1\",\"$this->medic_id\")";
+		$sql = "INSERT INTO ".self::$tablename."(id,date_at,time_at,created_at, pacient_id,symtoms,sick,medicaments,user_id,medic_id,numero_factura)";
+		$sql .= "VALUES (\"$id\",\"$this->date_at\",\"$this->time_at\",now(),\"$this->pacient_id\",\"$this->symtoms\",\"$this->sick\",\"$this->medicaments\",\"1\",\"$this->medic_id\",\"$this->numero_factura\")";
 		Executor::doit($sql);
 	}
 
