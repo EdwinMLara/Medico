@@ -56,7 +56,7 @@
 					<label for="inputEmail1" class="col-lg-2 control-label">Hora:</label>
 				</div>
 				<?php
-					date_default_timezone_set('MST');
+					date_default_timezone_set('America/Mexico_City');
 					$hoy = date("H:i");
 				?>
 				<div class="col-md-3">
@@ -98,7 +98,7 @@
 
 					<label for="inputEmail1" class="col-md-1 control-label">Cant</label>
 					<div class="col-md-2">
-						<select id="select_Cantidad1" class="form-control" name="Cantidad1" onclick="validar_cant('select_Cantidad1','inventario1');">
+						<select id="select1" class="form-control" name="Cantidad1" onclick="validar_cant('select_Cantidad1','inventario1');">
 			              <option selected>0</option>
 			                <option>1</option>
 			                <option>2</option>
@@ -184,12 +184,14 @@
 											<thead>
 												<th>Fecha</th>
 												<th>Enfermedad</th>
+												<th>Medicamentos</th>
 											</thead>
 									<?php
 										foreach($users as $uss){ ?>
 											<tr>
 												<td><?php echo $uss->created_at; ?></td>
 												<td><?php echo $uss->sick; ?></td>
+												<td><?php echo $uss->medicaments; ?></td>
 											</tr>
 									<?php	}	?>
 										</table>

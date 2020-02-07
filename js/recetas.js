@@ -19,7 +19,7 @@ function crear_caja_receta(id,num_forms){
 		crear_label(div_id1,"col-lg-2 control-label","Prescripción");
 		var div_id4 = crear_div(div_id1,"5".concat(i),"col-md-10");
 		crear_textArea(div_id4,i,"form-control","Prescripcion","Prescripción");
-		autocomplete(document.getElementById("myInput".concat(i)), countries,inventario,"inventario".concat(i));
+		autocomplete(document.getElementById("myInput".concat(i)), countries,inventario,"inventario".concat(i),"select".concat(i));
 	}	
 }
 
@@ -103,7 +103,7 @@ function crear_textArea(id_padre,id,clase,nombre,placeholder){
 	document.getElementById(id_padre).appendChild(textArea);
 }
 
-function autocomplete(inp, array,inventario,tag_inventario){
+function autocomplete(inp, array,inventario,tag_inventario,tag_select){
 	var currentFocus;
 
 	inp.addEventListener("input",function(e){
@@ -119,6 +119,7 @@ function autocomplete(inp, array,inventario,tag_inventario){
 		a.setAttribute("class","autocomplete-items");
 
 		var aux_inventario = document.getElementById(tag_inventario);
+		var aux_tag_select = document.getElementById(tag_select);
 
 		this.parentNode.appendChild(a);
 
@@ -134,6 +135,7 @@ function autocomplete(inp, array,inventario,tag_inventario){
 					inp.value = this.getElementsByTagName("input")[0].value;
 					console.log(this.id);
 					aux_inventario.value = inventario[parseInt(this.id)];
+					aux_tag_select.value = 0;
 					closeALLList();
 				});	
 				a.appendChild(b);
@@ -212,8 +214,8 @@ var nombres = [];
 
 $(document).ready(function(){
 	setInterval(llenar_vectores(), 5000);
-	autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1");
-	autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1");
+	autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1","select1");
+	autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1","select1");
 });
 
 function llenar_vectores(){
