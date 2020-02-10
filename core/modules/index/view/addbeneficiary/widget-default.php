@@ -40,7 +40,9 @@
 			$beneficiario_id_aux = $id_beneficiario->id_beneficiario;
 			$paciente_id_aux = $paciente->id_paciente;
 			$titular_id_aux = $id_titular;
-	
+			$mensaje = "Se actulizo la foto de beneficiario";
+			Core::alert($mensaje);
+			print "<script>window.location='index.php?view=newreservation2&id=".$paciente_id_aux."&id_beneficiario=".$beneficiario_id_aux."&id_titular=".$titular_id_aux."';</script>";	
 		}
 
 		
