@@ -8,6 +8,10 @@
 		$beneficiary->Parentesco = ucwords($_POST["Parentesco"]);
 		$beneficiary->Ruta_foto = $beneficiary->Nombre."-".$beneficiary->Apellidos."-".$beneficiary->Parentesco.".png";
 
+		$beneficiario_id_aux = 0;
+		$paciente_id_aux = 0;
+		$titular_id_aux = 0;
+	
 		$Nombre_beneficiario = ucwords($_POST["Nombre"]);
 		$Apellidos_beneficiario = ucwords($_POST["Apellido"]);
 		$beneficiary->insert(1);
@@ -22,16 +26,23 @@
 			$paciente->lastname = $beneficiary->Apellidos;
 			$paciente->alergias = $_POST["alergias"];
 			$paciente->insert();
+
+			Core::alert("Se Agrego un Nuevo Benefiario !");
+			$Nombre_titular = $_POST["Nombre_titular"];
+			$Apellido_titular = $_POST["Apellido_titular"];
+			$ruta_redireccion = "index.php?view=beneficiaries&Nombre=$Nombre_titular&Apellido=$Apellido_titular&id_titular=$id_titular";
+			print "<script>window.location='$ruta_redireccion';</script>";
 		}else{ 
 
 			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
 			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
+
+			$beneficiario_id_aux = $id_beneficiario->id_beneficiario;
+			$paciente_id_aux = $paciente->id_paciente;
+			$titular_id_aux = $id_titular;
+	
 		}
 
-		Core::alert("Se Agrego un Nuevo Benefiario !");
-		$Nombre_titular = $_POST["Nombre_titular"];
-		$Apellido_titular = $_POST["Apellido_titular"];
-		$ruta_redireccion = "index.php?view=beneficiaries&Nombre=$Nombre_titular&Apellido=$Apellido_titular&id_titular=$id_titular";
-		print "<script>window.location='$ruta_redireccion';</script>";
+		
 	}
 ?>

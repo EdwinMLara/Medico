@@ -14,6 +14,11 @@
 		$titular = IncumbentData::getId_titular($Nombre,$Apellidos);
 		$id_titular = $titular->id_titular;
 
+		$beneficiario_id_aux = 0;
+		$paciente_id_aux = 0;
+		$titular_id_aux = 0;
+
+		$titular_id_aux = $id_titular;
 
 		$beneficiary = new beneficiaryData();
 		$beneficiary->id_titular = $id_titular;
@@ -30,9 +35,16 @@
 		if($paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario)){
 			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
 			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
+			$paciente_id_aux = $paciente->id_paciente;
+			$beneficiario_id_aux = $id_beneficiario->id_beneficiario;
 		} 
 
-		Core::alert("Se Agrego un Nuevo Titular !");
-		print "<script>window.location='index.php?view=pacients';</script>";
+		
+		
+		
+
+		Core::alert("Se Agrego un Nuevo Titular y se actualizo la foto del beneficiario!");
+		print "<script>window.location='index.php?view=newreservation2&id=".$paciente_id_aux."&id_beneficiario=".$beneficiario_id_aux."&id_titular=".$titular_id_aux."';</script>";
+
 	}
 ?>
