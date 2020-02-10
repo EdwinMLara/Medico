@@ -71,6 +71,12 @@ class  PacientData{
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new PacientData());
 	}
+
+	public static function getAll_disable(){
+		$sql = "SELECT * FROM pacientes WHERE is_active = '0' ORDER BY id_paciente";
+		$query = Executor::doit($sql);
+		return Model::many($query[0],new PacientData());
+	}
 	
 	
 	public static function getDatos($name,$lastname){
@@ -154,6 +160,11 @@ class  PacientData{
 
 	public static function desactivate($id){
 		$sql = "UPDATE pacientes SET is_active = 0 WHERE id_paciente = $id";
+		$query = Executor::doit($sql);
+	}
+
+	public static function activate($id){
+		$sql = "UPDATE pacientes SET is_active = 1 WHERE id_paciente = $id";
 		$query = Executor::doit($sql);
 	}
 }
