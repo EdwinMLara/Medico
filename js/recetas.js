@@ -13,7 +13,7 @@ function crear_caja_receta(id,num_forms){
 		crear_label(div_id1,"col-lg-1 control-label","Cant");
 		var div_id3 = crear_div(div_id1,"3".concat(i),"col-md-2");
 		var num_med = ["0","1","2","3","4","5"];
-		crear_select(div_id3,i,"form-control","Cantidad".concat(i),num_med);
+		crear_select(div_id3,i,"form-control","select1".concat(i),num_med,"inventario".concat(i));
 		var div_id4 = crear_div(div_id1,"4".concat(i),"col-md-2");
 		crear_input(div_id4,"inventario".concat(i),"form-control","inventario".concat(i),"text","0");
 		crear_label(div_id1,"col-lg-2 control-label","Prescripción");
@@ -62,7 +62,7 @@ function crear_input(id_padre,id,clase,nombre,tipo,placeholder){
 	document.getElementById(id_padre).appendChild(input);
 }
 
-function crear_select(id_padre,id,clase,nombre,array_option){
+function crear_select(id_padre,id,clase,nombre,array_option,param2_click){
 	var select = document.createElement("select");
 	var select_att_clase = document.createAttribute("class");
 	select_att_clase.value = clase;
@@ -74,7 +74,14 @@ function crear_select(id_padre,id,clase,nombre,array_option){
 	var select_att_name = document.createAttribute("name");
 	select_att_name.value = nombre;
 	select.setAttributeNode(select_att_name);
+
+	var even_click = document.createAttribute("onclick");
+	var atr_even = "validar_cant('".concat(select_att_id_value,"','",param2_click,"');");
+	even_click.value = atr_even;
+	select.setAttributeNode(even_click);
+	
 	document.getElementById(id_padre).appendChild(select);
+	
 
 	var select_aux =  document.getElementById("select".concat(id));
 	for(var i=0;i<array_option.length;i++){

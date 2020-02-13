@@ -98,7 +98,7 @@
 
 					<label for="inputEmail1" class="col-md-1 control-label">Cant</label>
 					<div class="col-md-2">
-						<select id="select1" class="form-control" name="Cantidad1" onclick="validar_cant('select_Cantidad1','inventario1');">
+						<select id="select1" class="form-control" name="Cantidad1" onclick="validar_cant('select1','inventario1');">
 			              <option selected>0</option>
 			                <option>1</option>
 			                <option>2</option>

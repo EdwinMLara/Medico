@@ -30,7 +30,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<div class="btn-group pull-right">
-					<button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoCliente"><span class="glyphicon glyphicon-plus" ></span> Nuevo Cliente</button>
+					<!--<button type='button' class="btn btn-info" data-toggle="modal" data-target="#nuevoCliente"><span class="glyphicon glyphicon-plus" ></span> Nuevo Cliente</button>-->
 				</div>
 				<h4><i class='glyphicon glyphicon-search'></i> Buscar Clientes</h4>
 			</div>
