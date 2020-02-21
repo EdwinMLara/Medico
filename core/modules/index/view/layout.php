@@ -53,9 +53,9 @@
 						<li><a href="index.php?view=home"><i class="fa fa-home"></i> Inicio</a></li>
 						<li><a href="index.php?view=reservations"><i class="fa fa-calendar"></i> Consultas</a></li>
 						<li><a href="index.php?view=pacients"><i class="fa fa-male"></i> Pacientes</a></li>
-						<li><a href="index.php?view=incumbent"><i class="fa fa-male"></i> Titulares</a></li>
 						<!--<li><a href="index.php?view=categories"><i class="fa fa-th-list"></i> Areas Medicas</a></li>-->
 						<?php if($u->is_admin):?>
+							<li><a href="index.php?view=incumbent"><i class="fa fa-male"></i> Titulares</a></li>
 							<li><a href="index.php?view=medics"><i class="fa fa-support"></i> Medicos</a></li>
 							<li><a href="index.php?view=users"><i class="fa fa-users"></i> Usuarios </a></li>
 						<?php endif;?>
