@@ -17,7 +17,7 @@ class  PacientData{
 	}
 
 	public function get_json(){
-		$sql = "SELECT * FROM ".self::$tablename." ORDER BY id_paciente DESC";
+		$sql = "SELECT * FROM ".self::$tablename." WHERE id_beneficiario = 0 ORDER BY id_paciente DESC";
 		$query = Executor::doit($sql);
 		$aux = Model::many($query[0],new PacientData());
 		$json_array = array('Nombres' => $aux);		

@@ -13,13 +13,13 @@ function crear_caja_receta(id,num_forms){
 		crear_label(div_id1,"col-lg-1 control-label","Cant");
 		var div_id3 = crear_div(div_id1,"3".concat(i),"col-md-2");
 		var num_med = ["0","1","2","3","4","5"];
-		crear_select(div_id3,i,"form-control","select1".concat(i),num_med,"inventario".concat(i));
+		crear_select(div_id3,i,"form-control","Cantidad".concat(i),num_med,"inventario".concat(i));
 		var div_id4 = crear_div(div_id1,"4".concat(i),"col-md-2");
 		crear_input(div_id4,"inventario".concat(i),"form-control","inventario".concat(i),"text","0");
 		crear_label(div_id1,"col-lg-2 control-label","Prescripción");
 		var div_id4 = crear_div(div_id1,"5".concat(i),"col-md-10");
 		crear_textArea(div_id4,i,"form-control","Prescripcion","Prescripción");
-		autocomplete(document.getElementById("myInput".concat(i)), countries,inventario,"inventario".concat(i),"select".concat(i));
+		autocomplete(document.getElementById("myInput".concat(i)), countries,inventario,"inventario".concat(i),"Cantidad".concat(i));
 	}	
 }
 
