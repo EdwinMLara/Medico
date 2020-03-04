@@ -16,6 +16,7 @@ if(count($_POST)>0){
 	$user->username = $_POST["username"];
 	$user->email = $_POST["email"];
 	$user->is_admin=$is_admin;
+	$user->medic_id = $_POST["medico"];
 	if(isset($_POST["is_farmacia"])){
 		$is_farmacia=1;
 		$user->is_inventario = $is_farmacia;

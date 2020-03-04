@@ -40,10 +40,11 @@
   <div class="form-group">
 				<label for="inputEmail1" class="col-lg-2 control-label">Asignar Medico</label>
 				<div class="col-md-6">
-					<select class="form-control" name="Num_medicamentos" id="medico" name="medico">
+					<select class="form-control" id="medico" name="medico">
             <?php
               $medicos = MedicData::getAll();
-              echo "<option value='0'>Ninguno es administrador</option>";
+              echo "<option value='0'>Ninguno es administrador3
+              </option>";
               foreach ($medicos as $medic){
                 echo "<option value='$medic->id'> ".$medico->name." ".$medic->lastname."</option>";
               }
