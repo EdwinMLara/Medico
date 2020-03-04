@@ -38,6 +38,21 @@
   </div>
 
   <div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">Asignar Medico</label>
+				<div class="col-md-6">
+					<select class="form-control" name="Num_medicamentos" id="medico" name="medico">
+            <?php
+              $medicos = MedicData::getAll();
+              echo "<option value='0'>Ninguno es administrador</option>";
+              foreach ($medicos as $medic){
+                echo "<option value='$medic->id'> ".$medico->name." ".$medic->lastname."</option>";
+              }
+            ?>
+		      </select>
+		    </div>
+	</div>
+
+  <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Es administrador</label>
       <div class="col-md-6">
         <div class="checkbox">
