@@ -63,16 +63,18 @@
 					<input type="text" name="time_at" required class="form-control" value="<?php echo $hoy; ?>" readonly>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="inputEmail1" class="col-lg-2 control-label">Enfermedad</label>
-				<div class="col-md-10">
-					<textarea class="form-control" name="sick" placeholder="Enfermedad"></textarea>
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label for="inputEmail1" class="col-lg-2 control-label">Sintomas</label>
 				<div class="col-md-10">
 					<textarea class="form-control" name="symtoms" placeholder="Sintomas"></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputEmail1" class="col-lg-2 control-label">Diagnóstico</label>
+				<div class="col-md-10">
+					<textarea class="form-control" name="sick" placeholder="Enfermedad"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
