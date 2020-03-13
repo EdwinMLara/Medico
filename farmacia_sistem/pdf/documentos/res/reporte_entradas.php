@@ -58,9 +58,10 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 	<table cellspacing="0" style="width: 100%; text-align: left; font-size: 10pt;">
         <tr>
             <th style="width: 10%; text-align:center" class='midnight-blue'>Codigo.</th>
-            <th style="width: 55%" class='midnight-blue'>Producto</th>
+            <th style="width: 40%" class='midnight-blue'>Producto</th>
             <th style="width: 11%" class='midnight-blue'>Cantidad</th>
-            <th style="width: 11%" class='midnight-blue'>Precio Entrada</th>
+            <th style="width: 11%" class='midnight-blue'>Precio Unitario</th>
+			<th style="width: 11%" class='midnight-blue'>Importe</th>
             <th style="width: 13%" class='midnight-blue'>Fecha Entrada</th>
         </tr>
 		<?php
@@ -75,6 +76,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 				$nombre=$row['nombre_producto'];
 				$cantidad=$row['cantidad'];
 				$precio=$row['precio'];
+				$importe = (int)$precio * (int)$cantidad;
 				$fecha=$row['detalle_date_added'];
 				if ($nums%2==0){
 					$clase="clouds";
@@ -84,21 +86,23 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 		?>
         <tr class="<?php echo $clase;?>">
             <td style="width: 10%; text-align: center"><?php echo $codigo; ?></td>
-            <td style="width: 55%; text-align: center"><?php echo $nombre;?></td>
+            <td style="width: 40%; text-align: center"><?php echo $nombre;?></td>
             <td style="width: 11%; text-align: center"><?php echo $cantidad;?></td>
             <td style="width: 11%; text-align: center"><?php echo $precio;?></td>
+			<td style="width: 11%; text-align: center"><?php echo $importe;?></td>
             <td style="width: 13%; text-align: center"><?php echo date("d-m-Y", strtotime($fecha));?></td>
         </tr>
 		<?php 
-			$suma+=$precio;
+			$suma+=$importe;
 			$cantotal+=$cantidad;
 			$nums++;
 			}
 			$total=number_format($suma,2,'.','');
 		?>
 		<tr class="totales">
-			<td colspan="2" style="width: 65%; text-align: right">TOTALES:</td>
+			<td colspan="2" style="width: 50%; text-align: right">TOTALES:</td>
 			<td style="width: 11%; text-align: center"><?php echo $cantotal;?></td>
+			<td></td>
 			<td style="width: 11%; text-align: center"><?php echo $total;?></td>
 			<td></td>
 		</tr>
