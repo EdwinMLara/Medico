@@ -48,7 +48,7 @@
 					<td><?php echo $user->name." ".$user->lastname; ?></td>
 					<td style="width:300px;">
 						<?php if(!$user_aux->is_admin){?>
-							<a href="index.php?view=newreservation2&id=<?php echo $user->id_paciente;?>&id_beneficiario=<?php echo $user->id_beneficiario;?>&id_titular=<?php echo $user->id_titular?>" class="btn btn-success btn-xs">Nueva Cita</a>
+							<a href="index.php?view=newreservation2&id=<?php echo $user->id_paciente;?>&id_beneficiario=<?php echo $user->id_beneficiario;?>&id_titular=<?php echo $user->id_titular?>" class="btn btn-success btn-xs">Nueva Cconsulta</a>
 						<?php } ?>
 						<a href="index.php?view=pacienthistory&id=<?php echo $user->id_paciente;?>" class="btn btn-info btn-xs">Historial</a>
 						<?php
