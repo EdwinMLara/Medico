@@ -56,7 +56,7 @@
 			$sWhere = substr_replace( $sWhere, "", -3 );
 			$sWhere .= ')';
 		}
-		$sWhere.=" order by id_medicamento ASC";
+		$sWhere.=" order by id_medicamento DESC";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
 		$page = (isset($_REQUEST['page']) && !empty($_REQUEST['page']))?$_REQUEST['page']:1;
@@ -82,7 +82,7 @@
 					<th>Producto</th>
 					<th>Estado</th>
 					<th>Agregado</th>
-					<th>Minimo</th>
+					<th>En Inventario</th>
 					<th class='text-right'>Acciones</th>
 				</tr>
 				<?php
