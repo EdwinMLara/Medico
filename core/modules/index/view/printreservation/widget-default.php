@@ -112,15 +112,15 @@
                             //echo $an."  ".$mes.'  '.$dia;
             ?></strong></h4>
         </div>
-        <div id="cedula">
-        	<h4><strong>1309806</strong></h4>
-        </div>
-        <div id="nomedico">
-			<?php
+        <?php
 				$medic_id=$_POST["medic_id"];
 				$medicid=MedicData::getById($medic_id);
 			?>
-        	<h4><strong><?php echo $medicid->name." ". $medicid->lastname;; ?></strong></h4>
+        <div id="cedula">
+        	<h4><strong><?php echo $medicid->n_cedula;  ?></strong></h4>
+        </div>
+        <div id="nomedico">
+        	<h4><strong><?php echo $medicid->name." ". $medicid->lastname; ?></strong></h4>
         </div>
         
         <div id="paciente"> 
