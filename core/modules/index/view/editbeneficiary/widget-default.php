@@ -27,8 +27,26 @@
       </div>
 
       <div class="form-group">
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-primary">Actualizar</button>
+
+        <div class="col-md-3"></div>
+        <div class="col-md-4">
+          <!--<div class="user_image">
+            <img src="uploads/images/<?php echo $_GET["Ruta_foto"] ?>" alt="">
+          </div>-->
+          <div id="prueba">
+              <canvas id="canvas">
+              </canvas>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            <div class="form-group">
+
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -38,9 +56,12 @@
   <div class="col-md-4">
     <div class="row">
       <div class="user_image">
-        <img src="uploads/images/<?php echo $_GET["Ruta_foto"]?>" alt="">
+        <video id="player" autoplay></video><br>
+        <button class="btn btn-primary" id="btn-foto">Tomar foto</button>
       </div>
-      
     </div>
   </div>
+
 </div>
+
+<script src="js/Camara/Fotos.js"></script>
