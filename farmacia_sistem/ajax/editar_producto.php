@@ -1,23 +1,14 @@
 <?php
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
-	if (empty($_POST['mod_id'])) {
-           $errors[] = "ID vacío";
-        }else if (empty($_POST['mod_codigo'])) {
-           $errors[] = "Código vacío";
-        } else if (empty($_POST['mod_nombre'])){
+	if (empty($_POST['mod_nombre'])){
 			$errors[] = "Nombre del producto vacío";
 		} else if ($_POST['mod_estado']==""){
 			$errors[] = "Selecciona el estado del producto";
-		} else if (empty($_POST['mod_precio'])){
-			$errors[] = "Precio de venta vacío";
 		} else if (
-			!empty($_POST['mod_id']) &&
-			!empty($_POST['mod_codigo']) &&
 			!empty($_POST['mod_nombre']) &&
-			$_POST['mod_estado']!="" &&
-			!empty($_POST['mod_precio'])
-		){
+			$_POST['mod_estado']!="")
+		{
 		/* Connect To Database*/
 		require_once ("../config/db.php");//Contiene las variables de configuracion para conectar a la base de datos
 		require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos

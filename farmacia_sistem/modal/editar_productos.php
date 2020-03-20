@@ -38,12 +38,12 @@
 				  </select>
 				</div>
 			  </div>
-			  <div class="form-group">
+			  <!--<div class="form-group">
 				<label for="mod_precio" class="col-sm-3 control-label">Precio</label>
 				<div class="col-sm-8">
 				  <input type="text" class="form-control" id="mod_precio" name="mod_precio" placeholder="Precio de venta del producto" required pattern="^[0-9]{1,5}(\.[0-9]{0,2})?$" title="Ingresa sólo números con 0 ó 2 decimales" maxlength="8">
 				</div>
-			  </div>
+			  </div>-->
 			 
 			 
 			
