@@ -127,13 +127,29 @@
 			</div>
 			<div class="col-md-5">
 				<div class="row">
+					<a class="btn btn-warning btn-sm" href="<?php
+						$id_beneficiario = $pacientsid->id_beneficiario;
+						$id_titular = $pacientsid->id_titular;
+						$Nombre = $pacientsid->name;
+						$Apellidos = $pacientsid->lastname;
+						$Departamento = $pacientsid->departament;
+						$Ruta_foto = '';
+						$ruta = '';
+						if($id_beneficiario){
+							$ruta = 'index.php?view=editbeneficiary&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&Ruta_foto='.$Ruta_foto;
+							echo $ruta;
+						}else if($id_titular){
+							
+							$ruta = 'index.php?view=editincumbent&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&Ruta_foto='.$Ruta_foto;
+							echo $ruta;
+						}
+					?>">Actualizar foto</a>
 					<div class="user_foto">
 						<img src="
 							<?php
 								$path = 'uploads/images/';
 								$user_image_general = $path.'user-foto.jpg';
-								$id_beneficiario = $pacientsid->id_beneficiario;
-								$id_titular = $pacientsid->id_titular;
+								
 								if($id_beneficiario != '0'){
 									if($pacient_inner = PacientData::get_ruta_foto($id_beneficiario)){
 										$user_image_general = $path.$pacient_inner->Ruta_foto;
