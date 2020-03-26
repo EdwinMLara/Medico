@@ -13,13 +13,13 @@
 	
 	require_once(dirname(__FILE__).'/../html2pdf.class.php');
 	
-	$id_producto=$_GET['id_producto'];
+	$id_producto=(int) $_GET['id_producto'];
 	$date1=$_GET['date1'];
 	$date2=$_GET['date2'];
 	if ($id_producto==0) {
 		$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '$date1' AND '$date2') AND detalle_productos.codigo_producto = medicamentos.codigo_medicamento";
 	}else{
-		$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '2019-10-01' AND '2019-11-30') AND (detalle_productos.codigo_producto = medicamentos.codigo_medicamento) AND detalle_productos.codigo_producto = $id_producto";
+        $sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '2020-03-08' AND '2020-03-26') AND detalle_productos.codigo_producto = medicamentos.codigo_medicamento AND detalle_productos.codigo_producto = $id_producto";
 	}
 	
 	ob_start();

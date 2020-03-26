@@ -8,7 +8,13 @@
 #fecha{
 	position: relative;
 	padding-top:30px;
-	padding-left: 500px;
+	padding-left: 520px;
+}
+
+#factura{
+	position: absolute;
+	padding-top: -30px;
+	padding-left: 400px;
 }
 #fecha span{
 	margin-left:12px;
@@ -25,15 +31,15 @@
 }
 #paciente{
 	padding-left: 105px;
-	padding-top: 45px;
+	padding-top: 46px;
 }
 #depart{
 	padding-left: 110px;
-	/*padding-top: 5px*/
+	/*padding-top: px*/
 }
 #medicament{
 	padding-left: 50px;
-	padding-top: 40px;
+	padding-top: 20px;
 	width: 700px;
 	font-size: 14px;
 	font-weight: bold;	

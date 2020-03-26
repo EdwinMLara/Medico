@@ -57,13 +57,13 @@
 					</form>
 					<?php
 						}else{
-							$id_producto=$_POST['id_producto'];
+							$id_producto=(int) $_POST['id_producto'];
 							$date1=$_POST['date1'];
 							$date2=$_POST['date2'];
-							if ($id_producto==0) {
+							if ($id_producto == 0) {
 								$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '$date1' AND '$date2') AND detalle_productos.codigo_producto = medicamentos.codigo_medicamento";
 							}else{
-								$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '2019-10-01' AND '2019-11-30') AND (detalle_productos.codigo_producto = medicamentos.codigo_medicamento) AND detalle_productos.codigo_producto = $id_producto";
+								$sqlproducto="SELECT DISTINCT nombre_producto,codigo_producto FROM detalle_productos, medicamentos WHERE (detalle_date_added BETWEEN '2020-03-08' AND '2020-03-26') AND detalle_productos.codigo_producto = medicamentos.codigo_medicamento AND detalle_productos.codigo_producto = $id_producto";
 							}
 					?>
 						<form class="form-horizontal" role="form" action="reporte_ent_sal.php" method="POST">
@@ -76,7 +76,7 @@
 									<?php
 										$sqlp=mysqli_query($con,"SELECT * FROM medicamentos");
 										while($row=mysqli_fetch_array($sqlp)){
-											if ( $row['id_producto'] == $id_producto ){
+											if ( $row['codigo_medicamento'] == $id_producto ){
 												echo "<option value='".$row['id_medicamento']."'selected='selected'>".$row['nombre_producto']."</option>";
 											}else {
 												echo "<option value='".$row['id_medicamento']."'>".$row['nombre_producto']."</option>";
