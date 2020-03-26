@@ -127,23 +127,26 @@
 			</div>
 			<div class="col-md-5">
 				<div class="row">
+					<?php 
+					$id_beneficiario = $pacientsid->id_beneficiario;
+					$id_titular = $pacientsid->id_titular;
+					$Nombre = $pacientsid->name;
+					$Apellidos = $pacientsid->lastname;
+					$Departamento = $pacientsid->departament;
+					$Ruta_foto = '';
+					$ruta = '';
+					
+					if($id_beneficiario || $id_titular){ ?>
 					<a class="btn btn-warning btn-sm" href="<?php
-						$id_beneficiario = $pacientsid->id_beneficiario;
-						$id_titular = $pacientsid->id_titular;
-						$Nombre = $pacientsid->name;
-						$Apellidos = $pacientsid->lastname;
-						$Departamento = $pacientsid->departament;
-						$Ruta_foto = '';
-						$ruta = '';
 						if($id_beneficiario){
-							$ruta = 'index.php?view=editbeneficiary&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&Ruta_foto='.$Ruta_foto;
+							$ruta = 'index.php?view=editbeneficiary&id='.$_GET['id'].'&id_beneficiario='.$id_beneficiario.'&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&act=1';
 							echo $ruta;
 						}else if($id_titular){
-							
-							$ruta = 'index.php?view=editincumbent&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&Ruta_foto='.$Ruta_foto;
+							$ruta = 'index.php?view=editincumbent&id='.$_GET['id'].'&id_beneficiario='.$id_beneficiario.'&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&act=1';
 							echo $ruta;
 						}
 					?>">Actualizar foto</a>
+					<?php } ?>
 					<div class="user_foto">
 						<img src="
 							<?php

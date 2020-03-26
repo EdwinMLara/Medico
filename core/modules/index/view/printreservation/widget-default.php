@@ -112,6 +112,10 @@
                             //echo $an."  ".$mes.'  '.$dia;
             ?></strong></h4>
         </div>
+        <div id="factura">
+        <h4><strong><?php echo $ultima_factura;
+            ?></strong></h4>
+        </div>
         <?php
 				$medic_id=$_POST["medic_id"];
 				$medicid=MedicData::getById($medic_id);

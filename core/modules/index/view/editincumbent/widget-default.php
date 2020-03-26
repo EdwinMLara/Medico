@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <h1>Titular del Seguro</h1>
     <br>
-    <form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updateincumbent&id=<?php echo $_GET["id_titular"] ?>" role="form">
+    <form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updateincumbent&id=<?php echo $_GET["id"] ?>&id_beneficiario=<?php echo $_GET["id_beneficiario"] ?>&id_titular=<?php echo $_GET["id_titular"] ?>&act=1" role="form">
 
 
       <div class="form-group">
