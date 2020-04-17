@@ -2,7 +2,7 @@
 	<div class="col-md-8">
 	   <h1>Benefiario del Seguro</h1>
 	   <br>
-		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updatebeneficiary&id=<?php echo $_GET["id_titular"]?>" role="form">
+		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updatebeneficiary&&id=<?php echo $_GET["id"] ?>&id_beneficiario=<?php echo $_GET["id_beneficiario"] ?>&id_titular=<?php echo $_GET["id_titular"] ?>&act=1" role="form">
 
 
       <div class="form-group">
@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Parentesco</label>
         <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Departamento" value="<?php echo $_GET["Departamento"]?>">
+          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Parentesco" value="<?php echo $_GET["Departamento"]?>">
         </div>
       </div>
 
