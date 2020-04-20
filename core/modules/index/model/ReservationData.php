@@ -46,6 +46,17 @@ class ReservationData {
 		return Model::one($query[0],new ReservationData());
 	}
 
+	public static function DeleteByNumFactura($id){
+		$sql = "DELETE FROM ".self::$tablename." WHERE numero_factura = $id";
+		$query = Executor::doit($sql);
+
+		$sql_producto = "SELECT id_producto, cantidad FROM detalle_factura where numero_factura = $id";
+		$query_productos = Executor::doit($sql);
+		//$productos = Model::many($query[0],new ReservationData());
+		
+
+	}
+
 	public static function getRepeated($pacient_id,$medic_id,$date_at,$time_at){
 		$sql = "select * from ".self::$tablename." where pacient_id=$pacient_id and medic_id=$medic_id and date_at=\"$date_at\" and time_at=\"$time_at\"";
 		$query = Executor::doit($sql);
