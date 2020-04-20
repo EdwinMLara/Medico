@@ -6,12 +6,10 @@
 	//Archivo de funciones PHP
 	include("../funciones.php");
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
-	/*if (isset($_GET['id'])){
+	if (isset($_GET['id'])){
 		$id_producto=intval($_GET['id']);
-		$query=mysqli_query($con, "select * from detalle_factura where id_producto='".$id_producto."'");
-		$count=mysqli_num_rows($query);
-		if ($count==0){
-			if ($delete1=mysqli_query($con,"DELETE FROM products WHERE id_producto='".$id_producto."'")){
+		
+		if ($delete1=mysqli_query($con,"DELETE FROM detalle_productos WHERE id_detalle_producto=$id_producto")){
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -28,15 +26,7 @@
 			
 		}
 			
-		} else {
-			?>
-			<div class="alert alert-danger alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			  <strong>Error!</strong> No se pudo eliminar éste  producto. Existen cotizaciones vinculadas a éste producto. 
-			</div>
-			<?php
-		}
-	}*/
+	}
 	/********************************************************/
 	if($action == 'ajax'){
 		// escaping, additionally removing everything that could be (html/javascript-) code
@@ -80,11 +70,13 @@
 						<th>Cantidad</th>
 						<th>Agregado</th>
 						<th>Precio Entrada</th>
+						<th>Accion</th>
 					</tr>
 					<?php
 					if($query){
 						while ($row=mysqli_fetch_array($query)){
 							$codigo_producto=$row['codigo_medicamento'];
+							$id_detalle_producto=$row['id_detalle_producto'];
 							$nombre_producto=$row['nombre_producto'];
 							$status_producto=$row['status'];
 							if ($status_producto==1){$estado="Entrada";}
@@ -100,6 +92,9 @@
 							<td><?php echo $cantidad;?></td>
 							<td><?php echo $detalle_date_added;?></td>
 							<td><?php echo $precio ;?></td>
+							<td><span class="pull-right">
+								<a href="#" class='btn btn-default' title='Borrar producto' onclick="eliminar('<?php echo $id_detalle_producto; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span>
+							</td>
 						</tr>
 					<?php
 						}
