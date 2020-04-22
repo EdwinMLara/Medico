@@ -129,13 +129,13 @@
         
         <div id="paciente"> 
         	<?php
-				$pacient_id = $_POST["pacient_id"];
-				$pacientsid = PacientData::getById($pacient_id);
+                $pacientsid = PacientData::getById($_POST["pacient_id"]);
+                $titular_aux = IncumbentData::getALLbyID($pacientsid->id_titular);
 			?>
         	<h4><strong><?php echo $pacientsid->name ." ". $pacientsid->lastname; ?></strong></h4>
         </div>
         <div id="depart"> 
-        	<h4><strong><?php echo $pacientsid->departament; ?>  </strong> </h4> 
+        	<h4><strong><?php echo $titular_aux->Departamento; ?>  </strong> </h4> 
         </div>
         <div id="medicament"> 
         	<!--<strong><?php echo nl2br(htmlentities($_POST["Num_medicamentos"])); ?></strong>-->

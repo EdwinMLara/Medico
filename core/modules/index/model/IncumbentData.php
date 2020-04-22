@@ -4,6 +4,7 @@ class IncumbentData{
 
 	public function IncumbentData(){
 		$this->Nombre = "";
+		$this->id_titular = "";
 		$this->Apellidos = "";
 		$this->Departamento = "";
 		$this->Num_familiares = "";
@@ -48,7 +49,13 @@ class IncumbentData{
 	
 	public static function update_ruta_foto($ruta,$id){
 		$sql = "UPDATE ".self::$tablename." SET Ruta_foto = '".$ruta."', is_foto = '1' WHERE id_titular = '".$id."'";	
+		Executor::doit($sql);
+	}
+
+	public static function getALLbyID($id_titular){
+		$sql = "SELECT * FROM ".self::$tablename." WHERE id_titular = $id_titular";
 		$query = Executor::doit($sql);
+		return Model::one($query[0],new IncumbentData());
 	}
 }
 ?>

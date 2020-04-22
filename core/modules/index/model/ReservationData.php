@@ -46,15 +46,17 @@ class ReservationData {
 		return Model::one($query[0],new ReservationData());
 	}
 
-	public static function DeleteByNumFactura($id){
-		$sql = "DELETE FROM ".self::$tablename." WHERE numero_factura = $id";
-		$query = Executor::doit($sql);
-
-		$sql_producto = "SELECT id_producto, cantidad FROM detalle_factura where numero_factura = $id";
-		$query_productos = Executor::doit($sql);
-		//$productos = Model::many($query[0],new ReservationData());
-		
-
+	public static function DeleteByNumFactura($id,$numero_factura){
+		$productos = cantidadesData::getCantidadesEliminar($numero_factura);
+		foreach($productos as $producto) {
+			cantidadesData::updateCantidades($producto->id_producto,$producto->cantidad);
+		}
+		$sql = "DELETE FROM ".self::$tablename." WHERE id = $id";
+		$del1="delete from facturas where numero_factura='".$numero_factura."'";
+		$del2="delete from detalle_factura where numero_factura='".$numero_factura."'";
+		Executor::doit($sql);
+		Executor::doit($del1);
+		Executor::doit($del2);
 	}
 
 	public static function getRepeated($pacient_id,$medic_id,$date_at,$time_at){
