@@ -76,7 +76,7 @@ table.page_footer {width: 100%; border: none; background-color: white; padding: 
 				$nombre=$row['nombre_producto'];
 				$cantidad=$row['cantidad'];
 				$precio=$row['precio'];
-				$importe = (int)$precio * (int)$cantidad;
+				$importe = (float)$precio * (float)$cantidad;
 				$fecha=$row['detalle_date_added'];
 				if ($nums%2==0){
 					$clase="clouds";
