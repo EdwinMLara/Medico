@@ -54,9 +54,11 @@ class ReservationData {
 		$sql = "DELETE FROM ".self::$tablename." WHERE id = $id";
 		$del1="delete from facturas where numero_factura='".$numero_factura."'";
 		$del2="delete from detalle_factura where numero_factura='".$numero_factura."'";
+		$del3="delete from detalle_productos where numero_factura='".$numero_factura."'";
 		Executor::doit($sql);
 		Executor::doit($del1);
 		Executor::doit($del2);
+		Executor::doit($del3);
 	}
 
 	public static function getRepeated($pacient_id,$medic_id,$date_at,$time_at){
