@@ -72,7 +72,7 @@
 
             //Empezar insert para detalle de productos
 
-            $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0')";
+            $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio,numero_factura) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0','$ultima_factura')";
 
             if(!mysqli_query($con,$query_insert_detalle_productos)){
                 echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
