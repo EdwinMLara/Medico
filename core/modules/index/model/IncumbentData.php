@@ -5,6 +5,7 @@ class IncumbentData{
 	public function IncumbentData(){
 		$this->Nombre = "";
 		$this->id_titular = "";
+		$this->id_beneficiario = "";
 		$this->Apellidos = "";
 		$this->Departamento = "";
 		$this->Num_familiares = "";

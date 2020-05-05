@@ -132,7 +132,7 @@
                 $pacientsid = PacientData::getById($_POST["pacient_id"]);
                 $titular_aux = IncumbentData::getALLbyID($pacientsid->id_titular);
 			?>
-        	<h4><strong><?php echo $pacientsid->name ." ". $pacientsid->lastname; ?></strong></h4>
+        	<h4><strong><?php echo $pacientsid->name ." ". $pacientsid->lastname."   ----  "; if($pacientsid->id_titular){ echo "Titular"; }else if($pacientsid->id_beneficiario){ echo "Beneficiario"; }; ?></strong></h4>
         </div>
         <div id="depart"> 
         	<h4><strong><?php echo $titular_aux->Departamento; ?>  </strong> </h4> 
