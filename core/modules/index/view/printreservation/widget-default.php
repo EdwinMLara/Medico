@@ -72,7 +72,7 @@
 
             //Empezar insert para detalle de productos
 
-            $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio,numero_factura) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0','$ultima_factura')";
+            $query_insert_detalle_productos = "INSERT INTO detalle_productos (codigo_producto, status, cantidad, detalle_date_added, precio) VALUES ('$codigo_producto','2','".$_POST["Cantidad$i"]."',now(),'0')";
 
             if(!mysqli_query($con,$query_insert_detalle_productos)){
                 echo "No se pueden insertar los detalles de producto o medicamentos"."<br>";
@@ -132,7 +132,7 @@
                 $pacientsid = PacientData::getById($_POST["pacient_id"]);
                 $titular_aux = IncumbentData::getALLbyID($pacientsid->id_titular);
 			?>
-        	<h4><strong><?php echo $pacientsid->name ." ". $pacientsid->lastname."   ----  "; if($pacientsid->id_titular){ echo "Titular"; }else if($pacientsid->id_beneficiario){ echo "Beneficiario"; }; ?></strong></h4>
+        	<h4><strong><?php echo $pacientsid->name ." ". $pacientsid->lastname."   ----  "; if($pacientsid->id_beneficiario){ echo "Beneficiario"; }else{ if($pacientsid->id_titular){ echo "Titular"; }}; ?></strong></h4>
         </div>
         <div id="depart"> 
         	<h4><strong><?php echo $titular_aux->Departamento; ?>  </strong> </h4> 

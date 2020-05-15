@@ -112,8 +112,6 @@ class  PacientData{
 		return Model::many($query[0],new PacientData());
 	}
 
-	public function getUnreads(){ return MessageData::getUnreadsByClientId($this->id_paciente); }
-
 	public static function getLike($q){
 		$sql = "select * from ".self::$tablename." where title like '%$q%' or email like '%$q%'";
 		$query = Executor::doit($sql);
