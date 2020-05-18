@@ -2,7 +2,7 @@
 	<div class="col-md-8">
 	   <h1>Benefiario del Seguro</h1>
 	   <br>
-		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updatebeneficiary&&id=<?php echo $_GET["id"] ?>&id_beneficiario=<?php echo $_GET["id_beneficiario"] ?>&id_titular=<?php echo $_GET["id_titular"] ?>&act=1" role="form">
+		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=updatebeneficiary&id=<?php echo $_GET["id"] ?>&id_beneficiario=<?php echo $_GET["id_beneficiario"] ?>&id_titular=<?php echo $_GET["id_titular"] ?>&act=1" role="form">
 
 
       <div class="form-group">
@@ -20,19 +20,21 @@
       </div>
       
       <div class="form-group">
-        <label for="inputEmail1" class="col-md-2 col-form-label">Parentesco</label>
-        <div class="col-md-10">
-          <input type="text" name="Departamento" class="form-control" required id="Departamento" placeholder="Parentesco" value="<?php echo $_GET["Departamento"]?>">
-        </div>
+        <label class="col-md-3 col-form-label">Parentesco</label>
+          <div class="col-md-9">
+            <select class="form-control" id="Departamento" name="Parentesco">
+              <option selected>Padre</option>
+                <option>Madre</option>
+                <option>Hijo(a)</option>
+                <option>Esposa</option>
+              </select>
+          </div>
       </div>
 
       <div class="form-group">
 
         <div class="col-md-3"></div>
         <div class="col-md-4">
-          <!--<div class="user_image">
-            <img src="uploads/images/<?php echo $_GET["Ruta_foto"] ?>" alt="">
-          </div>-->
           <div id="prueba">
               <canvas id="canvas">
               </canvas>

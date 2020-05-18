@@ -24,8 +24,8 @@ class IncumbentData{
 		Executor::doit($sql);
 	}
 
-	public function update($id,$Nombre,$Apellidos,$Departamento){
-		$sql = "UPDATE ".self::$tablename." SET Nombre=\"$Nombre\", Apellidos = \"$Apellidos\", Departamento = \"$Departamento\", Num_familiares = '1' WHERE id_titular = $id";
+	public function update($id,$Nombre,$Apellidos,$Departamento,$ruta_foto){
+		$sql = "UPDATE ".self::$tablename." SET Nombre=\"$Nombre\", Apellidos = \"$Apellidos\", Departamento = \"$Departamento\", Num_familiares = '1', Ruta_foto = \"$ruta_foto\" WHERE id_titular = $id";
 		Executor::doit($sql);
 	}
 

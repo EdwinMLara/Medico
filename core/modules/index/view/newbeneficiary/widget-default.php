@@ -96,7 +96,7 @@
             <select class="form-control" id="Departamento" name="Parentesco">
               <option selected>Padre</option>
                 <option>Madre</option>
-                <option>Hijo</option>
+                <option>Hijo(a)</option>
                 <option>Esposa</option>
               </select>
           </div>

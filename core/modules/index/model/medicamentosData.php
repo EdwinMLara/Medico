@@ -3,7 +3,6 @@ class medicamentosData{
 	public static $tablename = "medicamentos";
 
 	public function medicamentosData(){
-		$this->id_medicamento = "";
 		$this->codigo_medicamento = "";
 		$this->nombre_producto = "";
 		$this->status_producto = "";

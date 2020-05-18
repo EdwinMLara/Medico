@@ -152,7 +152,6 @@ function autocomplete(inp, array,inventario,tag_inventario,tag_select){
 	
 	inp.addEventListener("keydown",function(e){
 		var x = document.getElementById(this.id + "autocomplete-list");
-		console.log(currentFocus);
 		if(x){
 			x = x.getElementsByTagName("div");
 		}
@@ -223,10 +222,12 @@ $(document).ready(function(){
 	setInterval(llenar_vectores(), 5000);
 	autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1","select1");
 	autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1","select1");
+	console.log(inventario);
+	console.log(nombres);
 });
 
 function llenar_vectores(){
-$.ajax({
+	$.ajax({
 		url:"api/json-medicamentos-api.php",
 		dataType:"json",
 		type:"get",

@@ -165,6 +165,16 @@ class  PacientData{
 		$sql = "UPDATE pacientes SET is_active = 1 WHERE id_paciente = $id";
 		$query = Executor::doit($sql);
 	}
+
+	public static function updateByidTitular($id_titular,$name,$lastname,$departament){
+		$sql = "UPDATE pacientes SET name='$name', lastname= '$lastname', departament = '$departament' WHERE id_titular = $id_titular";
+		$query = Executor::doit($sql);
+	}
+
+	public static function updateByidBeneficiario($id_beneficiario,$name,$lastname,$departament){
+		$sql = "UPDATE pacientes SET name='$name', lastname= '$lastname', departament = '$departament' WHERE id_beneficiario = $id_beneficiario";
+		$query = Executor::doit($sql);
+	}
 }
 
 ?>

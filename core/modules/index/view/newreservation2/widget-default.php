@@ -139,10 +139,10 @@
 					if($id_beneficiario || $id_titular){ ?>
 					<a class="btn btn-warning btn-sm" href="<?php
 						if($id_beneficiario){
-							$ruta = 'index.php?view=editbeneficiary&id='.$_GET['id'].'&id_beneficiario='.$id_beneficiario.'&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&act=1';
+							$ruta = 'index.php?view=editbeneficiary&id='.$_GET['id'].'&id_beneficiario='.$id_beneficiario.'&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento;
 							echo $ruta;
 						}else if($id_titular){
-							$ruta = 'index.php?view=editincumbent&id='.$_GET['id'].'&id_beneficiario='.$id_beneficiario.'&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento.'&act=1';
+							$ruta = 'index.php?view=editincumbent&id='.$_GET['id'].'&id_beneficiario='.$id_beneficiario.'&id_titular='.$id_titular.'&Nombre='.$Nombre.'&Apellido='.$Apellidos.'&Departamento='.$Departamento;
 							echo $ruta;
 						}
 					?>">Actualizar foto</a>
