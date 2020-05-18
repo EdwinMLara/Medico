@@ -24,8 +24,8 @@
 				}	
 			}else{
 				$badera_activacion = 0;
-				$users = PacientData::getAll_disable();
-				$str = "inactivos";
+				$users = PacientData::getAll();
+				$str = "activos";
 			}
 		}else{
 			$users = PacientData::getAll();
@@ -48,10 +48,11 @@
 					<td><?php echo $user->name." ".$user->lastname; ?></td>
 					<td style="width:300px;">
 						<?php if(!$user_aux->is_admin){?>
-							<a href="index.php?view=newreservation2&id=<?php echo $user->id_paciente;?>&id_beneficiario=<?php echo $user->id_beneficiario;?>&id_titular=<?php echo $user->id_titular?>" class="btn btn-success btn-xs">Nueva Cconsulta</a>
+							<a href="index.php?view=newreservation2&id=<?php echo $user->id_paciente;?>&id_beneficiario=<?php echo $user->id_beneficiario;?>&id_titular=<?php echo $user->id_titular?>" class="btn btn-success btn-xs">Nueva Consulta</a>
 							<a href="index.php?view=pacienthistory&id=<?php echo $user->id_paciente;?>" class="btn btn-info btn-xs">Historial</a>
 						<?php }else{ ?>
 							<a href="index.php?view=pacienthistory&id=<?php echo $user->id_paciente;?>" class="btn btn-info btn-xs">Historial</a>
+							<a href="index.php?view=delpacient&id=<?php echo $user->id_paciente;?>" class="btn btn-danger btn-xs">Eliminar</a>
 							<?php if(!$badera_activacion){ ?>
 								<a href="index.php?view=pacientdesactivate&id=<?php echo $user->id_paciente;?>&active=1" class="btn btn-warning btn-xs">activar</a>
 							<?php
