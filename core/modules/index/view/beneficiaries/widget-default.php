@@ -23,8 +23,8 @@
 				<tr>
 					<td><?php echo $Beneficiario->Nombre." ".$Beneficiario->Apellidos; ?></td>
 					<td style="width:300px;">
-						<a href="index.php?view=editbeneficiary&id_titular=<?php echo $Beneficiario->id_beneficiario;?>&Nombre=<?php echo $Beneficiario->Nombre;?>&Apellido=<?php echo $Beneficiario->Apellidos;?>&Departamento=<?php echo $Beneficiario->Parentesco?>&Ruta_foto=<?php echo $Beneficiario->Ruta_foto;?>" href="#" class="btn btn-warning btn-xs">Editar</a>
-						<a href="index.php?view=delincumbent&id=<?php echo $Beneficiario->id_titular;?>" class="btn btn-danger btn-xs">Eliminar</a>
+						<a href="index.php?view=editbeneficiary&id_titular=<?php echo $Beneficiario->id_titular;?>&id_beneficiario=<?php echo $Beneficiario->id_beneficiario;?>&Nombre=<?php echo $Beneficiario->Nombre;?>&Apellido=<?php echo $Beneficiario->Apellidos;?>&Departamento=<?php echo $Beneficiario->Parentesco?>" href="#" class="btn btn-warning btn-xs">Editar</a>
+						<a href="index.php?view=delbeneficiary&id_beneficiario=<?php echo $Beneficiario->id_beneficiario;?>&id_titular=<?php echo $Beneficiario->id_titular;?>&Nombre_titular=<?php echo $_GET["Nombre"];?>&Apellidos_titular=<?php echo $_GET["Apellido"];?>" class="btn btn-danger btn-xs">Eliminar</a>
 					</td>
 				</tr>
 				<?php

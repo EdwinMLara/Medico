@@ -35,5 +35,10 @@ class beneficiaryData{
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new IncumbentData);
 	}
+
+	public function delete($id_beneficiario){
+		$sql = "DELETE FROM beneficiarios WHERE id_beneficiario = $id_beneficiario";
+		$query = Executor::doit($sql);
+	}
 }
 ?>

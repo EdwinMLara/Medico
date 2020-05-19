@@ -2,7 +2,13 @@
   <div class="col-md-8">
     <h1>Titular del Seguro</h1>
     <br>
-    <form class="form-horizontal" method="post" action="index.php?view=updateincumbent&id_titular=<?php echo $_GET["id_titular"] ?>&act=1" role="form">
+    <form class="form-horizontal" method="post" action="index.php?view=updateincumbent&id_titular=<?php echo $_GET["id_titular"] ?>&act=<?php 
+      if(isset($_GET["act"])){
+        echo "0&id=".$_GET["id"]."&id_beneficiario=".$_GET["id_beneficiario"]; 
+      }else{
+        echo "1"; 
+      }
+    ?>" role="form">
 
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>
