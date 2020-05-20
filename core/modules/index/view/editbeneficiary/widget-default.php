@@ -6,7 +6,7 @@
       if(isset($_GET["act"])){
         echo "0&id=".$_GET["id"]."&id_beneficiario=".$_GET["id_beneficiario"]; 
       }else{
-        echo "1"; 
+        echo "1&id_titular=".$_GET["id_titular"]."&Nombre=".$_GET["Nombre_titular"]."&Apellido=".$_GET["Apellido_titular"]; 
       }
     ?>" role="form">
 
@@ -27,7 +27,7 @@
       <div class="form-group">
         <label class="col-md-3 col-form-label">Parentesco</label>
           <div class="col-md-9">
-            <select class="form-control" id="Departamento" name="Parentesco">
+            <select class="form-control" id="Departamento" name="Departamento">
               <option selected>Padre</option>
                 <option>Madre</option>
                 <option>Hijo(a)</option>
