@@ -12,10 +12,7 @@
     </h1><br>
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addbeneficiary" role="form">
       <input type="hidden" name="id_titular" id="id_titular">
-      <input type="hidden" name="Nombre_titular" id="Nombre_titular">
-      <input type="hidden" name="Apellido_titular" id="Apellido_titular">
       <?php
-
         if(!isset($_POST["name_titular"])){
           $Nombre = $_GET["Nombre"];
           $Apellido = $_GET["Apellido"];
@@ -39,27 +36,18 @@
           $Nombre = trim($Nombre);
           $Apellido = $array[$num_name]." ".$array[$num_name+1];
           $Apellido = trim($Apellido);
-          if($id = IncumbentData::getId_titular($Nombre,$Apellido)){
-            $id_titular = $id->id_titular;
-            $paciente = PacientData::getById($_POST['id_paciente']);
-            $Nombre_beneficiario = $paciente->name;
-            $Apellido_beneficiario = $paciente->lastname;
-          }else{
-            echo "<script>
-              alert('Necesitas registrar el titular del Seguro');
-              window.location='index.php?view=newbeneficiary-titular&Nombre=".$Nombre."&Apellido=".$Apellido."&id_paciente=".$_POST['id_paciente']."';
-            </script>";
-            $Nombre = "";
-            $Apellido = "";
-            $id_titular = "";
-          }
+          $id_paciente_titular = $_POST["name_id"];
+          $Paciente = PacientData::getById($id_paciente_titular); 
+          
+          echo "<script> document.getElementById('id_titular').value = '$Paciente->id_titular' </script>";
         }
 
-        echo "<script>
-                document.getElementById('id_titular').value = '$id_titular';
-                document.getElementById('Nombre_titular').value = '$Nombre';
-                document.getElementById('Apellido_titular').value = '$Apellido';
-             </script>";
+        if(isset($_POST['id_paciente'])){
+          $paciente = PacientData::getById($_POST['id_paciente']);
+          $Nombre_beneficiario = $paciente->name;
+          $Apellido_beneficiario = $paciente->lastname;
+        }
+
       ?>
       <div class="form-group">
         <label for="inputEmail1" class="col-md-2 col-form-label">Nombre</label>

@@ -17,7 +17,8 @@
 		$beneficiary->insert(1);
 
 		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
-		$paciente = PacientData::getId_paciente($Nombre_beneficiario,$Apellidos_beneficiario);
+		$paciente = PacientData::getById($_POST["id_titular"]);
+		
 		if(!$paciente){
 			$paciente = new PacientData();
 			$paciente->id_titular = $id_titular;
@@ -33,8 +34,6 @@
 			$ruta_redireccion = "index.php?view=beneficiaries&Nombre=$Nombre_titular&Apellido=$Apellido_titular&id_titular=$id_titular";
 			print "<script>window.location='$ruta_redireccion';</script>";
 		}else{ 
-
-			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
 			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
 
 			$beneficiario_id_aux = $id_beneficiario->id_beneficiario;
@@ -44,7 +43,6 @@
 			Core::alert($mensaje);
 			print "<script>window.location='index.php?view=newreservation2&id=".$paciente_id_aux."&id_beneficiario=".$beneficiario_id_aux."&id_titular=".$titular_id_aux."';</script>";	
 		}
-
 		
 	}
 ?>

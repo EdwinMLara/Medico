@@ -57,7 +57,7 @@
                 <input type="text" id="name_titular" name="name_titular" class="form-control">
                 
               </div>
-				
+                  <input type="hidden" id="name_id" name="name_id">
             </div>
             <button type="submit" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-off"></span>Registrar</button>
           </form>

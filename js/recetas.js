@@ -217,13 +217,15 @@ var countries = [];
 var ids_countries = [];
 var inventario = [];
 var nombres = [];
+var ids_nombres = [];
 
 $(document).ready(function(){
 	setInterval(llenar_vectores(), 5000);
 	autocomplete(document.getElementById("myInput"), countries,inventario,"inventario1","select1");
-	autocomplete(document.getElementById("name_titular"),nombres,inventario,"inventario1","select1");
+	autocomplete(document.getElementById("name_titular"),nombres,ids_nombres,"name_id","select1");
 	console.log(inventario);
 	console.log(nombres);
+	console.log(ids_nombres);
 });
 
 function llenar_vectores(){
@@ -252,6 +254,7 @@ function llenar_vectores(){
 				var aux_lastname = x[i].lastname;  
 				aux = aux.concat(" ",aux_lastname);
 				nombres.push(aux);
+				ids_nombres.push(x[i].id_paciente);
 			}
 		 }
 	});
