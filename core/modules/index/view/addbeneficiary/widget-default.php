@@ -16,8 +16,10 @@
 		$Apellidos_beneficiario = ucwords($_POST["Apellido"]);
 		$beneficiary->insert(1);
 
+		$id_paciente_beneficiario = $_POST["id_paciente_beneficiario"];
+
 		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
-		$paciente = PacientData::getById($_POST["id_titular"]);
+		$paciente = PacientData::getById($id_paciente_beneficiario);
 		
 		if(!$paciente){
 			$paciente = new PacientData();
@@ -34,8 +36,8 @@
 			$ruta_redireccion = "index.php?view=beneficiaries&Nombre=$Nombre_titular&Apellido=$Apellido_titular&id_titular=$id_titular";
 			print "<script>window.location='$ruta_redireccion';</script>";
 		}else{ 
+			PacientData::update_id_titular($id_titular,$paciente->id_paciente);
 			PacientData::update_id_beneficiario($id_beneficiario->id_beneficiario,$paciente->id_paciente);
-
 			$beneficiario_id_aux = $id_beneficiario->id_beneficiario;
 			$paciente_id_aux = $paciente->id_paciente;
 			$titular_id_aux = $id_titular;

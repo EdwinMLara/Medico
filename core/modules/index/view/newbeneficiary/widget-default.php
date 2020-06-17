@@ -12,6 +12,7 @@
     </h1><br>
 		<form class="form-horizontal" method="post" id="addproduct" action="index.php?view=addbeneficiary" role="form">
       <input type="hidden" name="id_titular" id="id_titular">
+      <input type="hidden" name="id_paciente_beneficiario" id="id_paciente_beneficiario" value="<?php if(isset($_POST['name_id'])){ echo $_POST['name_id']; }?>">
       <?php
         if(!isset($_POST["name_titular"])){
           $Nombre = $_GET["Nombre"];
