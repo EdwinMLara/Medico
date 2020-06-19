@@ -1,8 +1,8 @@
 <?php
 	if(count($_POST)>0){
 		$beneficiary = new beneficiaryData();
-		$beneficiary->id_titular = $_POST["id_titular"];
 		$id_titular = $_POST["id_titular"];
+		$beneficiary->id_titular = $id_titular;
 		$beneficiary->Nombre = ucwords($_POST["Nombre"]);
 		$beneficiary->Apellidos = ucwords($_POST["Apellido"]);
 		$beneficiary->Parentesco = ucwords($_POST["Parentesco"]);
@@ -16,12 +16,16 @@
 		$Apellidos_beneficiario = ucwords($_POST["Apellido"]);
 		$beneficiary->insert(1);
 
-		$id_paciente_beneficiario = $_POST["id_paciente_beneficiario"];
+		if(isset($_POST["id_paciente_beneficiario"])){
+			$id_paciente_beneficiario = $_POST["id_paciente_beneficiario"];
+			$paciente = PacientData::getById($id_paciente_beneficiario);
+		}
+		
 
 		$id_beneficiario = beneficiaryData::getId_beneficiary($Nombre_beneficiario,$Apellidos_beneficiario);
-		$paciente = PacientData::getById($id_paciente_beneficiario);
 		
-		if(!$paciente){
+		
+		if(!isset($paciente)){
 			$paciente = new PacientData();
 			$paciente->id_titular = $id_titular;
 			$paciente->id_beneficiario = $id_beneficiario->id_beneficiario;

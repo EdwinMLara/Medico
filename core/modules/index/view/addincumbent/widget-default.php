@@ -30,7 +30,6 @@ if(count($_POST)>0){
 			$titular_aux = IncumbentData::getId_titular($Nombre,$Apellidos); 
 			PacientData::update_id_titular($titular_aux->id_titular,$paciente->id_paciente);
 			$mensaje = "Se ha actualizado la foto";
-			$bandera = 1;
 			$paciente_id_aux = $paciente->id_paciente;
 			$titular_id_aux = $titular_aux->id_titular;
 			$beneficiario_id_aux = $paciente->id_beneficiario;
