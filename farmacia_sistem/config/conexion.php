@@ -4,6 +4,7 @@
     if(!$con){
         die("imposible conectarse: ".mysqli_error($con));
     }
+    mysqli_set_charset($con, 'utf8');
     if (@mysqli_connect_errno()) {
         die("Conexión falló: ".mysqli_connect_errno()." : ". mysqli_connect_error());
     }
